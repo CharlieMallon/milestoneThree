@@ -1,7 +1,12 @@
-# To Do Aplication - the Reward scheeme!
+# To Do Application - the Reward scheme!
 
 [View the live website here]()
 
+This application is a To Do list with a Twist, it uses the reward theory to give you rewards for completing tasks.  This rewards are given at random intervals so as to encourage tasks to be done without rewards.  The inspiration for this came from an experiment on children -name experiment - find experiment
+
+**Name Ideas**
+- DOOO
+- Rewarding To Do's
 
 ## User Experience (UX)
 
@@ -16,10 +21,18 @@
     -   Add a to do item
     -   Complete a to do item
     -   Delete a to do item
+    -   Add extra information
+        -   Description
+        -   Category - such as house work, Work, Crafts.
+        -   Deadlines (timescales)
+        -   Subtasks/dependencies/contentions
+        -   Hashtags?
+        -   Recurring tasks.
+    -   Prioritize tasks
 
     #### Description:
 
-    The user will be able to easiliy add to do items using a 'title'. There will then be optional feilds that can be populatied, a discription, a 'catorgory' and timescales.
+    The user will be able to easily add to do items using a 'title'. There will then be optional felids that can be populated after creation. The user will be able to prioritize tasks quickly (i.e this task needs to be done today!).
 
     #### User Story 2
 
@@ -27,32 +40,41 @@
 
     #### Acceptance Criteria
 
-    -   
+    -   Add a Tally button
+    -   Increase the Tally 
+    -   Delete a Tally
+    -   Add extra information to the tally button
+        -   Description
+        -   Icon
+        -   Target number (is over good or bad?)
+    -   Time period for tally 
+        -   Daily
+        -   Weekly
+        -   Monthly
 
     #### Description:
 
-    
+    The user will easily be able to add to an existing tally from the home page. Creation or deletion of a Tally will be done on a Tally modal or page.
 
     #### User Story 3
 
-    As a user, I want to know how to use this aplication.
+    As a user, I want to know how to use this application.
 
     #### Acceptance Criteria
 
-    -   The instruction for the aplication should be clear and visible on first opening.
+    -   The instruction for the application should be clear and visible on first opening.
     -   The buttons should be clearly indicated.
     -   Instructions should tell the user how to;
-        -  Log on/off
-        -  Add a to do item/tally
-        -  Aomplete/delete a to do item/tally
-        -  Add/remove rewards
-        -  Aontact developer for feedback/support
-    -   The instruction to use the aplication should be  accessible whist playing.
+        -   Log on/off
+        -   Add a to do item/tally
+        -   Complete/delete a to do item/tally
+        -   Add/remove rewards
+        -   Contact developer for feedback/support
+    -   The instruction to use the application should be accessible whist playing.
 
     #### Description:
 
-     The instruction will pop up on fist opening the aplication. Instructions will indicate how to use the aplication. 
-     The instructions will be accesable through a 'help' button
+    The instruction will pop up on fist opening the application. Instructions will indicate how to use the application. The instructions will be accessible through a 'help' button
 
     #### User Story 4
 
@@ -61,11 +83,11 @@
     #### Acceptance Criteria
 
     -   The user will have a log on with there To Do's / Tally's stored
-    -   The user will have the option to delete the account and accociated data.
+    -   The user will have the option to delete the account and associated data.
 
     #### Description:
 
-    The user will be prompted to log on to the aplication to see there to do list, tallys and rewards.
+    The user will be prompted to log on to the application to see there to do list, tally's and rewards.
 
     #### User Story 5
 
@@ -101,25 +123,24 @@
 
 -   ### Design
 
-    The design of this aplication is simple and easy to use.
+    The design of this application is simple and easy to use.
 
     -   #### Colour Scheme
 
-        Dark and light modes. I want some calming clours (not to in your face) for the main clour scheeme. The done colours on tasks should be a nice positive green.
+        Dark and light modes. I want some calming colours (not to in your face) for the main colours scheme. The done colours on tasks should be a nice positive green.
 
     -   #### Typography
 
         simple easy to read - dyslexic font?
-        Tick's should cross the line of the box 
+        Tick's should cross the line of the box
 
     -   #### Buttons
-        
+
         Circles except the burger menu
 
     -   #### symbols
 
-        need to find multiple symobles for things, look at font awsome - this is mainly for the tally bit.
-
+        need to find multiple symbols for things, look at font awesome - this is mainly for the tally bit.
 
 *   ### Wireframes
 
@@ -135,21 +156,21 @@ I have split the features into Beta, Issue 1, Issue 2 & Issue 3. The project is 
 
 -   ### Beta
 
-    -   
-    -   Tell you how to use the aplication.
+    -
+    -   Tell you how to use the application.
     -   Make Responsive on all Devices.
 
 -   ### Issue 1
 
-    -   
+    -
     -   Tell you how to use the aplication - with cool arrow graphics in 'slide' format
 
 -   ### Issue 2
 
-    -   
+    -
 
 -   ### Issue 3
-    -   
+    -
 
 ## Technologies Used
 
@@ -167,13 +188,13 @@ I have split the features into Beta, Issue 1, Issue 2 & Issue 3. The project is 
 
 ### Resources
 
-- [Am I Responsive Design](http://ami.responsivedesign.is/#)
-- [Code Institute Course Content](https://courses.codeinstitute.net/)
-- Code Institute **SLACK Community**
-- [Stack Overflow](https://stackoverflow.com/)
-- [Youtube](https://www.youtube.com/)
-- [CSS-Tricks](https://css-tricks.com/)
-- [Balsamiq](https://balsamiq.com/wireframes/)
+-   [Am I Responsive Design](http://ami.responsivedesign.is/#)
+-   [Code Institute Course Content](https://courses.codeinstitute.net/)
+-   Code Institute **SLACK Community**
+-   [Stack Overflow](https://stackoverflow.com/)
+-   [YouTube](https://www.youtube.com/)
+-   [CSS-Tricks](https://css-tricks.com/)
+-   [Balsamiq](https://balsamiq.com/wireframes/)
 
 ## Testing
 
@@ -185,26 +206,23 @@ This section will detail the bugs that I came across coding and the main one tha
 
 **During coding**
 
-| Bug | Things Tried | Final Fix|
-| ---| --- |--- |
-| Bug | Things Tried | Final Fix|
-
+| Bug | Things Tried | Final Fix |
+| --- | ------------ | --------- |
+| Bug | Things Tried | Final Fix |
 
 **During testing**
 
-| Test Ref  | Test Description  | Bug Description | Final fix | Comment |
-| --------- | ----------------- | ----------------| --------- | ------- |
-| Test Ref  | Test Description  | Bug Description | Final fix | Comment |
+| Test Ref | Test Description | Bug Description | Final fix | Comment |
+| -------- | ---------------- | --------------- | --------- | ------- |
+| Test Ref | Test Description | Bug Description | Final fix | Comment |
 
 ## Deployment
-
-
 
 ## Credits
 
 ### Code
 
-Name isperations
+Name my inspirations
 
 ### Content
 
@@ -220,4 +238,3 @@ Name isperations
 
 -   My Mentor Brian Macharia for some good guidance.
 -   Mr_Bim_alumni for general encouragement and the occasional kick up the backside.
--   Daisy Mc Girr for her help and encouragement with my testing documentation.
