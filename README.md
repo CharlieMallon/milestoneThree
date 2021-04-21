@@ -2,7 +2,31 @@
 
 [View the live website here]()
 
-This application is a To Do list with a Twist, it uses the reward theory to give you rewards for completing tasks.  This rewards are given at random intervals so as to encourage tasks to be done without rewards.  The inspiration for this came from an experiment on children -name experiment - find experiment
+This application is a To Do list with a Twist, it uses the reward theory to give you rewards for completing tasks.  This rewards are given at random intervals so as to encourage tasks to be done without rewards.  The inspiration for this came from an experiment on children -name experiment - find experiment - this one? (https://bingschool.stanford.edu/news/mark-lepper-intrinsic-motivation-extrinsic-motivation-and-process-learning)
+
+Started as a To Do app, is now more like a life planner/tracker - integrated life organization app.
+
+Done tasks / not done tasks - no failed tasks.
+
+all about positily renforcement
+
+When a prioritied task is not completed on the day it was prioritied have a pop up that allows you to reveiw/roll over your tasks.
+
+Completed tasks turn green and have a animation that makes them move to the bottom of the list/off the list
+
+Canceled tasks line out fade and 'disapear'
+
+Notifications
+    -   On phone/watch/computer?
+    -   emails?
+    -   https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API - for android
+    -   https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html - for apple?
+
+Done list! - i want to see what i have completed today!
+
+Settings - need to be able to adjust how often you are pinged.
+
+https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a bit about motivation
 
 **Name Ideas**
 - DOOO
@@ -142,6 +166,10 @@ This application is a To Do list with a Twist, it uses the reward theory to give
 
         need to find multiple symbols for things, look at font awesome - this is mainly for the tally bit.
 
+    -   #### sound
+
+        when a task is completed it needs to go bing - or some such sound that is a good positive yes I have done this!
+
 *   ### Wireframes
 
     -   Mobile Wireframes - [View]()
@@ -195,6 +223,7 @@ I have split the features into Beta, Issue 1, Issue 2 & Issue 3. The project is 
 -   [YouTube](https://www.youtube.com/)
 -   [CSS-Tricks](https://css-tricks.com/)
 -   [Balsamiq](https://balsamiq.com/wireframes/)
+-   [info on iPhone design](https://webkit.org/blog/7929/designing-websites-for-iphone-x/)
 
 ## Testing
 
@@ -219,6 +248,8 @@ This section will detail the bugs that I came across coding and the main one tha
 ## Deployment
 
 ## Credits
+
+Inspirations [any.do](https://www.any.do/) a to do list that looks cool
 
 ### Code
 
