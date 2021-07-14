@@ -1,6 +1,6 @@
 # To Do Application - the Reward scheme!
 
-[View the live website here]()
+<!-- [View the live website here]() -->
 
 This application is a To Do list with a Twist, it uses the reward theory to give you rewards for completing tasks.  This rewards are given at random intervals so as to encourage tasks to be done without rewards.  The inspiration for this came from an experiment on children -name experiment - find experiment - this one? (https://bingschool.stanford.edu/news/mark-lepper-intrinsic-motivation-extrinsic-motivation-and-process-learning)
 
@@ -8,13 +8,13 @@ Started as a To Do app, is now more like a life planner/tracker - integrated lif
 
 Done tasks / not done tasks - no failed tasks.
 
-all about positily renforcement
+all about positive reinforcement
 
-When a prioritied task is not completed on the day it was prioritied have a pop up that allows you to reveiw/roll over your tasks.
+When a prioritised task is not completed on the day it was prioritised have a pop up that allows you to review/roll over your tasks.
 
 Completed tasks turn green and have a animation that makes them move to the bottom of the list/off the list
 
-Canceled tasks line out fade and 'disapear'
+Canceled tasks line out fade and 'disappear'
 
 Notifications
     -   On phone/watch/computer?
@@ -22,7 +22,7 @@ Notifications
     -   https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API - for android
     -   https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html - for apple?
 
-Done list! - i want to see what i have completed today!
+Done list! - I want to see what I have completed today!
 
 Settings - need to be able to adjust how often you are pinged.
 
@@ -172,9 +172,9 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
 
 *   ### Wireframes
 
-    -   Mobile Wireframes - [View](assets\wireframe\phone.png)
+    -   Mobile Wireframes - [View](assets\wireframes\phone.png)
 
-    -   Tablet Wireframes - [View](assets\wireframe\tablet.png)
+    -   Tablet Wireframes - [View](assets\wireframes\tablet.png)
 
     -   Window Wireframes - [Not completed - no link]()
 
