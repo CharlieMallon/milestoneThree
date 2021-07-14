@@ -172,11 +172,11 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
 
 *   ### Wireframes
 
-    -   Mobile Wireframes - [View]()
+    -   Mobile Wireframes - [View](assets\wireframe\phone.png)
 
-    -   Tablet Wireframes - [View]()
+    -   Tablet Wireframes - [View](assets\wireframe\tablet.png)
 
-    -   Window Wireframes - [View]()
+    -   Window Wireframes - [Not completed - no link]()
 
 ## Features
 
@@ -184,13 +184,13 @@ I have split the features into Beta, Issue 1, Issue 2 & Issue 3. The project is 
 
 -   ### Beta
 
-    -
+    -   Users cannot see each others To Do's
+    -   All CRUD functions
     -   Tell you how to use the application.
     -   Make Responsive on all Devices.
 
 -   ### Issue 1
 
-    -
     -   Tell you how to use the aplication - with cool arrow graphics in 'slide' format
 
 -   ### Issue 2
@@ -227,7 +227,7 @@ I have split the features into Beta, Issue 1, Issue 2 & Issue 3. The project is 
 
 ## Testing
 
-Testing is detailed in a separate file [here]().
+Testing is detailed in a separate file [here](testing.md).
 
 ### Bugs
 
