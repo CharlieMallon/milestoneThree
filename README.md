@@ -182,9 +182,9 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
 
 *   ### Wireframes
 
-    -   Mobile Wireframes - [View](assets\wireframes\phone.png)
+    -   Mobile Wireframes - [View](assets/wireframes/phone.png)
 
-    -   Tablet Wireframes - [View](assets\wireframes\tablet.png)
+    -   Tablet Wireframes - [View](assets/wireframes/tablet.png)
 
     -   Window Wireframes - [Not completed - no link]()
 
