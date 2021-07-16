@@ -1,5 +1,15 @@
 # To Do Application - the Reward scheme!
 
+So this project seems to have grown arms and legs....  pretty sure it will run away at some point!
+
+For my MS3 submission i feel it needs to be pulled back quite a bit.  I like the To Do aspect, something that i really struggled with during my recovery from COVID was the lack of energy and the fact i never felt like i achieved anything. so i want to build an aplication that encourages you to think in smaller chunks and rewards you for doing simple every day tasks. specifically i believe the aspect of a traditional todo app that is missing when you are recovering from or still in an energy illness is a promp to get you to review what you did in a day and review your prioritize at the beginning of the day.
+
+as a stretch i think you should also be able to send messages to each other, send encouragement or just let someone know you thought of them that day.
+
+this project will be based on some guidance from the NHS which i found particularly useful, Pace, plan and Prioritize.
+
+although the intent of this app has evolved i believe that most of the below is still relevant so i will leave it here for now
+
 <!-- [View the live website here]() -->
 
 This application is a To Do list with a Twist, it uses the reward theory to give you rewards for completing tasks.  This rewards are given at random intervals so as to encourage tasks to be done without rewards.  The inspiration for this came from an experiment on children -name experiment - find experiment - this one? (https://bingschool.stanford.edu/news/mark-lepper-intrinsic-motivation-extrinsic-motivation-and-process-learning)
