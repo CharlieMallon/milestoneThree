@@ -6,11 +6,13 @@ For my MS3 submission i feel it needs to be pulled back quite a bit.  I like the
 
 as a stretch i think you should also be able to send messages to each other, send encouragement or just let someone know you thought of them that day.
 
-this project will be based on some guidance from the NHS which i found particularly useful, Pace, plan and Prioritize.
+this project will be based on some guidance from the NHS which i found particularly useful, Pace, plan and Prioritize. [link](https://www.yourcovidrecovery.nhs.uk/your-road-to-recovery/managing-daily-activities/)
 
 although the intent of this app has evolved i believe that most of the below is still relevant so i will leave it here for now
 
 <!-- [View the live website here]() -->
+
+----
 
 This application is a To Do list with a Twist, it uses the reward theory to give you rewards for completing tasks.  This rewards are given at random intervals so as to encourage tasks to be done without rewards.  The inspiration for this came from an experiment on children -name experiment - find experiment - this one? (https://bingschool.stanford.edu/news/mark-lepper-intrinsic-motivation-extrinsic-motivation-and-process-learning)
 
