@@ -1,20 +1,36 @@
 # To Do Application - the Reward scheme!
 
-So this project seems to have grown arms and legs....  pretty sure it will run away at some point!
+So this project seems to have grown arms and legs.... pretty sure it will run away at some point!
 
-For my MS3 submission i feel it needs to be pulled back quite a bit.  I like the To Do aspect, something that i really struggled with during my recovery from COVID was the lack of energy and the fact i never felt like i achieved anything. so i want to build an aplication that encourages you to think in smaller chunks and rewards you for doing simple every day tasks. specifically i believe the aspect of a traditional todo app that is missing when you are recovering from or still in an energy illness is a promp to get you to review what you did in a day and review your prioritize at the beginning of the day.
+For my MS3 submission I feel it needs to be pulled back quite a bit. I like the To Do aspect, something
+that I really struggled with during my recovery from COVID was the lack of energy and the fact I never
+felt like I achieved anything. so I want to build an aplication that encourages you to think in smaller
+chunks and rewards you for doing simple every day tasks. Specifically I believe the aspect of a
+traditional todo app that is missing when you are recovering from or still in an energy illness is a
+promp to get you to review what you did in a day and review your prioritize at the beginning of the day.
 
-as a stretch i think you should also be able to send messages to each other, send encouragement or just let someone know you thought of them that day.
+As a stretch I think you should also be able to send messages to each other, send encouragement or just 
+let someone know you thought of them that day.
 
-this project will be based on some guidance from the NHS which i found particularly useful, Pace, plan and Prioritize. [link](https://www.yourcovidrecovery.nhs.uk/your-road-to-recovery/managing-daily-activities/)
+This project will be based on some guidance from the NHS which I found particularly useful, Pace, plan 
+and Prioritize. [link](https://www.yourcovidrecovery.nhs.uk/your-road-to-recovery/managing-daily-activities/)
 
-although the intent of this app has evolved i believe that most of the below is still relevant so i will leave it here for now
+Although the intent of this app has evolved I believe that most of the below is still relevant so I 
+will leave it here for now
 
 <!-- [View the live website here]() -->
 
-----
+---
 
-This application is a To Do list with a Twist, it uses the reward theory to give you rewards for completing tasks.  This rewards are given at random intervals so as to encourage tasks to be done without rewards.  The inspiration for this came from an experiment on children -name experiment - find experiment - this one? (https://bingschool.stanford.edu/news/mark-lepper-intrinsic-motivation-extrinsic-motivation-and-process-learning)
+This aplication is a To Do list specifically targeted at people with energy sapping illnesses such
+as chronic fatigue long COVID or depression. It aims to assist in the recovery back to 'normal' life.
+
+---
+
+This application is a To Do list with a Twist, it uses the reward theory to give you rewards for
+completing tasks. This rewards are given at random intervals so as to encourage tasks to be done
+without rewards. The inspiration for this came from an experiment on children -name experiment -
+find experiment - [this one](https://bingschool.stanford.edu/news/mark-lepper-intrinsic-motivation-extrinsic-motivation-and-process-learning)
 
 Started as a To Do app, is now more like a life planner/tracker - integrated life organization app.
 
@@ -22,17 +38,17 @@ Done tasks / not done tasks - no failed tasks.
 
 all about positive reinforcement
 
-When a prioritised task is not completed on the day it was prioritised have a pop up that allows you to review/roll over your tasks.
+When a prioritised task is not completed on the day it was prioritised have a pop up that allows you
+ to review/roll over your tasks.
 
-Completed tasks turn green and have a animation that makes them move to the bottom of the list/off the list
+Completed tasks turn green and have a animation that makes them move to the bottom of the list/off
+the list
 
 Canceled tasks line out fade and 'disappear'
 
-Notifications
-    -   On phone/watch/computer?
-    -   emails?
-    -   https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API - for android
-    -   https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html - for apple?
+Notifications - On phone/watch/computer? - emails?
+-   [for android](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API)
+-   [for apple](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html)
 
 Done list! - I want to see what I have completed today!
 
@@ -41,8 +57,9 @@ Settings - need to be able to adjust how often you are pinged.
 https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a bit about motivation
 
 **Name Ideas**
-- DOOO
-- Rewarding To Do's
+
+-   DOOO
+-   Rewarding To Do's
 
 ## User Experience (UX)
 
@@ -61,38 +78,61 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
         -   Description
         -   Category - such as house work, Work, Crafts.
         -   Deadlines (timescales)
-        -   Subtasks/dependencies/contentions
-        -   Hashtags?
+        -   Subtasks/dependencies/contentions - stretch
+        -   Energy weighting (high, medium, low)
         -   Recurring tasks.
     -   Prioritize tasks
 
     #### Description:
 
-    The user will be able to easily add to do items using a 'title'. There will then be optional felids that can be populated after creation. The user will be able to prioritize tasks quickly (i.e this task needs to be done today!).
+    The user will be able to easily add to do items using a 'title'. There will then be optional
+    felids that can be populated after creation. The user will be able to prioritize tasks quickly.
 
     #### User Story 2
 
-    As a user, I want to Tally how many times something is done.
+    As a user, I want to review my priorities at the beginning of the day.
 
     #### Acceptance Criteria
 
-    -   Add a Tally button
-    -   Increase the Tally 
-    -   Delete a Tally
-    -   Add extra information to the tally button
-        -   Description
-        -   Icon
-        -   Target number (is over good or bad?)
-    -   Time period for tally 
-        -   Daily
-        -   Weekly
-        -   Monthly
+    -   A promp that asks the user to prioritise the tasks for the day
+    -   Pulls yesterdays prioritise for review
+    -   Looks at the due date of tasks and suggests priorities.
+    -   Checks tasks don't go over 'energy' targets (i.e 5 small tasks)
 
     #### Description:
 
-    The user will easily be able to add to an existing tally from the home page. Creation or deletion of a Tally will be done on a Tally modal or page.
+    The user will be prompted to review and prortise tasks.  The application will 'remind' the user
+    of their energy goals if they put too much in their day.
 
     #### User Story 3
+
+    As a user, I want to review my done tasks at the end of the day.
+
+    #### Acceptance Criteria
+
+    -   A promp that shows the user the tasks they have completed that day
+    -   Gives an opportunity for the user to review/put in tomorrows priorities.
+    -   Gives the user a positive message?
+
+    #### Description:
+
+    The user will be prompted to review the tasks that have been done in the day. The option
+    will be given to set the next days priorities.
+
+    <!-- #### User Story 4
+
+    As a user, I want to have control over my settings and preferences
+
+    #### Acceptance Criteria
+
+    -   setting and preferences are easily readable
+    -   settings a
+
+    #### Description:
+
+     -->
+
+    #### User Story 5
 
     As a user, I want to know how to use this application.
 
@@ -110,22 +150,24 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
 
     #### Description:
 
-    The instruction will pop up on fist opening the application. Instructions will indicate how to use the application. The instructions will be accessible through a 'help' button
+    The instruction will pop up on fist opening the application. Instructions will indicate how to use the
+    application. The instructions will be accessible through a 'help' button
 
-    #### User Story 4
+    #### User Story 6
 
-    As a returning user, I want to see my To Do's/Tallies.
+    As a returning user, I want to see my To Do list.
 
     #### Acceptance Criteria
 
-    -   The user will have a log on with there To Do's / Tally's stored
+    -   The user will have a log on to see their To Do list stored
+    -   The user will be able to log off.
     -   The user will have the option to delete the account and associated data.
 
     #### Description:
 
-    The user will be prompted to log on to the application to see there to do list, tally's and rewards.
+    The user will be prompted to log on to the application to see there to do list.
 
-    #### User Story 5
+    #### User Story 7
 
     As a user, I want give feedback on this application.
 
@@ -143,7 +185,7 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
     the required boxes. The email attribute will be added to the email box. This will ensure the user is
     alerted if any of the information is incorrect or incomplete.
 
-    #### User Story 6
+    #### User Story 8
 
     As a user, I want to view the website and content clearly on any device
 
@@ -163,7 +205,8 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
 
     -   #### Colour Scheme
 
-        Dark and light modes. I want some calming colours (not to in your face) for the main colours scheme. The done colours on tasks should be a nice positive green.
+        Dark and light modes. I want some calming colours (not to in your face) for the main colours
+        scheme. The done colours on tasks should be a nice positive green.
 
     -   #### Typography
 
@@ -180,7 +223,8 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
 
     -   #### sound
 
-        when a task is completed it needs to go bing - or some such sound that is a good positive yes I have done this!
+        when a task is completed it needs to go bing - or some such sound that is a good positive yes I
+        have done this!
 
 *   ### Wireframes
 
@@ -192,7 +236,8 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
 
 ## Features
 
-I have split the features into Beta, Issue 1, Issue 2 & Issue 3. The project is currently at the design conception stage.
+I have split the features into Beta, Issue 1, Issue 2 & Issue 3. The project is currently
+at the design conception stage.
 
 -   ### Beta
 
