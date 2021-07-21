@@ -23,7 +23,7 @@ will leave it here for now
 ---
 
 This aplication is a To Do list specifically targeted at people with energy sapping illnesses such
-as chronic fatigue long COVID or depression. It aims to assist in the recovery back to 'normal' life.
+as chronic fatigue, long COVID or depression. It aims to assist in the recovery back to 'normal' life.
 
 ---
 
@@ -101,7 +101,7 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
 
     #### Description:
 
-    The user will be prompted to review and prortise tasks.  The application will 'remind' the user
+    The user will be prompted to review and prioritise tasks.  The application will 'remind' the user
     of their energy goals if they put too much in their day.
 
     #### User Story 3
@@ -119,18 +119,19 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
     The user will be prompted to review the tasks that have been done in the day. The option
     will be given to set the next days priorities.
 
-    <!-- #### User Story 4
+    #### User Story 4
 
     As a user, I want to have control over my settings and preferences
 
     #### Acceptance Criteria
 
     -   setting and preferences are easily readable
-    -   settings a
+    -   can be changed at the touch of a button
+    -   settings are explained well.
 
     #### Description:
 
-     -->
+     
 
     #### User Story 5
 
@@ -241,7 +242,8 @@ at the design conception stage.
 
 -   ### Beta
 
-    -   Users cannot see each others To Do's
+    -   Register
+    -   Log on/off
     -   All CRUD functions
     -   Tell you how to use the application.
     -   Make Responsive on all Devices.
@@ -249,6 +251,9 @@ at the design conception stage.
 -   ### Issue 1
 
     -   Tell you how to use the aplication - with cool arrow graphics in 'slide' format
+    -   Sign up form with extra questions
+        -   what do you want to use app for?
+    -   Prompts that tell the user how to source
 
 -   ### Issue 2
 
