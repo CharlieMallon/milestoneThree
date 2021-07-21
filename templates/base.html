@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
     <title>To Did</title>
+    {% block styles %}
+    {% endblock %}
 </head>
 <body>
     <h1>To Did App</h1>
     {% block content %}
+    {% endblock %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    {% block scripts %}
     {% endblock %}
 </body>
 </html>
