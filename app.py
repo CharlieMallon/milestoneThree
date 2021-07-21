@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_pymongo import PyMongo
 if os.path.exists("env.py"):
     import env
@@ -19,6 +19,31 @@ mongo = PyMongo(app)
 def home():
     tasks = list(mongo.db.tasks.find())
     return render_template("home.html", tasks=tasks)
+
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
+@app.route("/account")
+def account():
+    return render_template("account.html")
+
+
+@app.route("/logout")
+def logout():
+    return redirect(url_for("home"))
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 
 if __name__ == "__main__":
