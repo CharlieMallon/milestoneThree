@@ -272,9 +272,11 @@ at the design conception stage.
 
 ### Frameworks, Libraries & Programs Used
 
-1. [SweetAlert2](https://sweetalert2.github.io/)
-2. [Google Fonts](https://fonts.google.com/)
-3. [Font Awesome](https://fontawesome.com/)
+-   [SweetAlert2](https://sweetalert2.github.io/)
+-   [Google Fonts](https://fonts.google.com/)
+-   [Font Awesome](https://fontawesome.com/)
+-   [RandomKeygen](https://randomkeygen.com/)
+-   [Heroku](https://id.heroku.com/)
 
 ### Resources
 
@@ -286,7 +288,6 @@ at the design conception stage.
 -   [CSS-Tricks](https://css-tricks.com/)
 -   [Balsamiq](https://balsamiq.com/wireframes/)
 -   [info on iPhone design](https://webkit.org/blog/7929/designing-websites-for-iphone-x/)
--   [RandomKeygen](https://randomkeygen.com/)
 
 ## Testing
 
