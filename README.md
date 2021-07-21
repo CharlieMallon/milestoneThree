@@ -286,6 +286,7 @@ at the design conception stage.
 -   [CSS-Tricks](https://css-tricks.com/)
 -   [Balsamiq](https://balsamiq.com/wireframes/)
 -   [info on iPhone design](https://webkit.org/blog/7929/designing-websites-for-iphone-x/)
+-   [RandomKeygen](https://randomkeygen.com/)
 
 ## Testing
 
