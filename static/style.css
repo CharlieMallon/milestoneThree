@@ -1,0 +1,37 @@
+.nav-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+nav li{
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 5px;
+    margin: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.nav-bar a, 
+nav a{
+    text-decoration: none;
+    color: black;
+}
+
+.nav-bar h1{
+    margin: 5px;
+}

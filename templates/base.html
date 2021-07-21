@@ -1,21 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
-    <title>To Did</title>
-    {% block styles %}
-    {% endblock %}
-</head>
-<body>
-    <h1>To Did App</h1>
-    {% block content %}
-    {% endblock %}
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-    {% block scripts %}
-    {% endblock %}
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- My style Sheet -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+        <!-- Custom style Sheet -->
+        {% block styles %}
+        {% endblock %}
+        <title>To Did</title>
+    </head>
+    <body>
+        <header>
+            <div class="nav-bar">
+                <h1><a href="{{ url_for('home') }}">To Did App</a></h1>
+                <nav>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Log In</a></li>
+                        <li><a href="#">Account</a></li>
+                        <li><a href="#">Log out</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+        <!-- Page contents -->
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    
+        <!-- My js -->
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <!-- Custom JS -->
+        {% block scripts %}
+        {% endblock %}
+    </body>
 </html>
