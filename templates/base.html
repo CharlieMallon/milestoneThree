@@ -18,10 +18,13 @@
                 <nav>
                     <ul>
                         <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="{{ url_for('register') }}">Register</a></li>
-                        <li><a href="{{ url_for('login') }}">Log In</a></li>
-                        <li><a href="{{ url_for('account', username=session['user']) }}">Account</a></li>
-                        <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                        {% if session.user %}
+                            <li><a href="{{ url_for('account', username=session['user']) }}">Account</a></li>
+                            <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                        {% else %}
+                            <li><a href="{{ url_for('register') }}">Register</a></li>
+                            <li><a href="{{ url_for('login') }}">Log In</a></li>
+                        {% endif %}
                         <li><a href="{{ url_for('contact') }}">Contact</a></li>
                     </ul>
                 </nav>
