@@ -27,6 +27,21 @@
                 </nav>
             </div>
         </header>
+
+        <section>
+            <!-- Flash messages -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="row flashes">
+                            <h4 class="light-blue lighten-4 center-aligned">
+                                {{ message }}
+                            </h4>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </section>
         
         <!-- Page contents -->
         <main>

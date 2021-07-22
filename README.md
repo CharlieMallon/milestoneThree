@@ -277,6 +277,7 @@ at the design conception stage.
 -   [Font Awesome](https://fontawesome.com/)
 -   [RandomKeygen](https://randomkeygen.com/)
 -   [Heroku](https://id.heroku.com/)
+-   [WTForms](https://wtforms.readthedocs.io/en/2.3.x/)
 
 ### Resources
 
@@ -317,7 +318,7 @@ Inspirations [any.do](https://www.any.do/) a to do list that looks cool
 
 ### Code
 
-Name my inspirations
+https://www.youtube.com/watch?v=EpJRJsmqnn0 - video i used to set up my registration form with wtforms.
 
 ### Content
 

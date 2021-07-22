@@ -1,10 +1,13 @@
 import os
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, flash
 from flask_pymongo import PyMongo
+from form_fields import *
+
 if os.path.exists("env.py"):
     import env
 
 
+# configure app
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
@@ -21,9 +24,13 @@ def home():
     return render_template("home.html", tasks=tasks)
 
 
-@app.route("/register")
+@app.route("/register", methods=[ 'GET', 'POST'])
 def register():
-    return render_template("register.html")
+    reg_form = RegistrationForm()
+    if reg_form.validate_on_submit():
+        flash("Registration Successful!")
+        return redirect(url_for('home'))
+    return render_template("register.html", form=reg_form)
 
 
 @app.route("/login")
