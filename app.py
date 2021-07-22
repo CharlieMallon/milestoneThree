@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, redirect, url_for, flash, request, session
+from flask import (Flask, render_template,
+    redirect, url_for, flash, request, session)
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from form_fields import *
@@ -44,7 +45,7 @@ def register():
         mongo.db.users.insert_one(register)
         
         #put new user in 'session' cookie
-        session["user"]=reg_form.username.data.lower()
+        session["user"] = reg_form.username.data.lower()
         flash("Registration Successful!")
         return render_template("account.html", username=session["user"])
 
@@ -86,12 +87,19 @@ def account(username):
     # grab the session user's username from the db
     username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
-    return render_template("account.html", username=username)
+    
+    if session["user"]:
+        return render_template("account.html", username=username)
+
+    return redirect(url_for("login"))
 
 
 @app.route("/logout")
 def logout():
-    return redirect(url_for("home"))
+    # remove user from session cookies
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
 
 
 @app.route("/contact")
