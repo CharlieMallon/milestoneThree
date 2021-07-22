@@ -2,10 +2,6 @@
 
 {% block content %}
 
-    <div>
-        {{ username }}'s Profile
-    </div>
-
     {% for task in tasks %}
         {{ task.task_name }}<br>
         {{ task.category_name }}<br>
@@ -14,4 +10,5 @@
         {{ task.is_done }}<br>
         {{ task.due_date }}<br>
     {% endfor %}
-{% endblock %}
+
+    {% endblock %}

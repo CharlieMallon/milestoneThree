@@ -42,9 +42,10 @@ def register():
             "password": generate_password_hash(reg_form.password.data)
             }
         mongo.db.users.insert_one(register)
-        #flash message
-        flash("Registration Successful! Please Log on to start using this aplication")
-        return redirect(url_for("login", username=session["user"]))
+        
+        #put new user in 'session' cookie
+        session["user"]=reg_form.username.data.lower()
+        flash("Registration Successful!")
     return render_template("register.html", form=reg_form)
 
 
