@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import (StringField, PasswordField, SubmitField, 
+    TextAreaField, DateField, BooleanField, RadioField, SelectField)
 from wtforms.validators import InputRequired, Length, EqualTo
 
 
@@ -19,3 +20,16 @@ class RegistrationForm(LogInForm):
         InputRequired(message="Please confirm your password"),
         EqualTo('password', message="Passwords must match")])
     submit_button = SubmitField("Register")
+
+# add task form
+class AddTaskForm(FlaskForm):
+    task_name = StringField('title', validators=[
+        InputRequired(message="Title required"), 
+        Length(max=50, message="That title is too long!")])
+    task_description = TextAreaField('Description and comments')
+    due_date = DateField('Date Date', format='%d-%m-%Y')
+    is_priority = BooleanField('Priority Task')
+    is_done = BooleanField('Done!')
+    task_size = RadioField('Task Size', choices=['small', 'medium', 'large'])
+    task_category = SelectField('Task Category', choices=['placeholder a','placeholder b'])
+    submit_button = SubmitField("Add Task")

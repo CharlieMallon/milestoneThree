@@ -1,3 +1,5 @@
+{% from "form_helper.html" import displayField with context %}
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -10,5 +12,24 @@
         {{ task.is_done }}<br>
         {{ task.due_date }}<br>
     {% endfor %}
+
+    <form action="{{ url_for('home') }}" method="POST">
+
+        {{ displayField(form.task_name, 'title') }}
+        {{ displayField(form.task_description, 'task_description') }}
+        {{ displayField(form.due_date, 'due_date') }}
+        {{ displayField(form.is_priority) }}
+        {{ displayField(form.is_done) }}
+        {{ displayField(form.task_size) }}
+        {{ displayField(form.task_category) }}
+        
+        <div>
+            {{ form.submit_button }}
+        </div>
+    
+        <!-- this is security! do some research on this -->
+        {{ form.csrf_token }} 
+    
+    </form>
 
     {% endblock %}
