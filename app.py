@@ -24,6 +24,25 @@ mongo = PyMongo(app)
 def home():
     tasks = list(mongo.db.tasks.find())
     add_form = AddTaskForm()
+
+    if request.method == "POST":
+        task = {
+            "task_name": add_form.task_name.data,
+            "task_description": add_form.task_description.data,
+            # "due_date": add_form.due_date.data,
+            # bug
+            # date doesn't like going into mongodb,
+            # try making a datetime rather than date, last resort make a string.
+            "is_priority": add_form.is_priority.data,
+            "is_done": add_form.is_done.data,
+            "task_size": add_form.task_size.data,
+            "task_category": add_form.task_category.data,
+            "created_by": session["user"]
+        }
+        mongo.db.tasks.insert_one(task)
+        flash("Task Successfully Added")
+        return redirect(url_for("home"))
+
     return render_template("home.html", tasks=tasks, form=add_form)
 
 
