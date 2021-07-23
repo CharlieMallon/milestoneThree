@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import (StringField, PasswordField, SubmitField, 
-    TextAreaField, DateField, BooleanField, RadioField, SelectField)
+    TextAreaField, BooleanField, RadioField, SelectField)
+from wtforms.fields.html5 import DateField
 from wtforms.validators import InputRequired, Length, EqualTo
 
 
@@ -27,7 +28,7 @@ class AddTaskForm(FlaskForm):
         InputRequired(message="Title required"), 
         Length(max=50, message="That title is too long!")])
     task_description = TextAreaField('Description and comments')
-    due_date = DateField('Date Date', format='%d-%m-%Y')
+    due_date = DateField('Due Date', format='%Y-%m-%d')
     is_priority = BooleanField('Priority Task')
     is_done = BooleanField('Done!')
     task_size = RadioField('Task Size', choices=['small', 'medium', 'large'])
