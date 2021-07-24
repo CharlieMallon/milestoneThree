@@ -13,9 +13,34 @@
     </head>
     <body>
         <header>
-            <div class="nav-bar">
+            <!-- Mobile Nav -->
+            <div class="mobile-nav-bar">
+                <div class="mobile-nav">
+                    <h1><a href="{{ url_for('home') }}">To Did App</a></h1>
+                    <div class="btn">
+                        <button id="burger-btn">Menu</button>
+                    </div>
+                </div>
+                <div id="burger-menu" class="hidden">
+                    <nav>
+                        <ul>
+                            <li><a href="{{ url_for('home') }}">Home</a></li>
+                            {% if session.user %}
+                                <li><a href="{{ url_for('account', username=session['user']) }}">Account</a></li>
+                                <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('register') }}">Register</a></li>
+                                <li><a href="{{ url_for('login') }}">Log In</a></li>
+                            {% endif %}
+                            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- Desktop Nav -->
+            <div class="desk-nav-bar">
                 <h1><a href="{{ url_for('home') }}">To Did App</a></h1>
-                <nav>
+                <div class="desktop-nav">
                     <ul>
                         <li><a href="{{ url_for('home') }}">Home</a></li>
                         {% if session.user %}
@@ -27,7 +52,7 @@
                         {% endif %}
                         <li><a href="{{ url_for('contact') }}">Contact</a></li>
                     </ul>
-                </nav>
+                </div>
             </div>
         </header>
 
