@@ -298,6 +298,8 @@ Testing is detailed in a separate file [here](testing.md).
 
 This section will detail the bugs that I came across coding and the main one that I found during testing.
 
+One of the first problems i came across was not something i expected, how to store dates, it doesnt seem like it should be that hard, just drop it into the database as a date.  but in what format? how do i make it readable to all, why wont the database acept the output from wtforms?!? I did some research and concluded that the best way to store the duedate is in accordance with ISO 8601 (good old ISO) which is YY-MM-DD and as a string, that can be manipulated later. [artical](https://www.w3.org/QA/Tips/iso-date)
+
 **During coding**
 
 | Bug | Things Tried | Final Fix |
