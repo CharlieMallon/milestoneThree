@@ -75,8 +75,19 @@
         <main>
             {% block content %}
             {% endblock %}
+
+            <!-- The Add Task Modal -->
+            <div id="add-modal" class="modal hidden">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <h2>Add Task <span class="close">&times;</span></h2>
+                    <br>
+                    <p>all of the form bits go here!</p>
+                </div>
+            </div>
         </main>
 
+        {% if session.user %}
         <footer>
             <div class="footer sticky bottom">
                 <div class="progress-bar">
@@ -87,6 +98,7 @@
                 </div>
             </div>
         </footer>
+        {% endif %}
     
         <!-- My js -->
         <script src="{{ url_for('static', filename='script.js') }}"></script>
