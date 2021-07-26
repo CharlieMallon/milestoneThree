@@ -5,31 +5,36 @@
 {% block content %}
 
     {% for task in tasks %}
-        {{ task.task_name }}<br>
-        {{ task.category_name }}<br>
-        {{ task.task_description }}<br>
-        {{ task.is_priority }}<br>
-        {{ task.is_done }}<br>
-        {{ task.due_date }}<br>
+        {% if session.user|lower == task.created_by|lower %}
+            {{ task.task_name }}<br>
+            {{ task.category_name }}<br>
+            {{ task.task_description }}<br>
+            {{ task.is_priority }}<br>
+            {{ task.is_done }}<br>
+            {{ task.due_date }}<br>
+        {% endif %}
     {% endfor %}
 
-    <form action="{{ url_for('home') }}" method="POST">
 
-        {{ displayField(form.task_name, 'title') }}
-        {{ displayField(form.task_description, 'task_description') }}
-        {{ displayField(form.due_date, 'due_date') }}
-        {{ displayField(form.is_priority) }}
-        {{ displayField(form.is_done) }}
-        {{ displayField(form.task_size) }}
-        {{ displayField(form.task_category) }}
+    {% if session.user %}
+        <form action="{{ url_for('home') }}" method="POST">
+
+            {{ displayField(form.task_name, 'title') }}
+            {{ displayField(form.task_description, 'task_description') }}
+            {{ displayField(form.due_date, 'due_date') }}
+            {{ displayField(form.is_priority) }}
+            {{ displayField(form.is_done) }}
+            {{ displayField(form.task_size) }}
+            {{ displayField(form.task_category) }}
+            
+            <div>
+                {{ form.submit_button }}
+            </div>
         
-        <div>
-            {{ form.submit_button }}
-        </div>
-    
-        <!-- this is security! do some research on this -->
-        {{ form.csrf_token }} 
-    
-    </form>
+            <!-- this is security! do some research on this -->
+            {{ form.csrf_token }} 
+        
+        </form>
+    {% endif %}
 
     {% endblock %}
