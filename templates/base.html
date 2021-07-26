@@ -14,7 +14,7 @@
     <body>
         <header>
             <!-- Mobile Nav -->
-            <div class="mobile-nav-bar">
+            <div class="mobile-nav-bar sticky top">
                 <div class="mobile-nav">
                     <h1><a href="{{ url_for('home') }}">To Did App</a></h1>
                     <div class="btn">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <!-- Desktop Nav -->
-            <div class="desk-nav-bar">
+            <div class="desk-nav-bar sticky top">
                 <h1><a href="{{ url_for('home') }}">To Did App</a></h1>
                 <div class="desktop-nav">
                     <ul>
@@ -61,7 +61,7 @@
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
-                        <div class="row flashes">
+                        <div class="row flashes sticky">
                             <h4 class="light-blue lighten-4 center-aligned">
                                 {{ message }}
                             </h4>
@@ -76,6 +76,17 @@
             {% block content %}
             {% endblock %}
         </main>
+
+        <footer>
+            <div class="footer sticky bottom">
+                <div class="progress-bar">
+                    <p>Progress bar goes here</p>
+                </div>
+                <div class="btn">
+                    <button id="add-task">Add Task</button>
+                </div>
+            </div>
+        </footer>
     
         <!-- My js -->
         <script src="{{ url_for('static', filename='script.js') }}"></script>
