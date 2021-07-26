@@ -103,11 +103,15 @@ a {
 @media (min-width: 768px) {  
 
     main {
-        padding-top: 80px;
+        padding-top: 90px;
     }
     
     .mobile-nav-bar{
         display: none;
+    }
+
+    .flashes{
+        top: 70px;
     }
 
     /* nav bar */
