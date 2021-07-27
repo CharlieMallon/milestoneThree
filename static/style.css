@@ -2,11 +2,22 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 /* standard classes */
 .hidden {
 	display: none;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
 }
 
 .sticky {
@@ -88,6 +99,117 @@ a {
 .burger ul li a {
 	color: white;
 	font-size: 25px;
+}
+
+/* Task Card */
+
+.task-card{
+    list-style: none;
+    border-radius: 15px;
+    padding: 10px 16px;
+    margin: 5px 0px;
+    background-color: yellowgreen;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.small{
+    border-left: 5px solid green;
+}
+
+.medium{
+    border-left: 5px solid Pink;
+}
+
+.large{
+    border-left: 5px solid Blue;
+}
+
+/* Task Card Header */
+
+.task-header{
+    justify-content: space-between;
+    padding: 5px 0px;
+}
+
+.check-box{
+    margin-right: 5px;
+}
+
+.fa-exclamation-circle{
+    margin: 0px 10px;
+    font-size: large;
+}
+
+/* Task Card Body */
+
+.task-body{
+    justify-content: space-between;
+}
+
+.description{
+    width: 100%;
+    padding: 10px 0px;
+}
+
+/* Information row of task description */
+
+.info{
+    justify-content: space-between;
+    padding: 0px 0px;
+}
+
+.due-date{
+    text-align-last: right;
+}
+
+.category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit{
+    text-align: center;
+}
+
+/* Task size */
+
+.task-size{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 60px;
+    border: #000 1px solid;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.s-text{
+    font-size: small;
+    font-weight: 200;
+    letter-spacing: 0.8px;
+    line-height: 16px;
+}
+
+.m-text{
+    font-size: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 16px;
+}
+
+.l-text{
+    font-size: large;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    line-height: 16px;
 }
 
 /* footer */

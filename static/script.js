@@ -28,3 +28,4 @@ function addModal() {
     var element = document.getElementById("add-modal");
     element.classList.toggle("hidden");
 }
+

@@ -4,16 +4,72 @@
 
 {% block content %}
 
-    {% for task in tasks %}
-        {% if session.user|lower == task.created_by|lower %}
-            {{ task.task_name }}<br>
-            {{ task.category_name }}<br>
-            {{ task.task_description }}<br>
-            {{ task.is_priority }}<br>
-            {{ task.is_done }}<br>
-            {{ task.due_date }}<br>
-        {% endif %}
-    {% endfor %}
+    {% if tasks|length > 0 %}
+        <ul class="task">    
+            {% for task in tasks %}
+                {% if session.user|lower == task.created_by|lower %}
+                    {% if task.task_size == "small" %}
+                        <li class="task-card col small">    
+                    {% elif task.task_size == "medium" %}
+                        <li class="task-card col medium">
+                    {% else %}
+                        <li class="task-card col large">
+                    {% endif %}
+                        <div class="task-header row">
+                            <div class="row">
+                                <a href="#" class="check-box">
+                                    {% if task.is_done == true %}
+                                        <i class="far fa-check-square"></i>
+                                    {% else %}
+                                        <i class="far fa-square"></i>
+                                    {% endif %}
+                                </a>
+                                <div class="task-name">
+                                    <strong>{{ task.task_name }}</strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                {% if task.is_priority == true %}
+                                <i class="fas fa-exclamation-circle"></i>
+                                {% endif %}
+                                <i id="arrow" class="fas fa-caret-down"></i>
+                            </div>
+                        </div>
+                        <div class="task-body col">
+                            <div class="row info">
+                                <div class="category">
+                                    {% if task.category_name == "" %}
+                                        <p>No Category</p>
+                                    {% else %}
+                                        {{ task.category_name }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                {% if task.task_description != "" %}
+                                <div class="description">
+                                    {{ task.task_description }}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="row info">
+                                <div class="due-date">
+                                    {% if task.due_date != "None" %}
+                                        <p>Due by: <span class="date">{{ task.due_date }}</span></p>
+                                    {% endif %}
+                                </div>
+                                <div class="edit">
+                                    <a href="#"><i class="far fa-edit"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>No To Do's found</h3>
+    {% endif %}
 
 
     {% if session.user %}

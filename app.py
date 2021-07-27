@@ -33,7 +33,7 @@ def home():
             "is_priority": add_form.is_priority.data,
             "is_done": add_form.is_done.data,
             "task_size": add_form.task_size.data,
-            "task_category": add_form.task_category.data,
+            "category_name": add_form.task_category.data,
             "created_by": session["user"]
         }
         mongo.db.tasks.insert_one(task)

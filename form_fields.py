@@ -24,7 +24,7 @@ class RegistrationForm(LogInForm):
 
 # add task form
 class AddTaskForm(FlaskForm):
-    task_name = StringField('title', validators=[
+    task_name = StringField('Title', validators=[
         InputRequired(message="Title required"), 
         Length(max=50, message="That title is too long!")])
     task_description = TextAreaField('Description and comments')
