@@ -24,6 +24,10 @@ mongo = PyMongo(app)
 def home():
     tasks = list(mongo.db.tasks.find())
     add_form = AddTaskForm()
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    category_names = [(category['category_name']) for category in categories]
+
+    add_form.task_category.choices = category_names
 
     if request.method == "POST":
         task = {

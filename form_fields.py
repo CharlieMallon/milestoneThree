@@ -32,5 +32,5 @@ class AddTaskForm(FlaskForm):
     is_priority = BooleanField('Priority Task')
     is_done = BooleanField('Done!')
     task_size = RadioField('Task Size', choices=['small', 'medium', 'large'])
-    task_category = SelectField('Task Category', choices=['placeholder a','placeholder b'])
+    task_category = SelectField('Task Category')
     submit_button = SubmitField("Add Task")
