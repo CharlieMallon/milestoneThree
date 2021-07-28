@@ -322,6 +322,7 @@ Inspirations [any.do](https://www.any.do/) a to do list that looks cool
 
 https://www.youtube.com/watch?v=EpJRJsmqnn0 - video i used to set up my registration form with wtforms.
 https://www.youtube.com/watch?v=HY0le1NAczc&t=0s - clean up code using macro
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible - collapable arrows!
 
 ### Content
 

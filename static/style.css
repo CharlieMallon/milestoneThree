@@ -6,9 +6,6 @@
 }
 
 /* standard classes */
-.hidden {
-	display: none;
-}
 
 .col{
     display: flex;
@@ -20,6 +17,9 @@
     flex-direction: row;
 }
 
+.hidden {
+    display: none;
+}
 .sticky {
 	position: fixed;
 	width: 100%;
