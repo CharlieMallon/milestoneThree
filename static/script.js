@@ -15,16 +15,32 @@ function burgerMenu() {
 
 const button = document.getElementById('add-task');
 const span = document.getElementsByClassName('close')[0];
+const modal = document.getElementById('add-modal')
 
-button.addEventListener('click', addModal)
-span.addEventListener('click', addModal)
+button.addEventListener('click',(e)=> addModalOpen(e))
+span.addEventListener('click', (e)=> addModalClose(e))
+modal.addEventListener('click',(e)=> addModalClose(e))
 
+// open the modal
 
-// open/close the modal
+function addModalOpen(e) {
+    console.log('e.target :>> ', e.target.dataset.closer);
+    if (e.target.dataset.closer === 'open'){
+        console.log('happy :>> ', 'happy open');
+        var element = document.getElementById('add-modal');
+        element.classList.remove('hidden');
+    }
+}
 
-function addModal() {
-    var element = document.getElementById('add-modal');
-    element.classList.toggle('hidden');
+// close the modal
+
+function addModalClose(e) {
+    console.log('e.target :>> ', e.target.dataset.closer);
+    if (e.target.dataset.closer === 'close'){
+        console.log('happy :>> ', 'happy close');
+        var element = document.getElementById('add-modal');
+        element.classList.add('hidden');
+    }
 }
 
 // event lister for open/close details of task

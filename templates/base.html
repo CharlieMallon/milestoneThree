@@ -85,10 +85,10 @@
             {% endblock %}
 
             <!-- The Add Task Modal -->
-            <div id="add-modal" class="modal hidden">
+            <div id="add-modal" class="modal hidden" data-closer="close">
                 <!-- Modal content -->
                 <div class="modal-content">
-                    <h2>Add Task <span class="close">&times;</span></h2>
+                    <h2>Add Task <span class="close" data-closer="close">&times;</span></h2>
                     <br>
                     <p>all of the form bits go here!</p>
                 </div>
@@ -102,7 +102,7 @@
                     <p>Progress bar goes here</p>
                 </div>
                 <div class="btn">
-                    <button id="add-task">Add Task</button>
+                    <button id="add-task" data-closer="open">Add Task</button>
                 </div>
             </div>
         </footer>
