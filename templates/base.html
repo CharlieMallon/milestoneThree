@@ -97,20 +97,20 @@
                         {% if session.user %}
                         <form action="{{ url_for('home') }}" method="POST">
                 
-                            {{ displayField(form.task_name, 'title') }}
-                            {{ displayField(form.task_description, 'task_description') }}
-                            {{ displayField(form.due_date, 'due_date') }}
-                            {{ displayField(form.is_priority) }}
-                            {{ displayField(form.is_done) }}
-                            {{ displayField(form.task_size) }}
-                            {{ displayField(form.task_category) }}
+                            {{ displayField(add_form.task_name, 'title') }}
+                            {{ displayField(add_form.task_description, 'task_description') }}
+                            {{ displayField(add_form.due_date, 'due_date') }}
+                            {{ displayField(add_form.is_priority) }}
+                            {{ displayField(add_form.is_done) }}
+                            {{ displayField(add_form.task_size) }}
+                            {{ displayField(add_form.task_category) }}
                             
                             <div>
-                                {{ form.submit_button }}
+                                {{ add_form.submit_button }}
                             </div>
                         
                             <!-- this is security! do some research on this -->
-                            {{ form.csrf_token }} 
+                            {{ add_form.csrf_token }} 
                         
                         </form>
                     {% endif %}
