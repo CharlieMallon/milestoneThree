@@ -105,12 +105,17 @@ def login():
 
 @app.route("/account/<username>", methods=[ 'GET', 'POST'])
 def account(username):
+    add_form = AddTaskForm()
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    category_names = [(category['category_name']) for category in categories]
+
+    add_form.task_category.choices = category_names
     # grab the session user's username from the db
     username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
     
     if session["user"]:
-        return render_template("account.html", username=username)
+        return render_template("account.html", username=username, form=add_form)
 
     return redirect(url_for("login"))
 
