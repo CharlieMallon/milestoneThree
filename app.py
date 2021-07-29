@@ -42,7 +42,7 @@ def home():
         }
         mongo.db.tasks.insert_one(task)
         flash("Task Successfully Added")
-        return redirect(url_for("home"))
+        return redirect(request.referrer)
 
     return render_template("home.html", tasks=tasks, form=add_form)
 
