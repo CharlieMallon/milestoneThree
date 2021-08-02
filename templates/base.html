@@ -85,39 +85,6 @@
         <main>
             {% block content %}
             {% endblock %}
-
-            <!-- The Add Task Modal -->
-            <div id="add-modal" class="modal hidden" data-closer="close">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <div class="modal-title">
-                        <h2>Add Task <span class="close" data-closer="close">&times;</span></h2>
-                    </div>
-                    <div class="add-form">
-                        {% if session.user %}
-                        <form action="{{ url_for('home') }}" method="POST">
-                
-                            {{ displayField(add_form.task_name, 'title') }}
-                            {{ displayField(add_form.task_description, 'task_description') }}
-                            {{ displayField(add_form.due_date, 'due_date') }}
-                            {{ displayField(add_form.is_priority) }}
-                            {{ displayField(add_form.is_done) }}
-                            {{ displayField(add_form.task_size) }}
-                            {{ displayField(add_form.task_category) }}
-                            
-                            <div>
-                                {{ add_form.submit_button }}
-                            </div>
-                        
-                            <!-- this is security! do some research on this -->
-                            {{ add_form.csrf_token }} 
-                        
-                        </form>
-                    {% endif %}
-                    </div>
-                    <p>all of the form bits go here!</p>
-                </div>
-            </div>
         </main>
 
         {% if session.user %}
@@ -127,7 +94,7 @@
                     <p>Progress bar goes here</p>
                 </div>
                 <div class="btn">
-                    <button id="add-task" data-closer="open">Add Task</button>
+                    <a href="{{ url_for('add_task') }}">Add Task</a>
                 </div>
             </div>
         </footer>
