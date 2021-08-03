@@ -108,6 +108,37 @@ def contact():
     return render_template("contact.html")
 
 
+@app.route("/add_task", methods=[ 'GET', 'POST'])
+def add_task():
+    # Add task form set up
+    add_form = AddTaskForm()
+    # set up for drop down for add task form
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    category_names = [(category['category_name']) for category in categories]
+
+    # Drop down for add task form
+    add_form.task_category.choices = category_names
+
+    # Post contents of add tsk form to mongodb
+    if request.method == "POST":
+        task = {
+            "task_name": add_form.task_name.data,
+            "task_description": add_form.task_description.data,
+            "due_date": str(add_form.due_date.data),
+            "is_priority": add_form.is_priority.data,
+            "is_done": add_form.is_done.data,
+            "task_size": add_form.task_size.data,
+            "category_name": add_form.task_category.data,
+            # Ties the user to the task so it can be viewed later
+            "created_by": session["user"]
+        }
+        mongo.db.tasks.insert_one(task)
+        flash("Task Successfully Added")
+        # redirect to origin page
+        return redirect(url_for("home"))
+    return render_template("add_task.html", form=add_form)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
