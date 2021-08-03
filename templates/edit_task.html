@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="edit-task">
+        <h2>Add Task </h2>
+    </div>
+    <div class="edit-form">
+        {% if session.user %}
+        <form action="{{ url_for('edit_task', task_id=task._id) }}" method="POST">
+
+            {{ displayField(form.task_name, 'title') }}
+            {{ displayField(form.task_description, 'task_description') }}
+            {{ displayField(form.due_date, 'due_date') }}
+            {{ displayField(form.is_priority) }}
+            {{ displayField(form.is_done) }}
+            {{ displayField(form.task_size) }}
+            {{ displayField(form.task_category) }}
+            
+            <div>
+                {{ form.submit_button }}
+            </div>
+        
+            <!-- this is security! do some research on this -->
+            {{ form.csrf_token }} 
+        
+        </form>
+        {% endif %}
+    </div>
+
+{% endblock %}

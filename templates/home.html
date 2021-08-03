@@ -57,7 +57,7 @@
                                     {% endif %}
                                 </div>
                                 <div class="edit">
-                                    <a href="#"><i class="far fa-edit"></i></a>
+                                    <a href="{{ url_for('edit_task', task_id=task._id) }}"><i class="far fa-edit"></i></a>
                                 </div>
                             </div>
                         </div>

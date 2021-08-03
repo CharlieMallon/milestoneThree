@@ -1,8 +1,14 @@
+from contextlib import closing, nullcontext
+from inspect import CO_GENERATOR
 import os
+from dns.rdatatype import NULL
 from flask import (Flask, render_template,
     redirect, url_for, flash, request, session)
 from flask_pymongo import PyMongo
+from pymongo import collation
 from werkzeug.security import generate_password_hash, check_password_hash
+from bson.objectid import ObjectId
+from datetime import datetime
 from form_fields import *
 
 if os.path.exists("env.py"):
@@ -137,6 +143,56 @@ def add_task():
         # redirect to origin page
         return redirect(url_for("home"))
     return render_template("add_task.html", form=add_form)
+
+
+@app.route("/edit_task/<task_id>", methods=["GET", "POST"])
+def edit_task(task_id):
+    # find the task to edit
+    task = mongo.db.tasks.find_one_or_404({"_id": ObjectId(task_id)})
+    print(task)
+    # edit task form set up
+    form = EditTaskForm()
+    # set up for drop down for add task form
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    category_names = [(category['category_name']) for category in categories]
+
+    # Drop down for add task form
+    form.task_category.choices = category_names
+
+    # Post contents of add tsk form to mongodb
+    if request.method == "POST" and form.validate():
+        submit = {
+            "task_name": form.task_name.data,
+            "task_description": form.task_description.data,
+            "due_date": str(form.due_date.data),
+            "is_priority": form.is_priority.data,
+            "is_done": form.is_done.data,
+            "task_size": form.task_size.data,
+            "category_name": form.task_category.data,
+            # Ties the user to the task so it can be viewed later
+            "created_by": session["user"]
+        }
+        mongo.db.tasks.update({"_id": ObjectId(task_id)},submit)
+        flash("Task Successfully Updated")
+        return redirect(url_for("home"))
+    elif request.method == 'GET':
+        if task['due_date'] != 'None':
+            due_date = datetime.strptime(task['due_date'], '%Y-%m-%d')
+        else:
+            due_date = ''
+
+        form.task_name.data = task['task_name']
+        form.task_description.data = task['task_description']
+        form.due_date.data = due_date
+        form.is_priority.data = task['is_priority']
+        form.is_done.data = task['is_done']
+        form.task_size.data = task['task_size']
+        form.task_category.data = task['category_name']
+    else:
+        flash('oops something went wrong!')
+        return redirect(url_for("home"))
+
+    return render_template("edit_task.html", task=task, form=form, categories=categories)
 
 
 if __name__ == "__main__":
