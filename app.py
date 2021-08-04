@@ -195,6 +195,14 @@ def edit_task(task_id):
     return render_template("edit_task.html", task=task, form=form, categories=categories)
 
 
+@app.route("/delete_task/<task_id>")
+def delete_task(task_id):
+    mongo.db.tasks.remove({"_id": ObjectId(task_id)})
+    # add a confirm box - possible with tinker?
+    flash("Task Successfully Deleted")
+    return redirect(url_for("home"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
