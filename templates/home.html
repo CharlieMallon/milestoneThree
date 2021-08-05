@@ -15,7 +15,7 @@
                     {% endif %}
                         <div class="task-header row">
                             <div class="row">
-                                <a href="#" class="check-box">
+                                <a href="{{ url_for('done_task', task_id=task._id) }}" class="check-box">
                                     {% if task.is_done == true %}
                                         <i class="far fa-check-square"></i>
                                     {% else %}

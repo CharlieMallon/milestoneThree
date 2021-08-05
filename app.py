@@ -149,7 +149,6 @@ def add_task():
 def edit_task(task_id):
     # find the task to edit
     task = mongo.db.tasks.find_one_or_404({"_id": ObjectId(task_id)})
-    print(task)
     # edit task form set up
     form = EditTaskForm()
     # set up for drop down for add task form
@@ -201,6 +200,27 @@ def delete_task(task_id):
     # add a confirm box - possible with tinker?
     flash("Task Successfully Deleted")
     return redirect(url_for("home"))
+
+
+@app.route("/done_task/<task_id>", methods=["GET", "POST"])
+def done_task(task_id):
+    # find the task to edit
+    task = mongo.db.tasks.find_one_or_404({"_id": ObjectId(task_id)})
+    done = {
+        # keeps task populated
+        "task_name": task["task_name"],
+        "task_description": task["task_description"],
+        "due_date": task["due_date"],
+        "is_priority": task["is_priority"],
+        "task_size": task["task_size"],
+        "category_name": task["category_name"],
+        "created_by": task["created_by"],
+        # toggles of is_done status
+        "is_done": not task["is_done"]
+    }
+    mongo.db.tasks.update({"_id": ObjectId(task_id)},done)
+    flash("Task Successfully Done")
+    return redirect(request.referrer)
 
 
 if __name__ == "__main__":
