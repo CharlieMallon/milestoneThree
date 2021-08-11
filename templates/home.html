@@ -2,6 +2,12 @@
 
 {% block content %}
 
+    <!-- If not logged in show this screen -->
+    {% if  not session.user %}
+        <h3>Log In Silly</h3>
+    {% endif %}
+    
+    <!-- List out the tasks -->
     {% if tasks|length > 0 %}
         <ul class="task">    
             {% for task in tasks %}
