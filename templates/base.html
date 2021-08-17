@@ -1,21 +1,21 @@
-{% from "form_helper.html" import displayField with context %}
+{% from 'form_helper.html' import displayField with context %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset='UTF-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <!-- font awesome -->
 		<link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-        type="text/css"/>
+        rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'
+        integrity='sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=='
+        crossorigin='anonymous'
+        referrerpolicy='no-referrer'
+        type='text/css'/>
         <!-- My style Sheet -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+        <link rel='stylesheet' href='{{ url_for("static", filename="style.css") }}' type='text/css'>
         <!-- Custom style Sheet -->
         {% block styles %}
         {% endblock %}
@@ -24,43 +24,43 @@
     <body>
         <header>
             <!-- Mobile Nav -->
-            <div class="mobile-nav-bar sticky top">
-                <div class="mobile-nav">
-                    <h1><a href="{{ url_for('home') }}">To Did App</a></h1>
-                    <div class="btn">
-                        <button id="burger-btn">Menu</button>
+            <div class='mobile-nav-bar sticky top'>
+                <div class='mobile-nav'>
+                    <h1><a href='{{ url_for("home") }}'>To Did App</a></h1>
+                    <div class='btn'>
+                        <button id='burger-btn'>Menu</button>
                     </div>
                 </div>
-                <div id="burger-menu" class="hidden">
+                <div id='burger-menu' class='hidden'>
                     <nav>
                         <ul>
-                            <li><a href="{{ url_for('home') }}">Home</a></li>
+                            <li><a href='{{ url_for("home") }}'>Home</a></li>
                             {% if session.user %}
-                                <li><a href="{{ url_for('account', username=session['user']) }}">Account</a></li>
-                                <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                                <li><a href='{{ url_for("account", username=session["user"]) }}'>Account</a></li>
+                                <li><a href='{{ url_for("logout") }}'>Log out</a></li>
                             {% else %}
-                                <li><a href="{{ url_for('register') }}">Register</a></li>
-                                <li><a href="{{ url_for('login') }}">Log In</a></li>
+                                <li><a href='{{ url_for("register") }}'>Register</a></li>
+                                <li><a href='{{ url_for("login") }}'>Log In</a></li>
                             {% endif %}
-                            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                            <li><a href='{{ url_for("contact") }}'>Contact</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
             <!-- Desktop Nav -->
-            <div class="desk-nav-bar sticky top">
-                <h1><a href="{{ url_for('home') }}">To Did App</a></h1>
-                <div class="desktop-nav">
+            <div class='desk-nav-bar sticky top'>
+                <h1><a href='{{ url_for("home") }}'>To Did App</a></h1>
+                <div class='desktop-nav'>
                     <ul>
-                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href='{{ url_for("home") }}'>Home</a></li>
                         {% if session.user %}
-                            <li><a href="{{ url_for('account', username=session['user']) }}">Account</a></li>
-                            <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                            <li><a href='{{ url_for("account", username=session["user"]) }}'>Account</a></li>
+                            <li><a href='{{ url_for("logout") }}'>Log out</a></li>
                         {% else %}
-                            <li><a href="{{ url_for('register') }}">Register</a></li>
-                            <li><a href="{{ url_for('login') }}">Log In</a></li>
+                            <li><a href='{{ url_for("register") }}'>Register</a></li>
+                            <li><a href='{{ url_for("login") }}'>Log In</a></li>
                         {% endif %}
-                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                        <li><a href='{{ url_for("contact") }}'>Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -71,8 +71,8 @@
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
-                        <div class="row flashes sticky">
-                            <h4 class="light-blue lighten-4 center-aligned">
+                        <div class='row flashes sticky'>
+                            <h4 class='light-blue lighten-4 center-aligned'>
                                 {{ message }}
                             </h4>
                         </div>
@@ -89,19 +89,19 @@
 
         {% if session.user %}
         <footer>
-            <div class="footer sticky bottom">
-                <div class="progress-bar">
+            <div class='footer sticky bottom'>
+                <div class='progress-bar'>
                     <p>Progress bar goes here</p>
                 </div>
-                <div class="btn">
-                    <a href="{{ url_for('add_task') }}">Add Task</a>
+                <div class='btn'>
+                    <a href='{{ url_for("add_task") }}'>Add Task</a>
                 </div>
             </div>
         </footer>
         {% endif %}
     
         <!-- My js -->
-        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <script src='{{ url_for("static", filename="script.js") }}'></script>
         <!-- Custom JS -->
         {% block scripts %}
         {% endblock %}
