@@ -2,30 +2,32 @@
 
 {% block content %}
 
-    <div class="add-task">
-        <h2>Add Task </h2>
-    </div>
-    <div class="add-form">
-        {% if session.user %}
-        <form action="{{ url_for('add_task') }}" method="POST">
-
-            {{ displayField(form.task_name, 'title') }}
-            {{ displayField(form.task_description, 'task_description') }}
-            {{ displayField(form.due_date, 'due_date') }}
-            {{ displayField(form.is_priority) }}
-            {{ displayField(form.is_done) }}
-            {{ displayField(form.task_size) }}
-            {{ displayField(form.task_category) }}
+    <div class='form-container'>
+        <div class='form-title'>
+            <h2>Add Task </h2>
+        </div>
+        <div class='form'>
+            {% if session.user %}
+            <form action='{{ url_for("add_task") }}' method='POST'>
+                
+                {{ displayField(form.task_name, 'title', 'no') }}
+                {{ displayField(form.task_description, 'task_description', 'no') }}
+                {{ displayField(form.due_date, 'due_date', 'no') }}
+                {{ displayField(form.is_priority, 'none', 'yes') }}
+                {{ displayField(form.is_done, 'none', 'yes') }}
+                {{ displayField(form.task_size, 'none', 'no', class='no-list select-size') }}
+                {{ displayField(form.task_category, 'none', 'no') }}
+                
+                <div class='submit-button'>
+                    {{ form.submit_button }}
+                </div>
             
-            <div>
-                {{ form.submit_button }}
-            </div>
-        
-            <!-- this is security! do some research on this -->
-            {{ form.csrf_token }} 
-        
-        </form>
-        {% endif %}
+                <!-- this is security! do some research on this -->
+                {{ form.csrf_token }} 
+            
+            </form>
+            {% endif %}
+        </div>
     </div>
 
 {% endblock %}

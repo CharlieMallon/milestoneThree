@@ -1,23 +1,27 @@
-{% macro displayField(fieldName, placeholderValue) %}
+{% macro displayField(fieldName, placeholderValue, inline) %}
 
-<div>
-    <!-- Field Name -->
-    <div>
-        {{ fieldName.label }}
+    {% if inline == "no" %}
+    <div class="form-field">
+    {% else %}
+    <div class="form-field inline">
+    {% endif %}
+        <!-- Field Name -->
+        <div class="form-label">
+            {{ fieldName.label(class_='label') }}
+        </div>
+        <div class="form-control">
+            <!-- Form Field -->
+            {{ fieldName(class_='control', placeholder=placeholderValue, **kwargs) }}
+    
+            <!-- Error Messages -->
+            <ul>
+                {% for error in fieldName.errors %}
+                    <li>
+                        {{ error }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-    <div>
-        <!-- Form Field -->
-        {{ fieldName(class_='form-control', placeholder=placeholderValue, **kwargs) }}
-
-        <!-- Error Messages -->
-        <ul>
-            {% for error in fieldName.errors %}
-                <li>
-                    {{ error }}
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
 
 {% endmacro %}

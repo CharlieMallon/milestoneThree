@@ -1,5 +1,11 @@
 {
-	"cSpell.words": ["aplication", "colls"],
+	"cSpell.words": [
+		"aplication",
+		"colls",
+		"endmacro",
+		"referrerpolicy",
+		"wtforms"
+	],
 	"editor.fontSize": 12,
 	"liveServer.settings.port": 5501
 }
