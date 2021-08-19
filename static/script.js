@@ -80,7 +80,8 @@ cat.addEventListener('click', addCat)
 function addCat() {
     var cat1 = document.getElementById('cat-1');
     var cat2 = document.getElementById('cat-2');
+    var cat3 = document.getElementById('cat-3');
     cat1.classList.toggle('hidden');
     cat2.classList.toggle('hidden');
-
+    cat3.classList.toggle('hidden');
 }

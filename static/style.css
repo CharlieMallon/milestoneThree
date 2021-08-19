@@ -17,10 +17,6 @@
     flex-direction: row;
 }
 
-.hidden {
-    display: none;
-}
-
 .sticky {
 	position: fixed;
 	width: 100%;
@@ -428,4 +424,10 @@ a {
 		-ms-border-radius: 5px;
 		-o-border-radius: 5px;
 	}
+}
+
+/* ---------- master categories ---------- */
+
+.hidden {
+    display: none;
 }
