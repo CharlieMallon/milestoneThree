@@ -230,8 +230,8 @@ def add_category():
         }
         mongo.db.categories.insert_one(category)
         flash("New Category Added")
-        return redirect(url_for("home"))
-    return render_template("add_category.html")
+        return redirect(request.referrer)
+    return redirect(request.referrer)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

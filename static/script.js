@@ -32,7 +32,7 @@ for (let i = 0; i < colls.length; i++) {
 
 // open delete task modal
 
-var task = document.getElementsByClassName("delete");
+var task = document.getElementsByClassName("open-modal");
 
 for (let i = 0; i < task.length; i++) {
     task[i].addEventListener('click', function() {
@@ -69,4 +69,15 @@ function addModalClose(e) {
         // console.log('element :>> ', element);
         element.classList.add('hidden');
     }
+}
+
+// open add cat task modal
+
+var cat = document.getElementsByClassName("open-modal")[0];
+
+cat.addEventListener('click', openCatModal)
+
+function openCatModal() {
+    var element = document.getElementById('open');
+    element.classList.toggle('hidden');
 }

@@ -17,20 +17,62 @@
                 {{ displayField(form.is_done, 'none', 'yes') }}
                 {{ displayField(form.task_size, 'none', 'no', class='no-list select-size') }}
                 {{ displayField(form.task_category, 'none', 'no') }}
-                <div class="add-cat">
-                    <a href='{{ url_for("add_category") }}'>add cat</a>
+                <div class="add-cat open-modal">
+                    <p>add cat</p>
                 </div>
                 
                 <div class='submit-button'>
                     {{ form.submit_button }}
                 </div>
-            
+                
                 <!-- this is security! do some research on this -->
                 {{ form.csrf_token }} 
-            
+                
             </form>
             {% endif %}
         </div>
+        
+        <!-- Add Category Modal -->
+        <div id="open" class="modal-background hidden" data-closer="close">
+            <!-- Modal content -->
+            <div class="modal">
+                <div class="modal-title">
+                    <h2>Add Category<span class="close" data-closer="close">&times;</span></h2>
+                </div>
+                <div class="modal-content">
+                    <div class="modal-par">
+                        <form method="POST" action="{{ url_for('add_category') }}">
+                            <!-- New Category -->
+                            <div>
+                                <div>
+                                    <i class="fas fa-fa-folder-open"></i>
+                                    <input
+                                        id="category_name"
+                                        name="category_name"
+                                        minlength="3"
+                                        maxlength="25"
+                                        type="text"
+                                        class="validate"
+                                        required
+                                    />
+                                    <label for="category_name">Category Name</label>
+                                </div>
+                            </div>
+                            <!-- Submit Button -->
+                            <div>
+                                <div>
+                                    <button type="submit">
+                                        Add Category
+                                        <i class="fas fa-plus-square"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 {% endblock %}

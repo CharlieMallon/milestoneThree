@@ -1,35 +1,5 @@
 {% extends "base.html" %} {% block content %}
 
-<h3>Add Category</h3>
 
-<div>
-	<form method="POST" action="{{ url_for('add_category') }}">
-        <!-- New Category -->
-		<div>
-			<div>
-				<i class="fas fa-fa-folder-open"></i>
-				<input
-					id="category_name"
-					name="category_name"
-					minlength="3"
-					maxlength="25"
-					type="text"
-					class="validate"
-					required
-				/>
-				<label for="category_name">Category Name</label>
-			</div>
-		</div>
-        <!-- Submit Button -->
-        <div>
-            <div>
-                <button type="submit">
-                    Add Category
-                    <i class="fas fa-plus-square right"></i>
-                </button>
-            </div>
-        </div>
-	</form>
-</div>
 
 {% endblock %}
