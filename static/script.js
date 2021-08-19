@@ -71,12 +71,14 @@ function addModalClose(e) {
     }
 }
 
-// open add cat task modal
+// ---------- switch between category types
 
+// event listener
 var cat = document.getElementsByClassName("add-cat")[0];
 
 cat.addEventListener('click', addCat)
 
+// loops through thr elements with the class of 'cat' and toggles the hidden class
 function addCat() {
     var catloop = document.getElementsByClassName("cat");
 
