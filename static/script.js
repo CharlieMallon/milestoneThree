@@ -41,32 +41,33 @@ for (let i = 0; i < task.length; i++) {
 });
 }
 
-// close delete task modal
+// ---------- close a modal
 
+// event listener for x span
 const span = document.getElementsByClassName('close');
 
 for (let i = 0; i < span.length; i++) {
-    span[i].addEventListener('click', (e) => addModalClose(e))
+    span[i].addEventListener('click', (e) => ModalClose(e))
 }
 
+// event listener for clicking off the modal
 const modal = document.getElementsByClassName('modal-background');
 
 for (let i = 0; i < modal.length; i++) {
-    modal[i].addEventListener('click', (e) => addModalClose(e))
+    modal[i].addEventListener('click', (e) => ModalClose(e))
 }
 
+// event listener for 'no' or 'cancel' button on modal
 const no = document.getElementsByClassName('no-btn');
 
 for (let i = 0; i < no.length; i++) {
-    no[i].addEventListener('click', (e) => addModalClose(e))
+    no[i].addEventListener('click', (e) => ModalClose(e))
 }
 
-function addModalClose(e) {
-    console.log('e.target :>> ', e.target.dataset.closer);
+// close the modal by adding hidden on the background only if the data target is 'close'
+function ModalClose(e) {
     if (e.target.dataset.closer === 'close'){
-        // console.log('happy :>> ', 'happy close');
         var element = e.target.closest(".modal-background");
-        // console.log('element :>> ', element);
         element.classList.add('hidden');
     }
 }
