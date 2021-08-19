@@ -224,8 +224,16 @@ def done_task(task_id):
 @app.route("/add_categories", methods=["GET", "POST"])
 def add_category():
     if request.method == "POST":
+        # check if username already exists in db
+        existing_cat = mongo.db.categories.find_one(
+            {"category_name": request.form.get("category_name").capitalize()})
+        #if the user exists flash message & redirect
+        if existing_cat:
+            flash("Category already exists")
+            return redirect(request.referrer)
+        #if the user doesn't exist - append to the database
         category = {
-            "category_name" : request.form.get("category_name"),
+            "category_name" : request.form.get("category_name").capitalize(),
             "created_by": session["user"]
         }
         mongo.db.categories.insert_one(category)
