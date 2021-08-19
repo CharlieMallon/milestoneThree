@@ -63,7 +63,29 @@
                                     {% endif %}
                                 </div>
                                 <div class='delete'>
-                                    <a href='{{ url_for("delete_task", task_id=task._id) }}'><i class='far fa-trash-alt'></i></a>
+                                    <p class="delete-task"><i class='far fa-trash-alt no-pointer'></i></p>
+                                </div>
+                                <!-- The Delete Task Modal -->
+                                <div class="modal-background hidden" data-closer="close">
+                                    <!-- Modal content -->
+                                    <div class="modal">
+                                        <div class="modal-title">
+                                            <h2>Delete Task<span class="close" data-closer="close">&times;</span></h2>
+                                        </div>
+                                        <div class="modal-content">
+                                            <p>Are you sure you want to delete</p>
+                                            <p>{{ task.task_name }}?</p>
+                                            <p></p>
+                                            <div class="modal-btns">
+                                                <div class="btn m-btn">
+                                                    <a href='{{ url_for("delete_task", task_id=task._id) }}'>Yes</a>
+                                                </div>
+                                                <div class="btn m-btn">
+                                                    <p class="no-btn" data-closer="close">No</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class='edit'>
                                     <a href='{{ url_for("edit_task", task_id=task._id) }}'><i class='far fa-edit'></i></a>
@@ -77,5 +99,6 @@
     {% else %}
         <h3>No To Do's found</h3>
     {% endif %}
+
 
     {% endblock %}

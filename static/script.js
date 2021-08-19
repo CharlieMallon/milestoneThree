@@ -29,3 +29,44 @@ for (let i = 0; i < colls.length; i++) {
     content.classList.toggle('hidden')
 });
 }
+
+// open delete task modal
+
+var task = document.getElementsByClassName("delete");
+
+for (let i = 0; i < task.length; i++) {
+    task[i].addEventListener('click', function() {
+    var content = this.nextElementSibling;
+    content.classList.remove('hidden')
+});
+}
+
+// close delete task modal
+
+const span = document.getElementsByClassName('close');
+
+for (let i = 0; i < span.length; i++) {
+    span[i].addEventListener('click', (e) => addModalClose(e))
+}
+
+const modal = document.getElementsByClassName('modal-background');
+
+for (let i = 0; i < modal.length; i++) {
+    modal[i].addEventListener('click', (e) => addModalClose(e))
+}
+
+const no = document.getElementsByClassName('no-btn');
+
+for (let i = 0; i < no.length; i++) {
+    no[i].addEventListener('click', (e) => addModalClose(e))
+}
+
+function addModalClose(e) {
+    console.log('e.target :>> ', e.target.dataset.closer);
+    if (e.target.dataset.closer === 'close'){
+        // console.log('happy :>> ', 'happy close');
+        var element = e.target.closest(".modal-background");
+        // console.log('element :>> ', element);
+        element.classList.add('hidden');
+    }
+}

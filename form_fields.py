@@ -36,6 +36,5 @@ class AddTaskForm(FlaskForm):
     submit_button = SubmitField("Add Task")
 
 # Edit Task form
-
 class EditTaskForm(AddTaskForm):
     submit_button = SubmitField("Edit Task")

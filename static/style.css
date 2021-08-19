@@ -20,6 +20,7 @@
 .hidden {
     display: none;
 }
+
 .sticky {
 	position: fixed;
 	width: 100%;
@@ -46,10 +47,24 @@ a {
 	color: black;
 }
 
+.no-pointer{
+	pointer-events: none;
+}
+
 .flashes {
 	top: 90px;
 	text-align: center;
 	background-color: pink;
+}
+
+.btn{
+	margin: 5px;
+	border: solid 1px black;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
 }
 
 /* ---------- nav bar ---------- */
@@ -283,6 +298,55 @@ a {
 /* remove lists */
 .no-list{
 	list-style-type: none;
+}
+
+/* ---------- modal ---------- */
+/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal */
+/* modal background */
+.modal-background{
+	position: fixed;
+	z-index: 1;
+	padding-top: 50px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* modal content */
+.modal{
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* modal buttons */
+
+.modal-btns{
+	display: flex;
+}
+
+.m-btn{
+	width: 50px;
 }
 
 /* ---------- footer ---------- */
