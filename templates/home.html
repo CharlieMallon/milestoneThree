@@ -73,9 +73,9 @@
                                             <h2>Delete Task<span class="close" data-closer="close">&times;</span></h2>
                                         </div>
                                         <div class="modal-content">
-                                            <p>Are you sure you want to delete</p>
-                                            <p>{{ task.task_name }}?</p>
-                                            <p></p>
+                                            <div class="modal-par">
+                                                <p>Are you sure you want to delete "{{ task.task_name }}"?</p>
+                                            </div>
                                             <div class="modal-btns">
                                                 <div class="btn m-btn">
                                                     <a href='{{ url_for("delete_task", task_id=task._id) }}'>Yes</a>

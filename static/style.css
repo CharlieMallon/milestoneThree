@@ -306,7 +306,7 @@ a {
 .modal-background{
 	position: fixed;
 	z-index: 1;
-	padding-top: 50px;
+	padding-top: 150px;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -321,7 +321,23 @@ a {
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
+	border-radius: 20px;
 	width: 80%;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-ms-border-radius: 20px;
+	-o-border-radius: 20px;
+}
+
+.modal-title{
+	margin: 5px;
+}
+
+.modal-par{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 5px;
 }
 
 /* The Close Button */
@@ -343,6 +359,8 @@ a {
 
 .modal-btns{
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .m-btn{
