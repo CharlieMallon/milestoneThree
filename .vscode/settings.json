@@ -1,5 +1,18 @@
 {
-	"cSpell.words": ["aplication", "catloop", "colls", "endmacro", "referrerpolicy", "wtforms"],
+	"cSpell.words": [
+		"aplication",
+		"bson",
+		"catloop",
+		"colls",
+		"endmacro",
+		"flask",
+		"mongodb",
+		"objectid",
+		"pymongo",
+		"referrerpolicy",
+		"werkzeug",
+		"wtforms"
+	],
 	"editor.fontSize": 12,
 	"liveServer.settings.port": 5501
 }

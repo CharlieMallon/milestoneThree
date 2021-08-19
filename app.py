@@ -1,11 +1,7 @@
-from contextlib import closing, nullcontext
-from inspect import CO_GENERATOR
 import os
-from dns.rdatatype import NULL
 from flask import (Flask, render_template,
     redirect, url_for, flash, request, session)
 from flask_pymongo import PyMongo
-from pymongo import collation
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
 from datetime import datetime
@@ -194,7 +190,6 @@ def edit_task(task_id):
             due_date = datetime.strptime(task['due_date'], '%Y-%m-%d')
         else:
             due_date = ''
-
         form.task_name.data = task['task_name']
         form.task_description.data = task['task_description']
         form.due_date.data = due_date

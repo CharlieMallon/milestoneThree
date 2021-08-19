@@ -77,10 +77,12 @@ function ModalClose(e) {
 
 // ---------- switch between category types
 
-// event listener
 var cat = document.getElementsByClassName("add-cat")[0];
 
-cat.addEventListener('click', addCat)
+// if cat element exists add event listener
+if (cat)
+    // event listener
+    cat.addEventListener('click', addCat)
 
 // loops through thr elements with the class of 'cat' and toggles the hidden class
 function addCat() {
