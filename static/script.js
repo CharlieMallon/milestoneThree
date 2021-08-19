@@ -1,3 +1,5 @@
+// ---------- burger menu
+
 // event listener for burger menu
 
 const burgerButton = document.getElementById('burger-btn');
@@ -12,7 +14,7 @@ function burgerMenu() {
     element.classList.toggle('hidden');
 }
 
-// event lister for open/close details of task
+// ---------- open/close details of task
 
 var colls = document.getElementsByClassName("arrow");
 
@@ -31,7 +33,7 @@ for (let i = 0; i < colls.length; i++) {
 });
 }
 
-// open delete task modal
+// ---------- open delete task modal
 
 var task = document.getElementsByClassName("open-modal");
 

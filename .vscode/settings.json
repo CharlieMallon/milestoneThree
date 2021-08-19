@@ -1,11 +1,5 @@
 {
-	"cSpell.words": [
-		"aplication",
-		"colls",
-		"endmacro",
-		"referrerpolicy",
-		"wtforms"
-	],
+	"cSpell.words": ["aplication", "catloop", "colls", "endmacro", "referrerpolicy", "wtforms"],
 	"editor.fontSize": 12,
 	"liveServer.settings.port": 5501
 }
