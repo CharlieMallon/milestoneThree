@@ -73,11 +73,14 @@ function addModalClose(e) {
 
 // open add cat task modal
 
-var cat = document.getElementsByClassName("open-modal")[0];
+var cat = document.getElementsByClassName("add-cat")[0];
 
-cat.addEventListener('click', openCatModal)
+cat.addEventListener('click', addCat)
 
-function openCatModal() {
-    var element = document.getElementById('open');
-    element.classList.toggle('hidden');
+function addCat() {
+    var cat1 = document.getElementById('cat-1');
+    var cat2 = document.getElementById('cat-2');
+    cat1.classList.toggle('hidden');
+    cat2.classList.toggle('hidden');
+
 }

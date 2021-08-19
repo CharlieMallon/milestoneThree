@@ -127,6 +127,21 @@ def add_task():
 
     # Post contents of add tsk form to mongodb
     if request.method == "POST":
+
+        if add_form.add_category.data != "":
+            existing_cat = mongo.db.categories.find_one(
+            {"category_name": add_form.add_category.data.capitalize()})
+            if existing_cat:
+                cat_name = add_form.add_category.data.capitalize()
+            else:
+                category = {
+                    "category_name" : add_form.add_category.data.capitalize(),
+                    "created_by": session["user"]
+                }
+                mongo.db.categories.insert_one(category)
+                cat_name = add_form.add_category.data.capitalize()
+                flash("New Category Added")
+
         task = {
             "task_name": add_form.task_name.data,
             "task_description": add_form.task_description.data,
@@ -134,7 +149,7 @@ def add_task():
             "is_priority": add_form.is_priority.data,
             "is_done": add_form.is_done.data,
             "task_size": add_form.task_size.data,
-            "category_name": add_form.task_category.data,
+            "category_name": cat_name,
             # Ties the user to the task so it can be viewed later
             "created_by": session["user"]
         }
@@ -219,26 +234,6 @@ def done_task(task_id):
     }
     mongo.db.tasks.update({"_id": ObjectId(task_id)},done)
     flash("Task Successfully Done")
-    return redirect(request.referrer)
-
-@app.route("/add_categories", methods=["GET", "POST"])
-def add_category():
-    if request.method == "POST":
-        # check if username already exists in db
-        existing_cat = mongo.db.categories.find_one(
-            {"category_name": request.form.get("category_name").capitalize()})
-        #if the user exists flash message & redirect
-        if existing_cat:
-            flash("Category already exists")
-            return redirect(request.referrer)
-        #if the user doesn't exist - append to the database
-        category = {
-            "category_name" : request.form.get("category_name").capitalize(),
-            "created_by": session["user"]
-        }
-        mongo.db.categories.insert_one(category)
-        flash("New Category Added")
-        return redirect(request.referrer)
     return redirect(request.referrer)
 
 if __name__ == "__main__":

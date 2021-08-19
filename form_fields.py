@@ -33,6 +33,8 @@ class AddTaskForm(FlaskForm):
     is_done = BooleanField('Done!')
     task_size = RadioField('Task Size', choices=['small', 'medium', 'large'])
     task_category = SelectField('Task Category')
+    add_category = StringField('Task Category', validators=[
+        Length(min=4, max=20, message="Category must be between 4 and 20 charactors")])
     submit_button = SubmitField("Add Task")
 
 # Edit Task form

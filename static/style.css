@@ -271,6 +271,7 @@ a {
 	padding: 0.25rem;
 }
 
+
 .control{
 	padding: 5px;
 	border: solid 1px gray;
@@ -286,6 +287,14 @@ a {
 	justify-content: space-around;
 	padding: 5px;
 	width: 100%;
+}
+
+.add-cat{
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	font-size: small;
+	padding-right: 1.25rem;
 }
 
 .submit-button{
@@ -365,12 +374,6 @@ a {
 
 .m-btn{
 	width: 50px;
-}
-
-.add-cat{
-	display: flex;
-	justify-content: flex-end;
-	font-size: small;
 }
 
 /* ---------- footer ---------- */
