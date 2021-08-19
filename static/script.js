@@ -9,6 +9,7 @@ burgerButton.addEventListener('click', burgerMenu)
 function burgerMenu() {
     var element = document.getElementById('burger-menu');
     element.classList.toggle('burger');
+    element.classList.toggle('hidden');
 }
 
 // event lister for open/close details of task
