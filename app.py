@@ -221,6 +221,17 @@ def done_task(task_id):
     flash("Task Successfully Done")
     return redirect(request.referrer)
 
+@app.route("/add_categories", methods=["GET", "POST"])
+def add_category():
+    if request.method == "POST":
+        category = {
+            "category_name" : request.form.get("category_name"),
+            "created_by": session["user"]
+        }
+        mongo.db.categories.insert_one(category)
+        flash("New Category Added")
+        return redirect(url_for("home"))
+    return render_template("add_category.html")
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

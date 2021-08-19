@@ -17,6 +17,9 @@
                 {{ displayField(form.is_done, 'none', 'yes') }}
                 {{ displayField(form.task_size, 'none', 'no', class='no-list select-size') }}
                 {{ displayField(form.task_category, 'none', 'no') }}
+                <div class="add-cat">
+                    <a href='{{ url_for("add_category") }}'>add cat</a>
+                </div>
                 
                 <div class='submit-button'>
                     {{ form.submit_button }}

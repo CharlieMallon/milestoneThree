@@ -367,6 +367,12 @@ a {
 	width: 50px;
 }
 
+.add-cat{
+	display: flex;
+	justify-content: flex-end;
+	font-size: small;
+}
+
 /* ---------- footer ---------- */
 .footer {
 	display: flex;
