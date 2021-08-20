@@ -137,6 +137,8 @@ def add_task():
                 mongo.db.categories.insert_one(category)
                 cat_name = add_form.add_category.data.capitalize()
                 flash("New Category Added")
+        else:
+            cat_name = add_form.task_category.data.capitalize()
 
         task = {
             "task_name": add_form.task_name.data,
@@ -169,8 +171,25 @@ def edit_task(task_id):
     # Drop down for add task form
     form.task_category.choices = category_names
 
-    # Post contents of add tsk form to mongodb
-    if request.method == "POST" and form.validate():
+    # Post contents of add task form to mongodb
+    if request.method == "POST":
+
+        if form.add_category.data != "":
+            existing_cat = mongo.db.categories.find_one(
+            {"category_name": form.add_category.data.capitalize()})
+            if existing_cat:
+                cat_name = form.add_category.data.capitalize()
+            else:
+                category = {
+                    "category_name" : form.add_category.data.capitalize(),
+                    "created_by": session["user"]
+                }
+                mongo.db.categories.insert_one(category)
+                cat_name = form.add_category.data.capitalize()
+                flash("New Category Added")
+        else:
+            cat_name = form.task_category.data.capitalize()
+
         submit = {
             "task_name": form.task_name.data,
             "task_description": form.task_description.data,
@@ -178,13 +197,14 @@ def edit_task(task_id):
             "is_priority": form.is_priority.data,
             "is_done": form.is_done.data,
             "task_size": form.task_size.data,
-            "category_name": form.task_category.data,
+            "category_name": cat_name,
             # Ties the user to the task so it can be viewed later
             "created_by": session["user"]
         }
         mongo.db.tasks.update({"_id": ObjectId(task_id)},submit)
         flash("Task Successfully Updated")
         return redirect(url_for("home"))
+    # Puts the information on the task to edit in the form
     elif request.method == 'GET':
         if task['due_date'] != 'None':
             due_date = datetime.strptime(task['due_date'], '%Y-%m-%d')
