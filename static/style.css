@@ -223,6 +223,46 @@ a {
     line-height: 16px;
 }
 
+/* ---------- Account ---------- */
+
+.all-cats{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.categories{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 40%;
+}
+
+.cat-card{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 130px;
+	height: 100px;
+	border: solid black 1px;
+	border-radius: 15px;
+	margin: 10px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+	-o-border-radius: 15px;
+}
+
+.card-title{
+	width: 100%;
+}
+
+.card-action{
+	display: flex;
+	padding: 5px;
+}
+
 /* ---------- forms ---------- */
 
 .form-container{
