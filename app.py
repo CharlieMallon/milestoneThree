@@ -105,6 +105,36 @@ def account(username):
     return redirect(url_for("login"))
 
 
+@app.route("/edit_categories/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    # form
+    form = EditCategoryForm()
+    # category
+    category = mongo.db.categories.find_one_or_404({"_id": ObjectId(category_id)})
+    # grab the session user's username from the db
+    username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+
+    # Post contents of add category form to mongodb
+    if request.method == "POST":
+
+        submit = {
+            "category_name": form.task_category.data,
+            "created_by": session["user"]
+        }
+        mongo.db.categories.update({"_id": ObjectId(category_id)},submit)
+        flash("Task Successfully Updated")
+        return redirect(request.referrer)
+    # Puts the information on the task to edit in the form
+    elif request.method == 'GET':
+        form.task_category.data = category['category_name']
+    else:
+        flash('oops something went wrong!')
+        return redirect(request.referrer)
+
+    return render_template("edit_category.html", category=category, form=form)
+
+
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
     mongo.db.categories.remove({"_id": ObjectId(category_id)})

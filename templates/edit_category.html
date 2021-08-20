@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class='form-container'>
+    <div class='form-title'>
+        <h2>Edit Task </h2>
+    </div>
+    <div class='form'>
+        {% if session.user %}
+        <form action='' method='POST'>
+            
+            <div class="cat">
+                {{ displayField(form.task_category, 'none', 'no') }}
+            </div>
+            
+            <div class='submit-button'>
+                {{ form.submit_button }}
+            </div>
+        
+            <!-- this is security! do some research on this -->
+            {{ form.csrf_token }} 
+        
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
