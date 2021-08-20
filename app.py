@@ -114,9 +114,17 @@ def contact():
 def add_task():
     # Add task form set up
     add_form = AddTaskForm()
-    # set up for drop down for add task form
-    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    # ----- set up for drop down for add task form
+    # gets the standard categories
+    categories_admin = list(mongo.db.categories.find({"created_by": "admin"}))
+    # gets the user categories
+    categories_user = list(mongo.db.categories.find({"created_by": session["user"]}))
+    # combines the user and standard categories
+    categories = (*categories_admin, *categories_user)
+    # extracts category names
     category_names = [(category['category_name']) for category in categories]
+    # sorts the names in alphabetical order
+    category_names.sort()
 
     # Drop down for add task form
     add_form.task_category.choices = category_names
@@ -164,9 +172,18 @@ def edit_task(task_id):
     task = mongo.db.tasks.find_one_or_404({"_id": ObjectId(task_id)})
     # edit task form set up
     form = EditTaskForm()
-    # set up for drop down for add task form
-    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    
+    # ----- set up for drop down for add task form
+    # gets the standard categories
+    categories_admin = list(mongo.db.categories.find({"created_by": "admin"}))
+    # gets the user categories
+    categories_user = list(mongo.db.categories.find({"created_by": session["user"]}))
+    # combines the user and standard categories
+    categories = (*categories_admin, *categories_user)
+    # extracts category names
     category_names = [(category['category_name']) for category in categories]
+    # sorts the names in alphabetical order
+    category_names.sort()
 
     # Drop down for add task form
     form.task_category.choices = category_names
