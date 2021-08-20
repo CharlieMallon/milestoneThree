@@ -92,12 +92,8 @@ def account(username):
             {"username": session["user"]})["username"]
     
     # ----- set up for drop down for add task form
-    # gets the standard categories
-    categories_admin = list(mongo.db.categories.find({"created_by": "admin"}))
     # gets the user categories
-    categories_user = list(mongo.db.categories.find({"created_by": session["user"]}))
-    # combines the user and standard categories
-    categories = (*categories_admin, *categories_user)
+    categories = list(mongo.db.categories.find({"created_by": session["user"]}))
     # extracts category names
     category_names = [(category['category_name']) for category in categories]
     # sorts the names in alphabetical order
