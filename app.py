@@ -105,6 +105,13 @@ def account(username):
     return redirect(url_for("login"))
 
 
+@app.route("/delete_category/<category_id>")
+def delete_category(category_id):
+    mongo.db.categories.remove({"_id": ObjectId(category_id)})
+    flash("Category Successfully Deleted")
+    return redirect(request.referrer)
+
+
 @app.route("/logout")
 def logout():
     # remove user from session cookies
