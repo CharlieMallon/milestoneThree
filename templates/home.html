@@ -62,33 +62,35 @@
                                         <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
                                     {% endif %}
                                 </div>
-                                <div class='open-modal'>
-                                    <p class="delete-task"><i class='far fa-trash-alt no-pointer'></i></p>
-                                </div>
-                                <!-- The Delete Task Modal -->
-                                <div class="modal-background hidden" data-closer="close">
-                                    <!-- Modal content -->
-                                    <div class="modal">
-                                        <div class="modal-title">
-                                            <h2>Delete Task<span class="close" data-closer="close">&times;</span></h2>
-                                        </div>
-                                        <div class="modal-content">
-                                            <div class="modal-par">
-                                                <p>Are you sure you want to delete "{{ task.task_name }}"?</p>
+                                <div class="task-buttons">
+                                    <div class='open-modal'>
+                                        <p class="delete-task task-btn"><i class='far fa-trash-alt no-pointer'></i></p>
+                                    </div>
+                                    <!-- The Delete Task Modal -->
+                                    <div class="modal-background hidden" data-closer="close">
+                                        <!-- Modal content -->
+                                        <div class="modal">
+                                            <div class="modal-title">
+                                                <h2>Delete Task<span class="close" data-closer="close">&times;</span></h2>
                                             </div>
-                                            <div class="modal-btns">
-                                                <div class="btn m-btn">
-                                                    <a href='{{ url_for("delete_task", task_id=task._id) }}'>Yes</a>
+                                            <div class="modal-content">
+                                                <div class="modal-par">
+                                                    <p>Are you sure you want to delete "{{ task.task_name }}"?</p>
                                                 </div>
-                                                <div class="btn m-btn">
-                                                    <p class="no-btn" data-closer="close">No</p>
+                                                <div class="modal-btns">
+                                                    <div class="btn m-btn">
+                                                        <a href='{{ url_for("delete_task", task_id=task._id) }}'>Yes</a>
+                                                    </div>
+                                                    <div class="btn m-btn">
+                                                        <p class="no-btn" data-closer="close">No</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class='edit'>
-                                    <a href='{{ url_for("edit_task", task_id=task._id) }}'><i class='far fa-edit'></i></a>
+                                    <div>
+                                        <a href='{{ url_for("edit_task", task_id=task._id) }}'><i class='far fa-edit task-btn'></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

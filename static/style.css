@@ -182,10 +182,6 @@ a {
     align-items: center;
 }
 
-.edit{
-    text-align: center;
-}
-
 /* Task size */
 
 .task-size{
@@ -221,6 +217,18 @@ a {
     font-weight: 800;
     letter-spacing: 1.2px;
     line-height: 16px;
+}
+
+/* Task Buttons */
+
+.task-buttons{
+	display: flex;
+	width: 100px;
+}
+
+.task-btn{
+	text-align: center;
+	width: 50px;
 }
 
 /* ---------- Account ---------- */
