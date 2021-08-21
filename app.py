@@ -24,7 +24,9 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
-    tasks = list(mongo.db.tasks.find())
+    importantUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": True}).sort("due_date", 1))
+    otherUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": False}).sort("due_date", 1))
+    tasks = (importantUserTasks + otherUserTasks)
 
     return render_template("home.html", tasks=tasks)
 
