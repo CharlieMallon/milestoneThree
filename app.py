@@ -30,7 +30,7 @@ def home():
     # gets the other tasks and orders them by date
     otherUserTasks = list(mongo.db.tasks.find({"is_priority": False, "is_done": False}).sort("due_date", 1))
     # gets the done tasks
-    doneTasks = list(mongo.db.tasks.find({"is_done": True}).sort("due_date", 1))
+    doneTasks = list(mongo.db.tasks.find({"is_done": True}).sort("date_done", -1))
     tasks = (importantUserTasks + otherUserTasks + doneTasks)
 
     return render_template("home.html", tasks=tasks)
@@ -314,7 +314,9 @@ def done_task(task_id):
         "category_name": task["category_name"],
         "created_by": task["created_by"],
         # toggles of is_done status
-        "is_done": not task["is_done"]
+        "is_done": not task["is_done"],
+        # adds done date
+        "date_done": datetime.now()
     }
     mongo.db.tasks.update({"_id": ObjectId(task_id)},done)
     flash("Task Successfully Done")
