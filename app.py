@@ -26,10 +26,12 @@ mongo = PyMongo(app)
 def home():
 
     # gets the important tasks and orders them by date
-    importantUserTasks = list(mongo.db.tasks.find({"is_priority": True}).sort("due_date", 1))
+    importantUserTasks = list(mongo.db.tasks.find({"is_priority": True, "is_done": False}).sort("due_date", 1))
     # gets the other tasks and orders them by date
-    otherUserTasks = list(mongo.db.tasks.find({"is_priority": False}).sort("due_date", 1))
-    tasks = (importantUserTasks + otherUserTasks)
+    otherUserTasks = list(mongo.db.tasks.find({"is_priority": False, "is_done": False}).sort("due_date", 1))
+    # gets the done tasks
+    doneTasks = list(mongo.db.tasks.find({"is_done": True}).sort("due_date", 1))
+    tasks = (importantUserTasks + otherUserTasks + doneTasks)
 
     return render_template("home.html", tasks=tasks)
 
