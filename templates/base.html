@@ -35,7 +35,7 @@
                     <nav>
                         <ul>
                             <li><a href='{{ url_for("home") }}'>Home</a></li>
-                            {% if session.user %}
+                            {% if not session.user == 'none' %}
                                 <li><a href='{{ url_for("account", username=session["user"]) }}'>Account</a></li>
                                 <li><a href='{{ url_for("logout") }}'>Log out</a></li>
                             {% else %}
@@ -53,7 +53,7 @@
                 <div class='desktop-nav'>
                     <ul>
                         <li><a href='{{ url_for("home") }}'>Home</a></li>
-                        {% if session.user %}
+                        {% if not session.user == 'none' %}
                             <li><a href='{{ url_for("account", username=session["user"]) }}'>Account</a></li>
                             <li><a href='{{ url_for("logout") }}'>Log out</a></li>
                         {% else %}

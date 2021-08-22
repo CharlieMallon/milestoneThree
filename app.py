@@ -25,12 +25,20 @@ mongo = PyMongo(app)
 @app.route("/home")
 def home():
 
+    try:
+        if session["user"]:
+            session["user"] = session["user"]
+    except:
+        session["user"] = 'none'
+
+    print(session["user"])
+
     # gets the important tasks and orders them by date
-    importantUserTasks = list(mongo.db.tasks.find({"is_priority": True, "is_done": False}).sort("due_date", 1))
+    importantUserTasks = list(mongo.db.tasks.find({"created_by": session["user"],"is_priority": True, "is_done": False}).sort("due_date", 1))
     # gets the other tasks and orders them by date
-    otherUserTasks = list(mongo.db.tasks.find({"is_priority": False, "is_done": False}).sort("due_date", 1))
+    otherUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": False, "is_done": False}).sort("due_date", 1))
     # gets the done tasks
-    doneTasks = list(mongo.db.tasks.find({"is_done": True}).sort("date_done", -1))
+    doneTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_done": True}).sort("date_done", -1))
     tasks = (importantUserTasks + otherUserTasks + doneTasks)
 
     return render_template("home.html", tasks=tasks)
