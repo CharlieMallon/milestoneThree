@@ -91,7 +91,14 @@
         <footer>
             <div class='footer sticky bottom'>
                 <div class='progress-bar'>
-                    <p>Progress bar goes here</p>
+                    {% if progressBar %}
+                        <p>importantTasks: {{ progressBar.importantTasks }}</p>
+                        <p>importantTasksDone: {{ progressBar.importantTasksDone }}</p>
+                        <p>done: {{ progressBar.done }}</p>
+                        <p>totalOverall: {{ progressBar.totalOverall }}</p>
+                    {% else %}
+                        <p>no progress bar</p>
+                    {% endif %}
                 </div>
                 <div class='btn'>
                     <a href='{{ url_for("add_task") }}'>Add Task</a>

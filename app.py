@@ -31,8 +31,6 @@ def home():
     except:
         session["user"] = 'none'
 
-    print(session["user"])
-
     # gets the important tasks and orders them by date
     importantUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": True, "is_done": False}).sort("due_date", 1))
     # gets the other tasks and orders them by date
@@ -52,12 +50,14 @@ def home():
     # total tasks
     totalOverall = len(tasks)
 
-    print('I', importantTasks)
-    print('D', done)
-    print('ID', importantTasksDone)
-    print('T', totalOverall)
+    progressBar = {
+        "importantTasks": importantTasks,
+        "importantTasksDone": importantTasksDone,
+        "done": done,
+        "totalOverall": totalOverall
+    }
 
-    return render_template("home.html", tasks=tasks)
+    return render_template("home.html", tasks=tasks, progressBar=progressBar)
 
 
 @app.route("/register", methods=[ 'GET', 'POST'])
@@ -130,8 +130,35 @@ def account(username):
     # sorts the names in alphabetical order
     category_names.sort()
 
+    # Progress bar
+    # gets the important tasks and orders them by date
+    importantUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": True, "is_done": False}).sort("due_date", 1))
+    # gets the other tasks and orders them by date
+    otherUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": False, "is_done": False}).sort("due_date", 1))
+    # gets the done tasks
+    doneTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_done": True}).sort("date_done", -1))
+    tasks = (importantUserTasks + otherUserTasks + doneTasks)
+
+    # Progress bar - the numbers!
+    importantDoneTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_done": True, "is_priority": True}))
+    # Number of Important tasks
+    importantTasks = len(importantDoneTasks) + len(importantUserTasks)
+    # Number of tasks done
+    done = len(doneTasks)
+    # Number of important tasks done
+    importantTasksDone = len(importantDoneTasks)
+    # total tasks
+    totalOverall = len(tasks)
+
+    progressBar = {
+        "importantTasks": importantTasks,
+        "importantTasksDone": importantTasksDone,
+        "done": done,
+        "totalOverall": totalOverall
+    }
+
     if session["user"]:
-        return render_template("account.html", username=username, categories=categories)
+        return render_template("account.html", username=username, categories=categories, progressBar=progressBar)
 
     return redirect(url_for("login"))
 
@@ -145,6 +172,33 @@ def edit_category(category_id):
     # grab the session user's username from the db
     username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
+
+    # Progress bar
+    # gets the important tasks and orders them by date
+    importantUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": True, "is_done": False}).sort("due_date", 1))
+    # gets the other tasks and orders them by date
+    otherUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": False, "is_done": False}).sort("due_date", 1))
+    # gets the done tasks
+    doneTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_done": True}).sort("date_done", -1))
+    tasks = (importantUserTasks + otherUserTasks + doneTasks)
+
+    # Progress bar - the numbers!
+    importantDoneTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_done": True, "is_priority": True}))
+    # Number of Important tasks
+    importantTasks = len(importantDoneTasks) + len(importantUserTasks)
+    # Number of tasks done
+    done = len(doneTasks)
+    # Number of important tasks done
+    importantTasksDone = len(importantDoneTasks)
+    # total tasks
+    totalOverall = len(tasks)
+
+    progressBar = {
+        "importantTasks": importantTasks,
+        "importantTasksDone": importantTasksDone,
+        "done": done,
+        "totalOverall": totalOverall
+    }
 
     # Post contents of add category form to mongodb
     if request.method == "POST":
@@ -163,7 +217,7 @@ def edit_category(category_id):
         flash('oops something went wrong!')
         return redirect(request.referrer)
 
-    return render_template("edit_category.html", category=category, form=form)
+    return render_template("edit_category.html", category=category, form=form, progressBar=progressBar)
 
 
 @app.route("/delete_category/<category_id>")
@@ -205,6 +259,33 @@ def add_task():
     # Drop down for add task form
     add_form.task_category.choices = category_names
 
+    # Progress bar
+    # gets the important tasks and orders them by date
+    importantUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": True, "is_done": False}).sort("due_date", 1))
+    # gets the other tasks and orders them by date
+    otherUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": False, "is_done": False}).sort("due_date", 1))
+    # gets the done tasks
+    doneTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_done": True}).sort("date_done", -1))
+    tasks = (importantUserTasks + otherUserTasks + doneTasks)
+
+    # Progress bar - the numbers!
+    importantDoneTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_done": True, "is_priority": True}))
+    # Number of Important tasks
+    importantTasks = len(importantDoneTasks) + len(importantUserTasks)
+    # Number of tasks done
+    done = len(doneTasks)
+    # Number of important tasks done
+    importantTasksDone = len(importantDoneTasks)
+    # total tasks
+    totalOverall = len(tasks)
+
+    progressBar = {
+        "importantTasks": importantTasks,
+        "importantTasksDone": importantTasksDone,
+        "done": done,
+        "totalOverall": totalOverall
+    }
+
     # Post contents of add tsk form to mongodb
     if request.method == "POST":
 
@@ -239,7 +320,7 @@ def add_task():
         flash("Task Successfully Added")
         # redirect to origin page
         return redirect(url_for("home"))
-    return render_template("add_task.html", form=add_form)
+    return render_template("add_task.html", form=add_form, progressBar=progressBar)
 
 
 @app.route("/edit_task/<task_id>", methods=["GET", "POST"])
@@ -263,6 +344,33 @@ def edit_task(task_id):
 
     # Drop down for add task form
     form.task_category.choices = category_names
+    
+        # Progress bar
+    # gets the important tasks and orders them by date
+    importantUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": True, "is_done": False}).sort("due_date", 1))
+    # gets the other tasks and orders them by date
+    otherUserTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": False, "is_done": False}).sort("due_date", 1))
+    # gets the done tasks
+    doneTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_done": True}).sort("date_done", -1))
+    tasks = (importantUserTasks + otherUserTasks + doneTasks)
+
+    # Progress bar - the numbers!
+    importantDoneTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_done": True, "is_priority": True}))
+    # Number of Important tasks
+    importantTasks = len(importantDoneTasks) + len(importantUserTasks)
+    # Number of tasks done
+    done = len(doneTasks)
+    # Number of important tasks done
+    importantTasksDone = len(importantDoneTasks)
+    # total tasks
+    totalOverall = len(tasks)
+
+    progressBar = {
+        "importantTasks": importantTasks,
+        "importantTasksDone": importantTasksDone,
+        "done": done,
+        "totalOverall": totalOverall
+    }
 
     # Post contents of add task form to mongodb
     if request.method == "POST":
@@ -314,7 +422,7 @@ def edit_task(task_id):
         flash('oops something went wrong!')
         return redirect(url_for("home"))
 
-    return render_template("edit_task.html", task=task, form=form, categories=categories)
+    return render_template("edit_task.html", task=task, form=form, categories=categories, progressBar=progressBar)
 
 
 @app.route("/delete_task/<task_id>")
