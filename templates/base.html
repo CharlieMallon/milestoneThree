@@ -87,7 +87,7 @@
             {% endblock %}
         </main>
 
-        {% if session.user %}
+        {% if not session.user == 'none' %}
         <footer>
             <div class='footer sticky bottom'>
                 <div class='progress-bar'>
