@@ -51,7 +51,11 @@ def home():
     totalOverall = len(tasks)
     # under
     lengthOtherUserTasksDone = len(list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": False, "is_done": True})))
-    progress = (100/(lengthOtherUserTasksDone + importantTasks))*done
+    under = lengthOtherUserTasksDone + importantTasks
+    if under == 0:
+        progress = 0
+    else:
+        progress = (100/(under))*done
 
     progressBar = {
         "importantTasks": importantTasks,
