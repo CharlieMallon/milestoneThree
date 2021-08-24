@@ -466,6 +466,10 @@ a {
 }
 
 /* ---------- footer ---------- */
+main{
+	margin-bottom: 100px;
+}
+
 .footer {
 	display: flex;
 	flex-direction: row;
