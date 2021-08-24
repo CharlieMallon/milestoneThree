@@ -90,7 +90,10 @@
         {% if not session.user == 'none' %}
         <footer>
             <div class='footer sticky bottom'>
-                <div class='progress-bar'>
+                <div id='progress-bar'>
+                    <div id="progress">
+                        
+                    </div>
                     {% if progressBar %}
                         <p>importantTasks: {{ progressBar.importantTasks }}</p>
                         <p>importantTasksDone: {{ progressBar.importantTasksDone }}</p>

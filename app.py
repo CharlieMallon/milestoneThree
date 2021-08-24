@@ -121,8 +121,15 @@ def account(username):
     # grab the session user's username from the db
     username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
+
+    # ---------- Tasks
+    importantTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": True, "is_done": False}).sort("due_date", 1))
+    # gets the other tasks and orders them by date
+    otherTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_priority": False, "is_done": False}).sort("due_date", 1))
+    # gets the done tasks
+    doneTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_done": True}).sort("date_done", -1))
     
-    # ----- set up for drop down for add task form
+    # ---------- set up for categories
     # gets the user categories
     categories = list(mongo.db.categories.find({"created_by": session["user"]}))
     # extracts category names
@@ -142,7 +149,7 @@ def account(username):
     # Progress bar - the numbers!
     importantDoneTasks = list(mongo.db.tasks.find({"created_by": session["user"], "is_done": True, "is_priority": True}))
     # Number of Important tasks
-    importantTasks = len(importantDoneTasks) + len(importantUserTasks)
+    TotalImportantTasks = len(importantDoneTasks) + len(importantUserTasks)
     # Number of tasks done
     done = len(doneTasks)
     # Number of important tasks done
@@ -151,14 +158,14 @@ def account(username):
     totalOverall = len(tasks)
 
     progressBar = {
-        "importantTasks": importantTasks,
+        "importantTasks": TotalImportantTasks,
         "importantTasksDone": importantTasksDone,
         "done": done,
         "totalOverall": totalOverall
     }
 
     if session["user"]:
-        return render_template("account.html", username=username, categories=categories, progressBar=progressBar)
+        return render_template("account.html", username=username, categories=categories, importantTasks=importantTasks, otherTasks=otherTasks, doneTasks=doneTasks, progressBar=progressBar)
 
     return redirect(url_for("login"))
 
