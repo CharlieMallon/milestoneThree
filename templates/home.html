@@ -4,7 +4,35 @@
 
     <!-- If not logged in show this screen -->
     {% if  session.user == 'none' %}
-        <h3>Log In Silly</h3>
+        <div class="cta">
+            <h2>The To Do App to aid recovery</h2>
+            <p class="btn cta-btn">Start Now</p>
+        </div>
+        <div class="cta cta-right">
+            <div class="smallcta">
+                <h3>Built to assist</h3>
+                <p>Aid you on your road to recovery</p>
+                <p class="btn cta-btn">Start Now</p>
+            </div>
+        </div>
+        <div class="cta cta-left">
+            <div class="smallcta">
+                <h3>Simple Design</h3>
+                <p>Designed to work seamlessly between devices</p>
+                <p class="btn cta-btn">Start Now</p>
+            </div>
+        </div>
+        <div class="cta cta-right">
+            <div class="smallcta">
+                <h3>Title</h3>
+                <p>text about the title</p>
+                <p class="btn cta-btn">Start Now</p>
+            </div>
+        </div>
+        <div class="cta">
+            <h3>Final call to action</h3>
+            <p class="btn cta-btn">Start Now</p>
+        </div>
     {% endif %}
     
     <!-- List out the tasks -->

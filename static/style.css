@@ -112,6 +112,30 @@ a {
 	font-size: 25px;
 }
 
+/* ----------  Home page not logged in ---------- */
+
+.cta {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.cta h2 {
+	text-align: center;
+}
+
+.smallcta{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.smallcta p {
+	text-align: center;
+}
+
 /* ---------- Task Card ---------- */
 
 .task-card{
@@ -473,6 +497,34 @@ a {
 		-ms-border-radius: 5px;
 		-o-border-radius: 5px;
 	}
+
+	/* ----------  Home page not logged in ---------- */
+
+.cta {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.smallcta{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 50%;
+}
+
+.cta-right {
+	display: flex;
+	justify-content: center;
+	margin-left: 50%;
+}
+
+.cta-left {
+	display: flex;
+	justify-content: center;
+	margin-right: 50%;
+}
 }
 
 /* ---------- master categories ---------- */
