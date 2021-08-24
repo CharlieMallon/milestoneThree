@@ -15,7 +15,7 @@
                 <i class='fas fa-caret-down arrow'></i>
             </div>
         </div>
-        <div class="section-content row">
+        <div class="section-content row hidden">
             {% if doneTasks|length > 0 %}
                 <ul class='task'>    
                     {% for task in doneTasks %}
@@ -121,7 +121,7 @@
                 <i class='fas fa-caret-down arrow'></i>
             </div>
         </div>
-        <div class="section-content row">
+        <div class="section-content row hidden">
             {% if importantTasks|length > 0 %}
                 <ul class='task'>    
                     {% for task in importantTasks %}
@@ -227,7 +227,7 @@
                 <i class='fas fa-caret-down arrow'></i>
             </div>
         </div>
-        <div class="section-content row">
+        <div class="section-content row hidden">
             {% if otherTasks|length > 0 %}
                 <ul class='task'>    
                     {% for task in otherTasks %}
@@ -333,7 +333,7 @@
                 <i class='fas fa-caret-down arrow'></i>
             </div>
         </div>
-        <div class="section-content row">
+        <div class="section-content row hidden">
             <div class="all-cats">
                 {% for category in categories %}
                     <div class="categories">
