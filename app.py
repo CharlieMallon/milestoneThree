@@ -54,7 +54,8 @@ def home():
         "importantTasks": importantTasks,
         "importantTasksDone": importantTasksDone,
         "done": done,
-        "totalOverall": totalOverall
+        "totalOverall": totalOverall,
+        "progress": 50
     }
 
     return render_template("home.html", tasks=tasks, progressBar=progressBar)

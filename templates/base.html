@@ -88,26 +88,18 @@
         </main>
 
         {% if not session.user == 'none' %}
-        <footer>
-            <div class='footer sticky bottom'>
-                <div id='progress-bar'>
-                    <div id="progress">
-                        
+            <footer>
+                <div class='footer sticky bottom'>
+                    <div id='progress-bar'>
+                        <div id="progress" style="width:{{ progressBar.progress }}%">
+                            {{ progressBar.progress }}%
+                        </div>
                     </div>
-                    {% if progressBar %}
-                        <p>importantTasks: {{ progressBar.importantTasks }}</p>
-                        <p>importantTasksDone: {{ progressBar.importantTasksDone }}</p>
-                        <p>done: {{ progressBar.done }}</p>
-                        <p>totalOverall: {{ progressBar.totalOverall }}</p>
-                    {% else %}
-                        <p>no progress bar</p>
-                    {% endif %}
+                    <div class='circle-btn'>
+                        <a href='{{ url_for("add_task") }}'><i class="fas fa-plus"></i></a>
+                    </div>
                 </div>
-                <div class='btn'>
-                    <a href='{{ url_for("add_task") }}'>Add Task</a>
-                </div>
-            </div>
-        </footer>
+            </footer>
         {% endif %}
     
         <!-- My js -->

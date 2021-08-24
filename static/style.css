@@ -63,6 +63,20 @@ a {
 	-o-border-radius: 5px;
 }
 
+.circle-btn{
+	margin: 5px;
+	height: 25px;
+	width: 25px;
+	text-align: center;
+	line-height: 25px;
+	border: solid 1px black;
+	border-radius: 50px;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	-ms-border-radius: 50px;
+	-o-border-radius: 50px;
+}
+
 /* ---------- nav bar ---------- */
 .desk-nav-bar {
 	display: none;
@@ -474,8 +488,33 @@ main{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	padding: 10px 16px;
+	padding: 10px;
 	background-color: fuchsia;
+}
+
+/* ---------- Progress Bar ---------- */
+#progress-bar{
+	display: flex;
+	width: 100%;
+	height: 30px;
+	border: solid 1px black;
+	margin-right: 10px;
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-o-border-radius: 7px;
+}
+
+#progress{
+	line-height: 30px;
+	padding-left: 10px;
+	background-color: blue;
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-o-border-radius: 7px;
 }
 
 /* ---------- Medium devices ---------- Tablets, 768px and Up ---------- */

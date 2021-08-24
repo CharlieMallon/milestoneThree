@@ -92,3 +92,6 @@ function addCat() {
         catloop[i].classList.toggle('hidden');
     }
 }
+
+// ---------- progress bar
+
