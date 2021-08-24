@@ -9,10 +9,12 @@ from wtforms.validators import InputRequired, Length, EqualTo
 class LogInForm(FlaskForm):
     username = StringField('username', validators=[
         InputRequired(message="Username required"),
-        Length(min=4, max=25, message="Username must be between 4 and 25 charactors")])
+        Length(min=4, max=25, 
+            message="Username must be between 4 and 25 charactors")])
     password = PasswordField('password', validators=[
         InputRequired(message="Password required"),
-        Length(min=4, max=25, message="Password must be between 4 and 25 charactors")])
+        Length(min=4, max=25, 
+            message="Password must be between 4 and 25 charactors")])
     submit_button = SubmitField("Log In")
 
 #registation form
@@ -31,10 +33,12 @@ class AddTaskForm(FlaskForm):
     due_date = DateField('Due Date', format='%Y-%m-%d')
     is_priority = BooleanField('Priority Task')
     is_done = BooleanField('Done!')
-    task_size = RadioField('Task Size', choices=['small', 'medium', 'large'])
+    task_size = RadioField('Task Size', 
+        choices=['small', 'medium', 'large'])
     task_category = SelectField('Task Category')
     add_category = StringField('Task Category', validators=[
-        Length(min=4, max=20, message="Category must be between 4 and 20 charactors")])
+        Length(min=4, max=20, 
+            message="Category must be between 4 and 20 charactors")])
     submit_button = SubmitField("Add Task")
 
 # Edit Task form
@@ -44,5 +48,6 @@ class EditTaskForm(AddTaskForm):
 # Edit Category form
 class EditCategoryForm(FlaskForm):
     task_category = StringField('Task Category', validators=[
-        Length(min=4, max=20, message="Category must be between 4 and 20 charactors")])
+        Length(min=4, max=20, 
+            message="Category must be between 4 and 20 charactors")])
     submit_button = SubmitField("Edit Category")
