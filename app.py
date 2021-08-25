@@ -475,7 +475,8 @@ def add_task():
         # redirect to the home page
         return redirect(url_for("home"))
 
-    return render_template("add_task.html", form=form, progressBar=progressBar)
+    return render_template("add_task.html", form=form, 
+        progressBar=progressBar)
 
 
 @app.route("/edit_task/<task_id>", methods=["GET", "POST"])
@@ -639,6 +640,29 @@ def done_task(task_id):
     # Update the task on the database
     mongo.db.tasks.update({"_id": ObjectId(task_id)},done)
     flash("Task Successfully Done")
+    # Refreshed the page
+    return redirect(request.referrer)
+
+@app.route("/priority_task/<task_id>", methods=["GET", "POST"])
+def priority_task(task_id):
+    # Find the task to edit
+    task = mongo.db.tasks.find_one_or_404({"_id": ObjectId(task_id)})
+    # Populate the dictionary with the task 
+    priority = {
+        # keeps task populated
+        "task_name": task["task_name"],
+        "task_description": task["task_description"],
+        "due_date": task["due_date"],
+        # toggles of is_priority status
+        "is_priority": not task["is_priority"],
+        "task_size": task["task_size"],
+        "category_name": task["category_name"],
+        "created_by": task["created_by"],
+        "is_done": task["is_done"],
+    }
+    # Update the task on the database
+    mongo.db.tasks.update({"_id": ObjectId(task_id)},priority)
+    flash("Task Successfully prioritised")
     # Refreshed the page
     return redirect(request.referrer)
 

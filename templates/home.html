@@ -77,6 +77,14 @@
                                             {{ task.category_name }}
                                         {% endif %}
                                     </div>
+                                    <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
+                                        <p>Priority Task </p>
+                                        {% if task.is_priority == true %}
+                                            <i class='far fa-check-square'></i>
+                                        {% else %}
+                                            <i class='far fa-square'></i>
+                                        {% endif %}
+                                    </a>
                                 </div>
                                 <div class='row'>
                                     {% if task.task_description != '' %}
