@@ -78,7 +78,7 @@ def home():
     if under == 0:
         progress = 0
     else:
-        progress = (100/(under))*(len(doneTasks))
+        progress = round((100/(under))*(len(doneTasks)))
     # Puts the progress in a dictionary
     progressBar = {
         "progress": progress
@@ -214,7 +214,7 @@ def account(username):
     if under == 0:
         progress = 0
     else:
-        progress = (100/(under))*(len(doneTasks))
+        progress = round((100/(under))*(len(doneTasks)))
     # Puts the progress in a dictionary
     progressBar = {
         "progress": progress
@@ -275,7 +275,7 @@ def edit_category(category_id):
     if under == 0:
         progress = 0
     else:
-        progress = (100/(under))*(len(doneTasks))
+        progress = round((100/(under))*(len(doneTasks)))
     # Puts the progress in a dictionary
     progressBar = {
         "progress": progress
@@ -362,7 +362,7 @@ def contact():
     if under == 0:
         progress = 0
     else:
-        progress = (100/(under))*(len(doneTasks))
+        progress = round((100/(under))*(len(doneTasks)))
     # Puts the progress in a dictionary
     progressBar = {
         "progress": progress
@@ -426,7 +426,7 @@ def add_task():
     if under == 0:
         progress = 0
     else:
-        progress = (100/(under))*(len(doneTasks))
+        progress = round((100/(under))*(len(doneTasks)))
     # Puts the progress in a dictionary
     progressBar = {
         "progress": progress
@@ -535,7 +535,7 @@ def edit_task(task_id):
     if under == 0:
         progress = 0
     else:
-        progress = (100/(under))*(len(doneTasks))
+        progress = round((100/(under))*(len(doneTasks)))
     # Puts the progress in a dictionary
     progressBar = {
         "progress": progress
