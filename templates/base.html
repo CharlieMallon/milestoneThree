@@ -15,7 +15,8 @@
         referrerpolicy='no-referrer'
         type='text/css'/>
         <!-- My style Sheet -->
-        <link rel='stylesheet' href='{{ url_for("static", filename="style.css") }}' type='text/css'>
+        <link rel='stylesheet' href='{{ url_for("static", filename="style.css") }}'
+        type='text/css'>
         <!-- Custom style Sheet -->
         {% block styles %}
         {% endblock %}
@@ -27,8 +28,9 @@
             <div class='mobile-nav-bar sticky top'>
                 <div class='mobile-nav'>
                     <h1><a href='{{ url_for("home") }}'>To Did App</a></h1>
-                    <div>
-                        <button id='burger-btn'>Menu</button>
+                    <div id='burger-btn'>
+                        <div id='bars'><i class="fas fa-bars"></i></div>
+                        <div id="closebars" class="hidden">&times;</div>
                     </div>
                 </div>
                 <div id='burger-menu' class='hidden'>
@@ -36,7 +38,8 @@
                         <ul>
                             <li><a href='{{ url_for("home") }}'>Home</a></li>
                             {% if not session.user == 'none' %}
-                                <li><a href='{{ url_for("account", username=session["user"]) }}'>Account</a></li>
+                                <li><a href='{{ url_for("account", 
+                                    username=session["user"]) }}'>Account</a></li>
                                 <li><a href='{{ url_for("logout") }}'>Log out</a></li>
                             {% else %}
                                 <li><a href='{{ url_for("register") }}'>Register</a></li>
@@ -54,7 +57,8 @@
                     <ul>
                         <li><a href='{{ url_for("home") }}'>Home</a></li>
                         {% if not session.user == 'none' %}
-                            <li><a href='{{ url_for("account", username=session["user"]) }}'>Account</a></li>
+                            <li><a href='{{ url_for("account", 
+                                username=session["user"]) }}'>Account</a></li>
                             <li><a href='{{ url_for("logout") }}'>Log out</a></li>
                         {% else %}
                             <li><a href='{{ url_for("register") }}'>Register</a></li>
@@ -66,23 +70,24 @@
             </div>
         </header>
 
-        <section>
-            <!-- Flash messages -->
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class='row flashes sticky'>
-                            <h4 class='light-blue lighten-4 center-aligned'>
-                                {{ message }}
-                            </h4>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </section>
-        
         <!-- Page contents -->
         <main>
+
+            <section>
+                <!-- Flash messages -->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class='row flashes'>
+                                <h4 class='centre'>
+                                    {{ message }}
+                                </h4>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </section>
+
             {% block content %}
             {% endblock %}
         </main>
@@ -96,7 +101,9 @@
                         </div>
                     </div>
                     <div class='circle-btn'>
-                        <a href='{{ url_for("add_task") }}'><i class="fas fa-plus"></i></a>
+                        <a href='{{ url_for("add_task") }}'>
+                            <i class="fas fa-plus"></i>
+                        </a>
                     </div>
                 </div>
             </footer>

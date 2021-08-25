@@ -12,6 +12,10 @@ function burgerMenu() {
     var element = document.getElementById('burger-menu');
     element.classList.toggle('burger');
     element.classList.toggle('hidden');
+    var bars = document.getElementById('bars');
+    var closebars = document.getElementById('closebars');
+    bars.classList.toggle('hidden');
+    closebars.classList.toggle('hidden');
 }
 
 // ---------- open/close details of task
