@@ -169,16 +169,51 @@ a {
     -o-border-radius: 15px;
 }
 
+.task-card.open .task-body{
+	display: flex;
+	transition: height 500ms;
+	-webkit-transition: height 500ms;
+	-moz-transition: height 500ms;
+	-ms-transition: height 500ms;
+	-o-transition: height 500ms;
+}
+
+.task-card.open .arrow{
+	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transition: transform 500ms;
+	-webkit-transition: transform 500ms;
+	-moz-transition: transform 500ms;
+	-ms-transition: transform 500ms;
+	-o-transition: transform 500ms;
+}
+
+.arrow{
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transition: transform 500ms;
+	-webkit-transition: transform 500ms;
+	-moz-transition: transform 500ms;
+	-ms-transition: transform 500ms;
+	-o-transition: transform 500ms;
+}
+
 .small{
-    border-left: 5px solid green;
+    border-left: 7px solid green;
 }
 
 .medium{
-    border-left: 5px solid Pink;
+    border-left: 7px solid Pink;
 }
 
 .large{
-    border-left: 5px solid Blue;
+    border-left: 7px solid Blue;
 }
 
 /* Task Card Header */
@@ -189,7 +224,24 @@ a {
 }
 
 .check-box{
-    margin-right: 5px;
+	font-size: 25px;
+}
+
+.task-header-internal{
+	justify-content: space-between;
+	width: 100%;
+}
+
+.task-name{
+	padding: 0px 10px;
+	line-height: 30px;
+}
+
+.buttons{
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	min-width: 25px;
 }
 
 .fa-exclamation-circle{
@@ -200,7 +252,14 @@ a {
 /* Task Card Body */
 
 .task-body{
-    justify-content: space-between;
+	height: 0px;
+	justify-content: space-between;
+	overflow: hidden;
+	transition: height 300ms;
+	-webkit-transition: height 300ms;
+	-moz-transition: height 300ms;
+	-ms-transition: height 300ms;
+	-o-transition: height 300ms;
 }
 
 .description{

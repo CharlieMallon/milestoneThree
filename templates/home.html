@@ -6,7 +6,7 @@
     {% if  session.user == 'none' %}
         <div class="cta">
             <h2>The To Do App to aid recovery</h2>
-            <p class="btn cta-btn">Start Now</p>
+            <p class="btn cta-btn">Take the first step</p>
         </div>
         <div class="cta cta-right">
             <div class="smallcta">
@@ -48,90 +48,92 @@
                         {% else %}
                             <li class='task-card col large'>
                         {% endif %}
-                            <div class='task-header row'>
-                                <div class='row'>
-                                    <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
-                                        {% if task.is_done == true %}
-                                            <i class='far fa-check-square'></i>
-                                        {% else %}
-                                            <i class='far fa-square'></i>
-                                        {% endif %}
-                                    </a>
-                                    <div class='task-name'>
-                                        <strong>{{ task.task_name }}</strong>
+                                <div class='task-header row'>
+                                    <div class='row'>
+                                        <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
+                                            {% if task.is_done == true %}
+                                                <i class='far fa-check-square'></i>
+                                            {% else %}
+                                                <i class='far fa-square'></i>
+                                            {% endif %}
+                                        </a>
                                     </div>
-                                </div>
-                                <div class='row'>
-                                    {% if task.is_priority == true %}
-                                    <i class='fas fa-exclamation-circle'></i>
-                                    {% endif %}
-                                    <i class='fas fa-caret-down arrow'></i>
-                                </div>
-                            </div>
-                            <div class='task-body col hidden'>
-                                <div class='row info'>
-                                    <div class='category'>
-                                        {% if task.category_name == '' %}
-                                            <p>No Category</p>
-                                        {% else %}
-                                            {{ task.category_name }}
-                                        {% endif %}
-                                    </div>
-                                    <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
-                                        <p>Priority Task </p>
-                                        {% if task.is_priority == true %}
-                                            <i class='far fa-check-square'></i>
-                                        {% else %}
-                                            <i class='far fa-square'></i>
-                                        {% endif %}
-                                    </a>
-                                </div>
-                                <div class='row'>
-                                    {% if task.task_description != '' %}
-                                    <div class='description'>
-                                        {{ task.task_description }}
-                                    </div>
-                                    {% endif %}
-                                </div>
-                                <div class='row info'>
-                                    <div class='due-date'>
-                                        {% if task.due_date != 'None' %}
-                                            <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
-                                        {% endif %}
-                                    </div>
-                                    <div class="task-buttons">
-                                        <div class='open-modal'>
-                                            <p class="delete-task "><i class='far fa-trash-alt no-pointer'></i></p>
+                                    <div class='row task-header-internal'>
+                                        <div class='task-name'>
+                                            <strong>{{ task.task_name }}</strong>
                                         </div>
-                                        <!-- The Delete Task Modal -->
-                                        <div class="modal-background hidden" data-closer="close">
-                                            <!-- Modal content -->
-                                            <div class="modal">
-                                                <div class="modal-title">
-                                                    <h2>Delete Task<span class="close" data-closer="close">&times;</span></h2>
-                                                </div>
-                                                <div class="modal-content">
-                                                    <div class="modal-par">
-                                                        <p>Are you sure you want to delete "{{ task.task_name }}"?</p>
+                                        <div class="buttons">
+                                            <p><i class='fas fa-caret-down arrow'></i></p>
+                                            {% if task.is_priority == true %}
+                                            <p><i class="fas fa-exclamation"></i></p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='task-body col'>
+                                    <div class='task-content-row row info'>
+                                        <div class='category'>
+                                            {% if task.category_name == '' %}
+                                                <p>No Category</p>
+                                            {% else %}
+                                                {{ task.category_name }}
+                                            {% endif %}
+                                        </div>
+                                        <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
+                                            <p>Prioritize</p>
+                                            {% if task.is_priority == true %}
+                                                <i class='far fa-check-square'></i>
+                                            {% else %}
+                                                <i class='far fa-square'></i>
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class='task-content-row row'>
+                                        {% if task.task_description != '' %}
+                                        <div class='description'>
+                                            {{ task.task_description }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class='task-content-row row info'>
+                                        <div class='due-date'>
+                                            {% if task.due_date != 'None' %}
+                                                <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="task-buttons">
+                                            <div class='open-modal'>
+                                                <p class="delete-task "><i class='far fa-trash-alt no-pointer'></i></p>
+                                            </div>
+                                            <!-- The Delete Task Modal -->
+                                            <div class="modal-background hidden" data-closer="close">
+                                                <!-- Modal content -->
+                                                <div class="modal">
+                                                    <div class="modal-title">
+                                                        <h2>Delete Task<span class="close" data-closer="close">&times;</span></h2>
                                                     </div>
-                                                    <div class="modal-btns">
-                                                        <div class="btn m-btn">
-                                                            <a href='{{ url_for("delete_task", task_id=task._id) }}'>Yes</a>
+                                                    <div class="modal-content">
+                                                        <div class="modal-par">
+                                                            <p>Are you sure you want to delete "{{ task.task_name }}"?</p>
                                                         </div>
-                                                        <div class="btn m-btn">
-                                                            <p class="no-btn" data-closer="close">No</p>
+                                                        <div class="modal-btns">
+                                                            <div class="btn m-btn">
+                                                                <a href='{{ url_for("delete_task", task_id=task._id) }}'>Yes</a>
+                                                            </div>
+                                                            <div class="btn m-btn">
+                                                                <p class="no-btn" data-closer="close">No</p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class='edit'>
-                                            <a href='{{ url_for("edit_task", task_id=task._id) }}'><i class='far fa-edit task-btn'></i></a>
+                                            <div class='edit'>
+                                                <a href='{{ url_for("edit_task", task_id=task._id) }}'><i class='far fa-edit task-btn'></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
                         {% endif %}
                 {% endfor %}
             </ul>

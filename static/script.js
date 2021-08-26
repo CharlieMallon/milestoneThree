@@ -1,52 +1,55 @@
 // ---------- burger menu
 
 // event listener for burger menu
-
 const burgerButton = document.getElementById('burger-btn');
 
-burgerButton.addEventListener('click', burgerMenu)
+burgerButton.addEventListener('click', burgerMenu);
 
 // Show/hide the menu on mobile
 
 function burgerMenu() {
-    var element = document.getElementById('burger-menu');
+    let element = document.getElementById('burger-menu');
     element.classList.toggle('burger');
     element.classList.toggle('hidden');
-    var bars = document.getElementById('bars');
-    var closebars = document.getElementById('closebars');
+    let bars = document.getElementById('bars');
+    let closebars = document.getElementById('closebars');
     bars.classList.toggle('hidden');
     closebars.classList.toggle('hidden');
 }
 
 // ---------- open/close details of task
-
-var colls = document.getElementsByClassName("arrow");
+// get the bit that can be click
+let colls = document.getElementsByClassName("task-header-internal");
 
 for (let i = 0; i < colls.length; i++) {
+    // for each task add an event listener
     colls[i].addEventListener('click', function() {
-        if (this.classList.contains('fa-caret-down')){
-            this.classList.remove('fa-caret-down')
-            this.classList.add('fa-caret-up')
-        } else {
-            this.classList.remove('fa-caret-up')
-            this.classList.add('fa-caret-down')
+        let content = this.closest(".task-card");
+        content.classList.toggle('open');
+
+        let children = content.lastElementChild.children;
+        let height = 0;
+        // if opening task calculate contents height
+        if (content.classList.contains('open')){
+            for (let j = 0; j < children.length; j++) {
+                let childHeight = children[j].offsetHeight;
+                height = height + childHeight;
+            }
         }
-            
-    var content = this.parentNode.parentNode.nextElementSibling;
-    content.classList.toggle('hidden')
-});
-}
+        content.lastElementChild.style.height = `${height}px`;
+    }); 
+};
 
 // ---------- open delete task modal
 
-var task = document.getElementsByClassName("open-modal");
+let task = document.getElementsByClassName("open-modal");
 
 for (let i = 0; i < task.length; i++) {
     task[i].addEventListener('click', function() {
-    var content = this.nextElementSibling;
-    content.classList.remove('hidden')
-});
-}
+        let content = this.nextElementSibling;
+        content.classList.remove('hidden');
+    });
+};
 
 // ---------- close a modal
 
@@ -74,14 +77,14 @@ for (let i = 0; i < no.length; i++) {
 // close the modal by adding hidden on the background only if the data target is 'close'
 function ModalClose(e) {
     if (e.target.dataset.closer === 'close'){
-        var element = e.target.closest(".modal-background");
+        let element = e.target.closest(".modal-background");
         element.classList.add('hidden');
     }
 }
 
 // ---------- switch between category types
 
-var cat = document.getElementsByClassName("add-cat")[0];
+let cat = document.getElementsByClassName("add-cat")[0];
 
 // if cat element exists add event listener
 if (cat)
@@ -90,7 +93,7 @@ if (cat)
 
 // loops through thr elements with the class of 'cat' and toggles the hidden class
 function addCat() {
-    var catloop = document.getElementsByClassName("cat");
+    let catloop = document.getElementsByClassName("cat");
 
     for (let i = 0; i < catloop.length; i++) {
         catloop[i].classList.toggle('hidden');
