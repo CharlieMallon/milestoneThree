@@ -427,7 +427,6 @@ a {
 	justify-content: center;
 	align-items: center;
 	min-width: 50%;
-	width: 181px;
 }
 
 .control{
@@ -441,6 +440,9 @@ a {
 
 .form-label{
 	padding: 0.25rem 0px;
+}
+
+.register-form .form-label{
 	width: 100px;
 }
 
