@@ -7,11 +7,11 @@ from wtforms.validators import InputRequired, Length, EqualTo
 
 #Log In form
 class LogInForm(FlaskForm):
-    username = StringField('username', validators=[
+    username = StringField('Username', validators=[
         InputRequired(message="Username required"),
         Length(min=4, max=25, 
             message="Username must be between 4 and 25 charactors")])
-    password = PasswordField('password', validators=[
+    password = PasswordField('Password', validators=[
         InputRequired(message="Password required"),
         Length(min=4, max=25, 
             message="Password must be between 4 and 25 charactors")])
@@ -19,17 +19,17 @@ class LogInForm(FlaskForm):
 
 #registation form
 class RegistrationForm(LogInForm):
-    confirm_password = PasswordField('confirm password', validators=[
+    confirm_password = PasswordField('Confirm Password', validators=[
         InputRequired(message="Please confirm your password"),
         EqualTo('password', message="Passwords must match")])
     submit_button = SubmitField("Register")
 
 # add task form
 class AddTaskForm(FlaskForm):
-    task_name = StringField('Title', validators=[
+    task_name = StringField('Task Title', validators=[
         InputRequired(message="Title required"), 
         Length(max=50, message="That title is too long!")])
-    task_description = TextAreaField('Description and comments')
+    task_description = TextAreaField('Description')
     due_date = DateField('Due Date', format='%Y-%m-%d')
     is_priority = BooleanField('Priority Task')
     is_done = BooleanField('Done!')
