@@ -28,6 +28,7 @@ h2 {
 .sticky {
 	display: block;
 	position: fixed;
+	z-index: 10;
 	width: 100%;
 }
 
@@ -37,10 +38,7 @@ h2 {
 }
 
 main {
-	padding-top: 80px;
-	padding-left: 16px;
-	padding-right: 16px;
-	padding-bottom: 80px;
+	padding: 80px 0px;
 }
 
 .bottom {
@@ -167,15 +165,10 @@ a {
 
 .task-card{
     list-style: none;
-	width: 100%;
-    border-radius: 15px;
-    padding: 10px 16px;
-    margin: 5px 0px;
+	width: 96%;
+    padding: 0px 16px;
     background-color: yellowgreen;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
+	margin: 2%;
 }
 
 .task-card.open .task-body{
@@ -564,14 +557,25 @@ a {
 }
 
 .add-task-container{
-	justify-content: flex-end;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: pink;
+	border-top-left-radius: 35px;
+	border-top-right-radius: 35px;
+	border-radius: ;
+	width: 80px;
+	-webkit-border-radius:;
+	-moz-border-radius:;
+	-ms-border-radius:;
+	-o-border-radius:;
 }
 
 .add-task-words{
 	display: flex;
-	line-height: 35px;
-	padding: 0px 20px;
-	font-size: larger;
+	/* line-height: 35px; */
+	padding: 0px 0px;
+	font-size: x-small;
 }
 
 /* ---------- Progress Bar ---------- */
