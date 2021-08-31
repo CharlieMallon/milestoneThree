@@ -52,9 +52,9 @@
                                     <div class='row'>
                                         <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
                                             {% if task.is_done == true %}
-                                                <i class='far fa-check-square'></i>
+                                            <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
                                             {% else %}
-                                                <i class='far fa-square'></i>
+                                                <p><img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img></p>
                                             {% endif %}
                                         </a>
                                     </div>
@@ -63,9 +63,9 @@
                                             <strong>{{ task.task_name }}</strong>
                                         </div>
                                         <div class="buttons">
-                                            <p><i class='fas fa-caret-down arrow'></i></p>
+                                            <p><img class='arrow' src='{{ url_for("static", filename="imgs/down-arrow.svg") }}'></img></p>
                                             {% if task.is_priority == true %}
-                                            <p><i class="fas fa-exclamation"></i></p>
+                                            <p><img src='{{ url_for("static", filename="imgs/priority-high.svg") }}'></img></p>
                                             {% endif %}
                                         </div>
                                     </div>
