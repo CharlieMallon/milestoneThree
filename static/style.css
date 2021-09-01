@@ -396,6 +396,9 @@ a {
 }
 
 /* ---------- forms ---------- */
+.form{
+	margin: 0px 16px;
+}
 
 .form-container{
 	border: solid 1px black;
