@@ -8,13 +8,12 @@ burgerButton.addEventListener('click', burgerMenu);
 // Show/hide the menu on mobile
 
 function burgerMenu() {
+    // shows/hide the menu
     let element = document.getElementById('burger-menu');
     element.classList.toggle('burger');
     element.classList.toggle('hidden');
-    let bars = document.getElementById('bars');
-    let closebars = document.getElementById('closebars');
-    bars.classList.toggle('hidden');
-    closebars.classList.toggle('hidden');
+    // adds animation to burger button
+    burgerButton.classList.toggle("is-active")
 }
 
 // ---------- open/close details of task
