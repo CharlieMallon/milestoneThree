@@ -99,5 +99,15 @@ function addCat() {
     }
 }
 
-// ---------- progress bar
+// ---------- Account tabs
 
+// get the bit that can be click
+let section = document.getElementsByClassName("section-header");
+
+for (let i = 0; i < section.length; i++) {
+    // for each task add an event listener
+    section[i].addEventListener('click', function() {
+        let content = this.closest(".section");
+        content.classList.toggle('open');
+    }); 
+};

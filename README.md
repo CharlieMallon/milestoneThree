@@ -300,6 +300,8 @@ This section will detail the bugs that I came across coding and the main one tha
 
 One of the first problems i came across was not something i expected, how to store dates, it doesnt seem like it should be that hard, just drop it into the database as a date.  but in what format? how do i make it readable to all, why wont the database acept the output from wtforms?!? I did some research and concluded that the best way to store the duedate is in accordance with ISO 8601 (good old ISO) which is YY-MM-DD and as a string, that can be manipulated later. [artical](https://www.w3.org/QA/Tips/iso-date)
 
+After great sucess implementing a cool slider for the opening and closing of tasks (lines 19 - 40 in the JS) i tried implementing this to the account page, i had some real troubble with the height turns out that ul's dont have height! who knew! I tried wapping the list in a div (didnt work) so will have to come up with a diffrent aproach to the height of these section.
+
 **During coding**
 
 | Bug | Things Tried | Final Fix |
