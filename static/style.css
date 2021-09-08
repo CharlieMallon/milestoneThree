@@ -7,17 +7,24 @@
 
 /* ---------- Colours ---------- */
 /* CSS HEX */
-:root {
-	/* Light */
-	--ghost-white: #f4f4fbff;
-	--dodger-blue: #0090ffff;
-	--turquoise: #4fe4c3ff;
-	--portland-orange: #ff5333ff;
-	/* dark */
-	--salmon: #ff8a76ff;
-	--aquamarine: #74ffe1ff;
-	--blue-jeans: #43afffff;
-	--oxford-blue: #132242ff;
+html [data-theme='light'] {
+	/* Light mode*/
+	--background: #f4f4fbff;
+	--blue: #0090ffff;
+	--green: #4fe4c3ff;
+	--orange: #ff5333ff;
+	--text: #132242ff;
+}
+
+html {
+	/* Dark mode*/
+	--background2: #091020;
+	--background: #132242ff;
+	--blue: #43afffff;
+	--green: #74ffe1ff;
+	--orange: #ff8a76ff;
+	--text: #f4f4fbff;
+	--task: rgb(137, 218, 83);
 }
 
 /* ---------- Standard Classes ---------- */
@@ -49,11 +56,12 @@ h2 {
 
 .top {
 	top: 0;
-	background-color: aqua;
+	background-color: var(--background);
 }
 
 main {
 	padding: 80px 0px;
+	background-color: var(--background2);
 }
 
 .bottom {
@@ -62,7 +70,7 @@ main {
 
 a {
 	text-decoration: none;
-	color: black;
+	color: var(--text);
 }
 
 .no-pointer {
@@ -83,7 +91,6 @@ a {
 	align-items: center;
 	padding: 5px;
 	margin: 5px;
-	border: solid 1px black;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -93,13 +100,13 @@ a {
 
 /* Hamburger - code credited to jonsuh */
 
-/*!
- * Hamburgers
- * @description Tasty CSS-animated hamburgers
+/* ---------- Hamburgers ---------- */
+/* @description Tasty CSS-animated hamburgers
  * @author Jonathan Suh @jonsuh
  * @site https://jonsuh.com/hamburgers
  * @link https://github.com/jonsuh/hamburgers
  */
+
 .hamburger {
 	padding: 15px 15px;
 	display: inline-block;
@@ -144,7 +151,7 @@ a {
 .hamburger-inner::after {
 	width: 40px;
 	height: 4px;
-	background-color: #000;
+	background-color: var(--text);
 	border-radius: 4px;
 	position: absolute;
 	transition-property: transform;
@@ -163,9 +170,7 @@ a {
 	bottom: -10px;
 }
 
-/*
-   * Vortex
-   */
+/* Vortex */
 .hamburger--vortex .hamburger-inner {
 	transition-duration: 0.2s;
 	transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
@@ -200,9 +205,7 @@ a {
 	transform: rotate(90deg);
 }
 
-/*
-	 * Vortex Reverse
-	 */
+/* Vortex Reverse */
 .hamburger--vortex-r .hamburger-inner {
 	transition-duration: 0.2s;
 	transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
@@ -257,14 +260,6 @@ a {
 	text-align: center;
 }
 
-#closebars {
-	font-size: 40px;
-}
-
-#bars {
-	font-size: 30px;
-}
-
 .burger ul {
 	display: flex;
 	flex-direction: column;
@@ -278,7 +273,7 @@ a {
 }
 
 .burger ul li a {
-	color: white;
+	color: var(--text);
 	font-size: 25px;
 }
 
@@ -312,7 +307,7 @@ a {
 	list-style: none;
 	width: 96%;
 	padding: 0px 16px;
-	background-color: yellowgreen;
+	background-color: var(--task);
 	margin: 2%;
 }
 
@@ -352,15 +347,15 @@ a {
 }
 
 .small {
-	border-left: 7px solid green;
+	border-left: 7px solid var(--green);
 }
 
 .medium {
-	border-left: 7px solid Pink;
+	border-left: 7px solid var(--orange);
 }
 
 .large {
-	border-left: 7px solid Blue;
+	border-left: 7px solid var(--blue);
 }
 
 /* Task Card Header */
@@ -739,8 +734,7 @@ a {
 	width: 25px;
 	text-align: center;
 	line-height: 25px;
-	background-color: yellow;
-	border: solid 1px red;
+	background-color: var(--text);
 	border-radius: 50px;
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
@@ -748,17 +742,22 @@ a {
 	-o-border-radius: 50px;
 }
 
+.plus{
+	color: var(--background);
+}
+
 .add-task-words {
 	display: flex;
 	justify-content: center;
-	background-color: pink;
+	color: var(--text);
+	background-color: var(--background);
 	padding: 0px 0px;
 	font-size: x-small;
 }
 
 /* ---------- Progress Bar ---------- */
 .progress-bar-container {
-	background-color: pink;
+	background-color: var(--background);
 	padding: 10px;
 }
 
@@ -766,8 +765,8 @@ a {
 	display: flex;
 	width: 100%;
 	height: 30px;
-	border: solid 1px black;
 	border-radius: 7px;
+	background-color: var(--text);
 	-webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
 	-ms-border-radius: 7px;
@@ -776,8 +775,8 @@ a {
 
 #progress {
 	line-height: 30px;
-	background-color: blue;
-	color: white;
+	background-color: var(--green);
+	color: var(--text);
 	text-align: end;
 	padding: 0px 15px;
 	border-radius: 7px;
