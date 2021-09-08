@@ -17,38 +17,40 @@
         </div>
         <div class="section-content row">
             {% if doneTasks|length > 0 %}
-                <ul class='task'>    
-                    {% for task in doneTasks %}
-                        {% if session.user|lower == task.created_by|lower %}
-                            {% if task.task_size == 'small' %}
-                                <li class='task-card col small'>    
-                            {% elif task.task_size == 'medium' %}
-                                <li class='task-card col medium'>
-                            {% else %}
-                                <li class='task-card col large'>
-                            {% endif %}
+            <ul class='task'>    
+                {% for task in doneTasks %}
+                    {% if session.user|lower == task.created_by|lower %}
+                        {% if task.task_size == 'small' %}
+                            <li class='task-card col small'>    
+                        {% elif task.task_size == 'medium' %}
+                            <li class='task-card col medium'>
+                        {% else %}
+                            <li class='task-card col large'>
+                        {% endif %}
                                 <div class='task-header row'>
                                     <div class='row'>
                                         <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
                                             {% if task.is_done == true %}
-                                                <i class='far fa-check-square'></i>
+                                            <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
                                             {% else %}
-                                                <i class='far fa-square'></i>
+                                                <p><img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img></p>
                                             {% endif %}
                                         </a>
+                                    </div>
+                                    <div class='row task-header-internal'>
                                         <div class='task-name'>
                                             <strong>{{ task.task_name }}</strong>
                                         </div>
-                                    </div>
-                                    <div class='row'>
-                                        {% if task.is_priority == true %}
-                                        <i class='fas fa-exclamation-circle'></i>
-                                        {% endif %}
-                                        <i class='fas fa-caret-down arrow'></i>
+                                        <div class="buttons">
+                                            <p><img class='arrow' src='{{ url_for("static", filename="imgs/down-arrow.svg") }}'></img></p>
+                                            {% if task.is_priority == true %}
+                                            <p><img src='{{ url_for("static", filename="imgs/priority-high.svg") }}'></img></p>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class='task-body col hidden'>
-                                    <div class='row info'>
+                                <div class='task-body col'>
+                                    <div class='task-content-row row info'>
                                         <div class='category'>
                                             {% if task.category_name == '' %}
                                                 <p>No Category</p>
@@ -56,15 +58,23 @@
                                                 {{ task.category_name }}
                                             {% endif %}
                                         </div>
+                                        <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
+                                            <p>Prioritize</p>
+                                            {% if task.is_priority == true %}
+                                                <i class='far fa-check-square'></i>
+                                            {% else %}
+                                                <i class='far fa-square'></i>
+                                            {% endif %}
+                                        </a>
                                     </div>
-                                    <div class='row'>
+                                    <div class='task-content-row row'>
                                         {% if task.task_description != '' %}
                                         <div class='description'>
                                             {{ task.task_description }}
                                         </div>
                                         {% endif %}
                                     </div>
-                                    <div class='row info'>
+                                    <div class='task-content-row row info'>
                                         <div class='due-date'>
                                             {% if task.due_date != 'None' %}
                                                 <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
@@ -103,9 +113,9 @@
                                     </div>
                                 </div>
                             </li>
-                            {% endif %}
-                    {% endfor %}
-                </ul>
+                        {% endif %}
+                {% endfor %}
+            </ul>
             {% else %}
                 <h3>No Tasks Found</h3>
             {% endif %}
@@ -123,38 +133,40 @@
         </div>
         <div class="section-content row">
             {% if importantTasks|length > 0 %}
-                <ul class='task'>    
-                    {% for task in importantTasks %}
-                        {% if session.user|lower == task.created_by|lower %}
-                            {% if task.task_size == 'small' %}
-                                <li class='task-card col small'>    
-                            {% elif task.task_size == 'medium' %}
-                                <li class='task-card col medium'>
-                            {% else %}
-                                <li class='task-card col large'>
-                            {% endif %}
+            <ul class='task'>    
+                {% for task in importantTasks %}
+                    {% if session.user|lower == task.created_by|lower %}
+                        {% if task.task_size == 'small' %}
+                            <li class='task-card col small'>    
+                        {% elif task.task_size == 'medium' %}
+                            <li class='task-card col medium'>
+                        {% else %}
+                            <li class='task-card col large'>
+                        {% endif %}
                                 <div class='task-header row'>
                                     <div class='row'>
                                         <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
                                             {% if task.is_done == true %}
-                                                <i class='far fa-check-square'></i>
+                                            <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
                                             {% else %}
-                                                <i class='far fa-square'></i>
+                                                <p><img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img></p>
                                             {% endif %}
                                         </a>
+                                    </div>
+                                    <div class='row task-header-internal'>
                                         <div class='task-name'>
                                             <strong>{{ task.task_name }}</strong>
                                         </div>
-                                    </div>
-                                    <div class='row'>
-                                        {% if task.is_priority == true %}
-                                        <i class='fas fa-exclamation-circle'></i>
-                                        {% endif %}
-                                        <i class='fas fa-caret-down arrow'></i>
+                                        <div class="buttons">
+                                            <p><img class='arrow' src='{{ url_for("static", filename="imgs/down-arrow.svg") }}'></img></p>
+                                            {% if task.is_priority == true %}
+                                            <p><img src='{{ url_for("static", filename="imgs/priority-high.svg") }}'></img></p>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class='task-body col hidden'>
-                                    <div class='row info'>
+                                <div class='task-body col'>
+                                    <div class='task-content-row row info'>
                                         <div class='category'>
                                             {% if task.category_name == '' %}
                                                 <p>No Category</p>
@@ -162,15 +174,23 @@
                                                 {{ task.category_name }}
                                             {% endif %}
                                         </div>
+                                        <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
+                                            <p>Prioritize</p>
+                                            {% if task.is_priority == true %}
+                                                <i class='far fa-check-square'></i>
+                                            {% else %}
+                                                <i class='far fa-square'></i>
+                                            {% endif %}
+                                        </a>
                                     </div>
-                                    <div class='row'>
+                                    <div class='task-content-row row'>
                                         {% if task.task_description != '' %}
                                         <div class='description'>
                                             {{ task.task_description }}
                                         </div>
                                         {% endif %}
                                     </div>
-                                    <div class='row info'>
+                                    <div class='task-content-row row info'>
                                         <div class='due-date'>
                                             {% if task.due_date != 'None' %}
                                                 <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
@@ -209,9 +229,9 @@
                                     </div>
                                 </div>
                             </li>
-                            {% endif %}
-                    {% endfor %}
-                </ul>
+                        {% endif %}
+                {% endfor %}
+            </ul>
             {% else %}
                 <h3>No Tasks Found</h3>
             {% endif %}
@@ -229,38 +249,40 @@
         </div>
         <div class="section-content row">
             {% if otherTasks|length > 0 %}
-                <ul class='task'>    
-                    {% for task in otherTasks %}
-                        {% if session.user|lower == task.created_by|lower %}
-                            {% if task.task_size == 'small' %}
-                                <li class='task-card col small'>    
-                            {% elif task.task_size == 'medium' %}
-                                <li class='task-card col medium'>
-                            {% else %}
-                                <li class='task-card col large'>
-                            {% endif %}
+            <ul class='task'>    
+                {% for task in otherTasks %}
+                    {% if session.user|lower == task.created_by|lower %}
+                        {% if task.task_size == 'small' %}
+                            <li class='task-card col small'>    
+                        {% elif task.task_size == 'medium' %}
+                            <li class='task-card col medium'>
+                        {% else %}
+                            <li class='task-card col large'>
+                        {% endif %}
                                 <div class='task-header row'>
                                     <div class='row'>
                                         <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
                                             {% if task.is_done == true %}
-                                                <i class='far fa-check-square'></i>
+                                            <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
                                             {% else %}
-                                                <i class='far fa-square'></i>
+                                                <p><img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img></p>
                                             {% endif %}
                                         </a>
+                                    </div>
+                                    <div class='row task-header-internal'>
                                         <div class='task-name'>
                                             <strong>{{ task.task_name }}</strong>
                                         </div>
-                                    </div>
-                                    <div class='row'>
-                                        {% if task.is_priority == true %}
-                                        <i class='fas fa-exclamation-circle'></i>
-                                        {% endif %}
-                                        <i class='fas fa-caret-down arrow'></i>
+                                        <div class="buttons">
+                                            <p><img class='arrow' src='{{ url_for("static", filename="imgs/down-arrow.svg") }}'></img></p>
+                                            {% if task.is_priority == true %}
+                                            <p><img src='{{ url_for("static", filename="imgs/priority-high.svg") }}'></img></p>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class='task-body col hidden'>
-                                    <div class='row info'>
+                                <div class='task-body col'>
+                                    <div class='task-content-row row info'>
                                         <div class='category'>
                                             {% if task.category_name == '' %}
                                                 <p>No Category</p>
@@ -268,15 +290,23 @@
                                                 {{ task.category_name }}
                                             {% endif %}
                                         </div>
+                                        <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
+                                            <p>Prioritize</p>
+                                            {% if task.is_priority == true %}
+                                                <i class='far fa-check-square'></i>
+                                            {% else %}
+                                                <i class='far fa-square'></i>
+                                            {% endif %}
+                                        </a>
                                     </div>
-                                    <div class='row'>
+                                    <div class='task-content-row row'>
                                         {% if task.task_description != '' %}
                                         <div class='description'>
                                             {{ task.task_description }}
                                         </div>
                                         {% endif %}
                                     </div>
-                                    <div class='row info'>
+                                    <div class='task-content-row row info'>
                                         <div class='due-date'>
                                             {% if task.due_date != 'None' %}
                                                 <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
@@ -315,9 +345,9 @@
                                     </div>
                                 </div>
                             </li>
-                            {% endif %}
-                    {% endfor %}
-                </ul>
+                        {% endif %}
+                {% endfor %}
+            </ul>
             {% else %}
                 <h3>No Tasks Found</h3>
             {% endif %}
