@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="task-buttons">
                                             <div class='open-modal'>
-                                                <p class="delete-task"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
+                                                <p class="delete"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
                                             </div>
                                             <!-- The Delete Task Modal -->
                                             <div class="modal-background hidden" data-closer="close">
@@ -200,7 +200,7 @@
                                         </div>
                                         <div class="task-buttons">
                                             <div class='open-modal'>
-                                                <p class="delete-task"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
+                                                <p class="delete"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
                                             </div>
                                             <!-- The Delete Task Modal -->
                                             <div class="modal-background hidden" data-closer="close">
@@ -318,7 +318,7 @@
                                         </div>
                                         <div class="task-buttons">
                                             <div class='open-modal'>
-                                                <p class="delete-task"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
+                                                <p class="delete"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
                                             </div>
                                             <!-- The Delete Task Modal -->
                                             <div class="modal-background hidden" data-closer="close">
@@ -372,17 +372,16 @@
         <div class="section-content row">
             <div class="all-cats">
                 {% for category in categories %}
-                    <div class="categories">
                         <div class="cat-card">
-                            <div class="card">
-                                <span class="card-title">{{ category.category_name }}</span>
+                            <div class="card-title">
+                                <p>{{ category.category_name }}</p>
                             </div>
                             <div class="card-action">
-                                <a href='{{ url_for("edit_category", category_id=category._id) }}'>
+                                <a class="edit" href='{{ url_for("edit_category", category_id=category._id) }}'>
                                     <img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img>
                                 </a>
                                 <div class="open-modal">
-                                    <p class="delete-task"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
+                                    <p class="delete"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
                                 </div>
                                 <!-- The Delete category Modal -->
                                 <div class="modal-background hidden" data-closer="close">
@@ -408,7 +407,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 {% endfor %}
             </div>
         </div>

@@ -302,6 +302,8 @@ One of the first problems i came across was not something i expected, how to sto
 
 After great sucess implementing a cool slider for the opening and closing of tasks (lines 19 - 40 in the JS) i tried implementing this to the account page, i had some real troubble with the height turns out that ul's dont have height! who knew! I tried wapping the list in a div (didnt work) so will have to come up with a diffrent aproach to the height of these section.
 
+
+
 **During coding**
 
 | Bug | Things Tried | Final Fix |
@@ -326,6 +328,9 @@ https://www.youtube.com/watch?v=EpJRJsmqnn0 - video i used to set up my registra
 https://www.youtube.com/watch?v=HY0le1NAczc&t=0s - clean up code using macro
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible - collapable arrows!
 https://jonsuh.com/hamburgers/ - hamburger!
+
+https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element - how to change colour of sgv file.
+https://codepen.io/sosuke/pen/Pjoqqp - to convert the colours to filter colours
 
 ### Content
 

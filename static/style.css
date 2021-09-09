@@ -23,8 +23,8 @@ html {
 	--blue: #43afffff;
 	--green: #74ffe1ff;
 	--orange: #ff8a76ff;
-	--light-text: #f4f4fbff;
-	--dark-text: #132242ff;
+	--light-text: #f4f4fb;
+	--dark-text: #132242;
 	--task: #A3E278;
 	--done-task: #509720;
 }
@@ -69,6 +69,7 @@ h2 {
 main {
 	padding: 57px 0px 93px 0px;
 	background-color: var(--background2);
+	min-height: 100vh;
 }
 
 .bottom {
@@ -307,7 +308,6 @@ h1 a {
 }
 
 .smallcta p {
-	text-align: center;
 }
 
 /* ---------- Task Card ---------- */
@@ -506,7 +506,7 @@ h1 a {
 	justify-content: flex-end;
 }
 
-.delete-task, .edit{
+.delete, .edit{
 	padding: 5px;
 }
 
@@ -525,6 +525,11 @@ h1 a {
 	width: 100%;
 	height: 30px;
 	line-height: 30px;
+}
+
+.section-arrow {
+	filter: invert(91%) sepia(33%) saturate(83%) hue-rotate(195deg) brightness(101%) contrast(97%);
+	-webkit-filter: invert(91%) sepia(33%) saturate(83%) hue-rotate(195deg) brightness(101%) contrast(97%);
 }
 
 .section-content {
@@ -550,41 +555,31 @@ h1 a {
 
 .all-cats {
 	display: flex;
+	width: 100%;
 	flex-direction: column;
-	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-}
-
-.categories {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 }
 
 .cat-card {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	border: solid black 1px;
-	margin: 10px;
-	border-radius: 15px;
-	-webkit-border-radius: 15px;
-	-moz-border-radius: 15px;
-	-ms-border-radius: 15px;
-	-o-border-radius: 15px;
+    display: flex;
+    align-items: center;
+	justify-content: space-between;
+    width: 96%;
+    padding: 0px 7px;
+    color: var(--dark-text);
+    margin: 2%;
+    background-color: var(--light-text);
 }
 
 .card-title {
-	width: 100%;
-	line-height: 25px;
+	display: flex;
+	padding: 5px;
 }
 
 .card-action {
 	display: flex;
-	padding: 5px;
+	padding: 0px 10px;
 }
 
 /* ---------- forms ---------- */

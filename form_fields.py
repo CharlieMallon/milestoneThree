@@ -48,6 +48,6 @@ class EditTaskForm(AddTaskForm):
 # Edit Category form
 class EditCategoryForm(FlaskForm):
     task_category = StringField('Task Category', validators=[
-        Length(min=4, max=20, 
+        Length(min=4, max=17, 
             message="Category must be between 4 and 20 charactors")])
     submit_button = SubmitField("Edit Category")
