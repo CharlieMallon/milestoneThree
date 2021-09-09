@@ -28,7 +28,7 @@
                             <li class='task-card col large'>
                         {% endif %}
                                 <div class='task-header row'>
-                                    <div class='row'>
+                                    <div class='row done-box'>
                                         <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
                                             {% if task.is_done == true %}
                                             <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
@@ -59,12 +59,12 @@
                                             {% endif %}
                                         </div>
                                         <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
-                                            <p>Prioritize</p>
                                             {% if task.is_priority == true %}
-                                                <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
+                                            <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
                                             {% else %}
-                                                <p><img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img></p>
+                                            <p><img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img></p>
                                             {% endif %}
+                                            <p>Priority</p>
                                         </a>
                                     </div>
                                     <div class='task-content-row row'>
@@ -108,7 +108,7 @@
                                             </div>
                                             <div class='edit'>
                                                 <a href='{{ url_for("edit_task", task_id=task._id) }}'>
-                                                    <p class="task-btn"><img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img></p>
+                                                    <img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img>
                                                 </a>
                                             </div>
                                         </div>
@@ -146,7 +146,7 @@
                             <li class='task-card col large'>
                         {% endif %}
                                 <div class='task-header row'>
-                                    <div class='row'>
+                                    <div class='row done-box'>
                                         <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
                                             {% if task.is_done == true %}
                                             <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
@@ -177,12 +177,12 @@
                                             {% endif %}
                                         </div>
                                         <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
-                                            <p>Prioritize</p>
                                             {% if task.is_priority == true %}
-                                                <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
+                                            <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
                                             {% else %}
-                                                <p><img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img></p>
+                                            <p><img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img></p>
                                             {% endif %}
+                                            <p>Priority</p>
                                         </a>
                                     </div>
                                     <div class='task-content-row row'>
@@ -226,7 +226,7 @@
                                             </div>
                                             <div class='edit'>
                                                 <a href='{{ url_for("edit_task", task_id=task._id) }}'>
-                                                    <p class="task-btn"><img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img></p>
+                                                    <img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img>
                                                 </a>
                                             </div>
                                         </div>
@@ -264,7 +264,7 @@
                             <li class='task-card col large'>
                         {% endif %}
                                 <div class='task-header row'>
-                                    <div class='row'>
+                                    <div class='row done-box'>
                                         <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
                                             {% if task.is_done == true %}
                                             <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
@@ -295,12 +295,12 @@
                                             {% endif %}
                                         </div>
                                         <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
-                                            <p>Prioritize</p>
                                             {% if task.is_priority == true %}
-                                                <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
+                                            <p><img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img></p>
                                             {% else %}
-                                                <p><img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img></p>
+                                            <p><img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img></p>
                                             {% endif %}
+                                            <p>Priority</p>
                                         </a>
                                     </div>
                                     <div class='task-content-row row'>
@@ -344,7 +344,7 @@
                                             </div>
                                             <div class='edit'>
                                                 <a href='{{ url_for("edit_task", task_id=task._id) }}'>
-                                                    <p class="task-btn"><img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img></p>
+                                                    <img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img>
                                                 </a>
                                             </div>
                                         </div>
@@ -379,7 +379,7 @@
                             </div>
                             <div class="card-action">
                                 <a href='{{ url_for("edit_category", category_id=category._id) }}'>
-                                    <p class="task-btn"><img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img></p>
+                                    <img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img>
                                 </a>
                                 <div class="open-modal">
                                     <p class="delete-task"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>

@@ -459,7 +459,7 @@ def add_task():
 
         # Get the data from the add_task_form and populate a dictionary
         task = {
-            "task_name": form.task_name.data,
+            "task_name": form.task_name.data.capitalize(),
             "task_description": form.task_description.data,
             "due_date": str(form.due_date.data),
             "is_priority": form.is_priority.data,
@@ -569,7 +569,7 @@ def edit_task(task_id):
 
         # Get the data from the add_task_form and populate a dictionary
         submit = {
-            "task_name": form.task_name.data,
+            "task_name": form.task_name.data.capitalize(),
             "task_description": form.task_description.data,
             "due_date": str(form.due_date.data),
             "is_priority": form.is_priority.data,

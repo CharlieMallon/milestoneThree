@@ -109,5 +109,16 @@ for (let i = 0; i < section.length; i++) {
     section[i].addEventListener('click', function() {
         let content = this.closest(".section");
         content.classList.toggle('open');
+
+        let children = content.lastElementChild.lastElementChild.children;
+        let height = 0;
+        // if opening task calculate contents height
+        if (content.classList.contains('open')){
+            for (let j = 0; j < children.length; j++) {
+                let childHeight = children[j].offsetHeight;
+                height = height + childHeight;
+            }
+        }
+        content.lastElementChild.style.height = `${height}px`;
     }); 
 };
