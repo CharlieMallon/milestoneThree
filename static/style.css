@@ -69,9 +69,9 @@ h2 {
 }
 
 main {
-	padding: 57px 0px 93px 0px;
+	margin: 57px 0px 93px 0px;
 	background-color: var(--background2);
-	min-height: 100vh;
+	min-height: calc(100vh - (57px + 103px));
 }
 
 .bottom {
@@ -309,12 +309,10 @@ h1 a {
 	width: 100%;
 }
 
-.smallcta p {
-}
-
 /* ---------- Task Card ---------- */
 .task {
 	width: 100%;
+	height: inherit;
 }
 
 .task-card {
@@ -530,7 +528,7 @@ h1 a {
 }
 
 /* ---------- Account ---------- */
-.account-header{
+#account-header{
 	padding: 10px 16px;
 }
 
@@ -565,10 +563,12 @@ h1 a {
 	-moz-transition: height 500ms;
 	-ms-transition: height 500ms;
 	-o-transition: height 500ms;
+	background-color: var(--background);
 }
 
 .section.open .section-content{
 	display: flex;
+	height: 100px;
 	overflow: scroll;
 	transition: height 500ms;
 	-webkit-transition: height 500ms;
@@ -580,9 +580,8 @@ h1 a {
 .all-cats {
 	display: flex;
 	width: 100%;
+	height: inherit;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 }
 
 .cat-card {
@@ -768,6 +767,8 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	background-color: var(--background);
+	border-top: solid 10px var(--background2);
 }
 
 .add-task-btn {

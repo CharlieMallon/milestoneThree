@@ -125,8 +125,6 @@ for (let i = 0; i < colls.length; i++) {
         let content = this.closest(".task-card");
         content.classList.toggle('open');
 
-        let shaved = content.children
-
         let children = content.lastElementChild.children;
         let height = 0;
         // if opening task calculate contents height
@@ -140,7 +138,7 @@ for (let i = 0; i < colls.length; i++) {
     }); 
 };
 
-// ---------- open delete task modal
+// ---------- Open delete task modal
 
 let task = document.getElementsByClassName("open-modal");
 
@@ -151,7 +149,7 @@ for (let i = 0; i < task.length; i++) {
     });
 };
 
-// ---------- close a modal
+// ---------- Close a modal
 
 // event listener for x span
 const span = document.getElementsByClassName('close');
@@ -182,7 +180,7 @@ function ModalClose(e) {
     }
 }
 
-// ---------- switch between category types
+// ---------- Switch between category types
 
 let cat = document.getElementsByClassName("add-cat")[0];
 
@@ -206,21 +204,28 @@ function addCat() {
 let section = document.getElementsByClassName("section-header");
 
 for (let i = 0; i < section.length; i++) {
-    // for each task add an event listener
+    // for each account header add an event listener
     section[i].addEventListener('click', function() {
         let content = this.closest(".section");
         content.classList.toggle('open');
 
-        let children = content.lastElementChild.lastElementChild.children;
-        let height = 0;
-        // if opening task calculate contents height
-        if (content.classList.contains('open')){
-            for (let j = 0; j < children.length; j++) {
-                let childHeight = children[j].offsetHeight;
-                height = height + childHeight;
-            }
+        let vh = document.getElementById('main').offsetHeight
+        console.log('vh :>> ', vh);
+        let sections = document.getElementsByClassName('section')
+        let sectionsHeight = 0
+        for (let i = 0; i < sections.length; i++) {
+            let sectionHeight = sections[i].offsetHeight;
+                sectionsHeight = sectionsHeight + sectionHeight;
         }
+        console.log('sectionsHeight :>> ', sectionsHeight);
+        let headerHeight = document.getElementById('account-header').offsetHeight
+        console.log('headerHeight :>> ', headerHeight);
+
+        let height = vh - (sectionsHeight + headerHeight)
+        console.log('height :>> ', height);
+
         content.lastElementChild.style.height = `${height}px`;
+
     }); 
 };
 
