@@ -3,20 +3,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="form">
-    <h2>Log In</h2>
-
-    <form action="{{ url_for('login') }}" method="POST">
-        {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
-        {{ displayField(form.password, 'Password') }}
-        <div class="submit-button">
-            {{ form.submit_button }}
-        </div>
+<div class="form-container">
+    <div class="form">
+        <h2>Log In</h2>
     
-        <!-- this is security! do some research on this -->
-        {{ form.csrf_token }} 
-    
-    </form>
+        <form action="{{ url_for('login') }}" method="POST">
+            {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
+            {{ displayField(form.password, 'Password') }}
+            <div class="submit-button">
+                {{ form.submit_button }}
+            </div>
+        
+            <!-- this is security! do some research on this -->
+            {{ form.csrf_token }} 
+        
+        </form>
+    </div>
 </div>
 
 {% endblock %}
