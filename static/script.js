@@ -201,31 +201,52 @@ function addCat() {
 // ---------- Account tabs
 
 // get the bit that can be click
-let section = document.getElementsByClassName("section-header");
+let allSections = document.getElementsByClassName("section-header");
 
-for (let i = 0; i < section.length; i++) {
+for (let i = 0; i < allSections.length; i++) {
     // for each account header add an event listener
-    section[i].addEventListener('click', function() {
-        let content = this.closest(".section");
-        content.classList.toggle('open');
+    allSections[i].addEventListener('click', (e) => toggleSection(e, allSections))
+}
+
+const toggleSection = (thisSection, allSections) => {
+    const parent = thisSection.target.parentElement
+    const isOpening = !parent.classList.contains('open')
+
+    for (let i = 0; i < allSections.length; i++) {
+        allSections[i].parentElement.classList.remove('open');
+        console.log('remove :>> ');
+        allSections[i].parentElement.lastElementChild.style.height = `0px`;
+    }
+    
+    console.log('isOpening :>> ', isOpening);
+
+    if (isOpening){
+        parent.classList.add('open')
+        console.log('add :>> ');
 
         let vh = document.getElementById('main').offsetHeight
         console.log('vh :>> ', vh);
-        let sections = document.getElementsByClassName('section')
-        let sectionsHeight = 0
-        for (let i = 0; i < sections.length; i++) {
-            let sectionHeight = sections[i].offsetHeight;
-                sectionsHeight = sectionsHeight + sectionHeight;
-        }
-        console.log('sectionsHeight :>> ', sectionsHeight);
-        let headerHeight = document.getElementById('account-header').offsetHeight
-        console.log('headerHeight :>> ', headerHeight);
 
-        let height = vh - (sectionsHeight + headerHeight)
+        let knownHeight = 168
+        console.log('knownHeight :>> ', knownHeight);
+        
+        let height = vh - knownHeight
         console.log('height :>> ', height);
+    
+        parent.lastElementChild.style.height = `${height}px`;
+    }
 
-        content.lastElementChild.style.height = `${height}px`;
+}
 
-    }); 
-};
 
+// for (let i = 0; i < section.length; i++) {
+//     // for each account header add an event listener
+//     section[i].addEventListener('click', function() {
+//         section[i].classList.remove('open');
+
+//         let content = this.closest(".section");
+//         content.classList.add('open');
+
+        
+//     }); 
+// };
