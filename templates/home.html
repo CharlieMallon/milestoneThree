@@ -72,12 +72,16 @@
                                     </div>
                                     <div class='row task-header-internal'>
                                         <div class='task-name'>
-                                            <strong>{{ task.task_name }}</strong>
+                                            <strong>
+                                                <p class="shave-me">
+                                                    {{ task.task_name }}
+                                                </p>
+                                            </strong>
                                         </div>
                                         <div class="buttons">
                                             <img class='arrow' src='{{ url_for("static", filename="imgs/down-arrow.svg") }}'></img></p>
                                             {% if task.is_priority == true %}
-                                            <img src='{{ url_for("static", filename="imgs/priority-high.svg") }}'></img>
+                                            <img class='exclamation' src='{{ url_for("static", filename="imgs/priority-high.svg") }}'></img>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -121,7 +125,7 @@
                                         </div>
                                         <div class="task-buttons">
                                             <div class='open-modal'>
-                                                <p class="delete-task"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img>
+                                                <p class="delete"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img>
                                             </div>
                                             <!-- The Delete Task Modal -->
                                             <div class="modal-background hidden" data-closer="close">

@@ -329,6 +329,8 @@ https://www.youtube.com/watch?v=HY0le1NAczc&t=0s - clean up code using macro
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible - collapable arrows!
 https://jonsuh.com/hamburgers/ - hamburger!
 
+https://dollarshaveclub.github.io/shave/ - to shorten titles
+
 https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element - how to change colour of sgv file.
 https://codepen.io/sosuke/pen/Pjoqqp - to convert the colours to filter colours
 

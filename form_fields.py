@@ -31,10 +31,10 @@ class AddTaskForm(FlaskForm):
         Length(max=50, message="That title is too long!")])
     task_description = TextAreaField('Description')
     due_date = DateField('Due Date', format='%Y-%m-%d')
-    is_priority = BooleanField('Priority Task')
+    is_priority = BooleanField('Prioritize Task')
     is_done = BooleanField('Done!')
     task_size = RadioField('Task Size', 
-        choices=['small', 'medium', 'large'])
+        choices=['small', 'medium', 'large'], default='small')
     task_category = SelectField('Task Category')
     add_category = StringField('Task Category', validators=[
         Length(min=4, max=20, 
