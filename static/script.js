@@ -227,7 +227,7 @@ const toggleSection = (thisSection, allSections) => {
         let vh = document.getElementById('main').offsetHeight
         console.log('vh :>> ', vh);
 
-        let knownHeight = 168
+        let knownHeight = 175
         console.log('knownHeight :>> ', knownHeight);
         
         let height = vh - knownHeight
@@ -237,16 +237,3 @@ const toggleSection = (thisSection, allSections) => {
     }
 
 }
-
-
-// for (let i = 0; i < section.length; i++) {
-//     // for each account header add an event listener
-//     section[i].addEventListener('click', function() {
-//         section[i].classList.remove('open');
-
-//         let content = this.closest(".section");
-//         content.classList.add('open');
-
-        
-//     }); 
-// };

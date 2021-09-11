@@ -97,17 +97,12 @@
             <footer>
                 <div class='footer sticky bottom'>
                     <div class="add-task-btn">
-                        <div class='circle-btn'>
-                            <a href='{{ url_for("add_task") }}' class="plus">
-                                <p><img src='{{ url_for("static", filename="imgs/add.svg") }}'></img></p>
-                            </a>
-                        </div>
-                        <div class="hump">
-                            <img src='{{ url_for("static", filename="imgs/hump.png") }}'' alt="image-behind-add-button">
-                        </div>
+                        <a href='{{ url_for("add_task") }}'>
+                            <img class="add" src='{{ url_for("static", filename="imgs/add.svg") }}'></img>
+                        </a>
                     </div>
-                    <div class="container add-task-words">
-                            <em>Add a Task</em>
+                        <div class="container add-task-words">
+                        <em>Add a Task</em>
                     </div>
                     <div class="container progress-bar-container">
                         <div id='progress-bar'>

@@ -8,17 +8,7 @@
 
 /* ---------- Colours ---------- */
 /* CSS HEX */
-html [data-theme='light'] {
-	/* Light mode*/
-	--background: #f4f4fb;
-	--blue: #0090ff;
-	--green: #4fe4c3;
-	--orange: #ff5333;
-	--text: #132242;
-}
-
-html {
-	/* Dark mode*/
+:root {
 	--background2: #12213F;
 	--background: #284B8F;
 	--blue: #43afff;
@@ -29,9 +19,14 @@ html {
 	--task: #A3E278;
 	--done-task: #509720;
 	--exclamation: invert(55%) sepia(27%) saturate(6665%) hue-rotate(332deg) brightness(98%) contrast(131%);
+	--invert: invert(91%) sepia(33%) saturate(83%) hue-rotate(195deg) brightness(101%) contrast(97%);
 }
 
 /* ---------- Standard Classes ---------- */
+body{
+	background-color: var(--background2);
+}
+
 .container {
 	display: flex;
 	width: 100%;
@@ -69,9 +64,11 @@ h2 {
 }
 
 main {
-	margin: 57px 0px 93px 0px;
+	margin: 57px 0px 90px 0px;
 	background-color: var(--background2);
-	min-height: calc(100vh - (57px + 103px));
+	min-height: calc(100vh - (57px + 90px));
+	border-top: solid 1px var(--background2);
+	border-bottom: solid 1px var(--background2);
 }
 
 .bottom {
@@ -309,6 +306,10 @@ h1 a {
 	width: 100%;
 }
 
+.cta-btn{
+	background-color: var(--light-text);
+}
+
 /* ---------- Task Card ---------- */
 .task {
 	width: 100%;
@@ -475,6 +476,10 @@ h1 a {
 }
 
 .priority{
+	min-width: 80px;
+}
+
+.priority-text{
 	padding-left: 5px;
 }
 
@@ -550,8 +555,8 @@ h1 a {
 }
 
 .section-arrow {
-	filter: invert(91%) sepia(33%) saturate(83%) hue-rotate(195deg) brightness(101%) contrast(97%);
-	-webkit-filter: invert(91%) sepia(33%) saturate(83%) hue-rotate(195deg) brightness(101%) contrast(97%);
+	filter: var(--invert);
+	-webkit-filter: var(--invert);
 }
 
 .section-content {
@@ -569,6 +574,7 @@ h1 a {
 .section.open .section-content{
 	display: flex;
 	height: 100px;
+	border-bottom: solid 5px var(--background);
 	overflow: scroll;
 	transition: height 500ms;
 	-webkit-transition: height 500ms;
@@ -683,6 +689,10 @@ input#is_priority{
 	height: 20px;
 }
 
+input#is_done{
+	height: 20px;
+}
+
 input#task_size-0, input#task_size-1, input#task_size-2 {
 	width: 15px;
 	height: 15px;
@@ -768,56 +778,30 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 	flex-direction: column;
 	align-items: center;
 	background-color: var(--background);
-	border-top: solid 10px var(--background2);
 }
 
 .add-task-btn {
-	position: relative;
-}
-
-.hump {
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-top: solid 2px var(--background);
 }
 
-.circle-btn {
-	position: absolute;
-	bottom: -2px;
-	right: 29px;
-}
-
-.circle-btn {
-	top: 1px;
-	margin: 5px;
-	height: 25px;
-	width: 25px;
-	text-align: center;
-	line-height: 25px;
-	background-color: var(--light-text);
-	border-radius: 50px;
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	-ms-border-radius: 50px;
-	-o-border-radius: 50px;
-}
-
-.plus{
-	color: var(--background);
+.add {
+	filter: var(--invert);
+	-webkit-filter: var(--invert);
 }
 
 .add-task-words {
 	display: flex;
 	justify-content: center;
 	color: var(--light-text);
-	background-color: var(--background);
-	padding: 0px 0px;
 	font-size: x-small;
 }
 
 /* ---------- Progress Bar ---------- */
 .progress-bar-container {
-	background-color: var(--background);
 	padding: 10px;
 }
 

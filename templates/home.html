@@ -6,32 +6,42 @@
     {% if  session.user == 'none' %}
         <div class="cta">
             <h2>The To Do App to aid recovery</h2>
-            <p class="btn cta-btn">Take the first step</p>
+            <a href='{{ url_for("register") }}'>
+                <p class="btn cta-btn">Take the first step</p>
+            </a>
         </div>
         <div class="cta cta-right">
             <div class="smallcta">
                 <h3>Built to assist</h3>
                 <p>Aid you on your road to recovery</p>
-                <p class="btn cta-btn">Start Now</p>
+                <a href='{{ url_for("register") }}'>
+                    <p class="btn cta-btn">Start Now</p>
+                </a>
             </div>
         </div>
         <div class="cta cta-left">
             <div class="smallcta">
                 <h3>Simple Design</h3>
                 <p>Designed to work seamlessly between devices</p>
-                <p class="btn cta-btn">Start Now</p>
+                <a href='{{ url_for("register") }}'>
+                    <p class="btn cta-btn">Start Now</p>
+                </a>
             </div>
         </div>
         <div class="cta cta-right">
             <div class="smallcta">
                 <h3>Title</h3>
                 <p>text about the title</p>
-                <p class="btn cta-btn">Start Now</p>
+                <a href='{{ url_for("register") }}'>
+                    <p class="btn cta-btn">Start Now</p>
+                </a>
             </div>
         </div>
         <div class="cta">
             <h3>Final call to action</h3>
-            <p class="btn cta-btn">Start Now</p>
+            <a href='{{ url_for("register") }}'>
+                <p class="btn cta-btn">Start Now</p>
+            </a>
         </div>
     {% endif %}
     
@@ -64,9 +74,9 @@
                                     <div class='row done-box'>
                                         <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
                                             {% if task.is_done == true %}
-                                                <img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img>
+                                            <img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img>
                                             {% else %}
-                                                <img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img>
+                                            <img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img>
                                             {% endif %}
                                         </a>
                                     </div>
@@ -99,14 +109,21 @@
                                             </strong>
                                             {% endif %}
                                         </div>
-                                        <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
-                                            {% if task.is_priority == true %}
-                                            <img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img>
-                                            {% else %}
-                                            <img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img>
-                                            {% endif %}
-                                            <p class="priority">Priority</p>
-                                        </a>
+                                        <div class="priority">
+                                            <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
+                                                {% if task.is_priority == true %}
+                                                <img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'></img>
+                                                <strong>
+                                                    <em>
+                                                        <p class="priority-text">Priority</p>
+                                                    </em>
+                                                </strong>
+                                                {% else %}
+                                                <img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'></img>
+                                                <p class="priority-text">Priority</p>
+                                                {% endif %}
+                                            </a>
+                                        </div>
                                     </div>
                                     <div class='task-content-row row'>
                                         {% if task.task_description != '' %}
