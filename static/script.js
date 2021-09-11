@@ -209,7 +209,7 @@ for (let i = 0; i < allSections.length; i++) {
 }
 
 const toggleSection = (thisSection, allSections) => {
-    const parent = thisSection.target.parentElement
+    const parent = thisSection.target.closest(".section")
     const isOpening = !parent.classList.contains('open')
 
     for (let i = 0; i < allSections.length; i++) {
