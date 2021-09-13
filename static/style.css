@@ -696,7 +696,7 @@ h1 a {
 	padding: 10px;
 }
 
-input#submit_button {
+input#submit_button, #send {
 	padding: 5px;
 	color: var(--dark-text);
 	background-color: var(--light-text);

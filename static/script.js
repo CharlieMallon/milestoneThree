@@ -237,3 +237,43 @@ const toggleSection = (thisSection, allSections) => {
     }
 
 }
+
+// Send email using js
+function sendMail() {
+	emailjs
+		.send('iCloud-Charlie', 'standard_template', {
+			message: document.getElementById('subject').value,
+			from_name: document.getElementById('fullName').value,
+			from_email: document.getElementById('emailAddress').value,
+			site: 'To Did App',
+		})
+		.then(function() {
+			console.log('SUCCESS!');
+			// add sucess modal opening here
+			let success = document.getElementById('sucess');
+    		success.classList.toggle('hidden');
+			window.onclick =function(){
+				location.reload()
+			}
+		}, function(error) {
+			console.log('FAILED...', error);
+			// failed modal opening here
+			let fail = document.getElementById('fail');
+    		fail.classList.toggle('hidden');
+			window.onclick =function(){
+				location.reload()
+			}
+		});
+	return false;
+}
+
+// Adds the event listener to the send button
+
+let send = document.getElementById('send');
+
+if (send) {
+	send.addEventListener('submit', function (event) {
+		event.preventDefault();
+		emailjs.sendForm('standard_template', 'form', this);
+	});
+};
