@@ -738,10 +738,9 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 
 /* modal content */
 .modal {
-	background-color: #fefefe;
+	background-color: var(--light-text);
 	margin: auto;
 	padding: 20px;
-	border: 1px solid #888;
 	border-radius: 20px;
 	width: 80%;
 	-webkit-border-radius: 20px;
@@ -754,11 +753,19 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 	margin: 5px;
 }
 
+.modal h2 {
+	color: var(--background2);
+	padding: 0px;
+	line-height: 32px;
+}
+
 .modal-par {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 	margin: 5px;
+	color: var(--background2);
 }
 
 /* The Close Button */
@@ -786,6 +793,7 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 
 .m-btn {
 	width: 50px;
+	border: 1px solid var(--background2);
 }
 
 /* ---------- footer ---------- */
