@@ -4,41 +4,35 @@
 
     <!-- If not logged in show this screen -->
     {% if  session.user == 'none' %}
-        <div class="cta">
+        <div class="cta largecta">
             <h2>The To Do App to aid recovery</h2>
             <a href='{{ url_for("register") }}'>
                 <p class="btn cta-btn">Take the first step</p>
             </a>
         </div>
-        <div class="cta cta-right">
-            <div class="smallcta">
-                <h3>Built to assist</h3>
-                <p>Aid you on your road to recovery</p>
-                <a href='{{ url_for("register") }}'>
-                    <p class="btn cta-btn">Start Now</p>
-                </a>
-            </div>
+        <div class="cta smallcta cta-right">
+            <h3>Positive Feedback</h3>
+            <p class="cta-text">Shows you what you have completed in your day</p>
+            <a href='{{ url_for("register") }}'>
+                <p class="btn cta-btn">Start Now</p>
+            </a>
         </div>
-        <div class="cta cta-left">
-            <div class="smallcta">
-                <h3>Simple Design</h3>
-                <p>Designed to work seamlessly between devices</p>
-                <a href='{{ url_for("register") }}'>
-                    <p class="btn cta-btn">Start Now</p>
-                </a>
-            </div>
+        <div class="cta smallcta cta-right">
+            <h3>Built to assist</h3>
+            <p class="cta-text">Aid you on your road to recovery</p>
+            <a href='{{ url_for("register") }}'>
+                <p class="btn cta-btn">Start Now</p>
+            </a>
         </div>
-        <div class="cta cta-right">
-            <div class="smallcta">
-                <h3>Title</h3>
-                <p>text about the title</p>
-                <a href='{{ url_for("register") }}'>
-                    <p class="btn cta-btn">Start Now</p>
-                </a>
-            </div>
+        <div class="cta smallcta cta-left">
+            <h3>Simple Design</h3>
+            <p class="cta-text">Designed to work seamlessly between devices</p>
+            <a href='{{ url_for("register") }}'>
+                <p class="btn cta-btn">Start Now</p>
+            </a>
         </div>
-        <div class="cta">
-            <h3>Final call to action</h3>
+        <div class="cta largecta">
+            <h2>Take the first step Today</h2>
             <a href='{{ url_for("register") }}'>
                 <p class="btn cta-btn">Start Now</p>
             </a>

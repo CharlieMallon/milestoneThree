@@ -255,6 +255,15 @@ at the design conception stage.
         -   what do you want to use app for?
     -   Prompts that tell the user how to source
 
+-   ### curent features
+
+    -   Log in
+    -   all CRUD on Tasks and Categories
+    -   easy to complete/priorities tasks
+    -   tasks are ordered by importance and date
+    -   tasks are caioried (on accounts page)
+    -   
+
 -   ### Issue 2
 
     -

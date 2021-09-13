@@ -63,12 +63,16 @@ h2 {
 	background-color: var(--background);
 }
 
-main {
+#main {
 	margin: 57px 0px 90px 0px;
 	background-color: var(--background2);
 	min-height: calc(100vh - (57px + 90px));
 	border-top: solid 1px var(--background2);
 	border-bottom: solid 1px var(--background2);
+}
+
+#main.no-user {
+	margin: 57px 0px 0px 0px;
 }
 
 .bottom {
@@ -291,12 +295,23 @@ h1 a {
 .cta {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	width: 100%;
+	color: var(--light-text);
 }
 
-.cta h2 {
+.cta h2, .cta h3, .cta-text {
 	text-align: center;
+	padding: 15px;
+}
+
+.cta-text{
+	padding: 15px 30px;
+}
+
+.largecta{
+	height: 70vh;
 }
 
 .smallcta {
@@ -304,10 +319,12 @@ h1 a {
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+	height: 50vh;
 }
 
 .cta-btn{
 	background-color: var(--light-text);
+	margin: 15px;
 }
 
 /* ---------- Task Card ---------- */
@@ -876,6 +893,7 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		height: 150px;
 	}
 
 	.smallcta {

@@ -72,7 +72,11 @@
         </header>
 
         <!-- Page contents -->
+        {% if  session.user == 'none' %}
+        <main id="main" class="no-user">
+        {% else %}
         <main id="main">
+        {% endif %}
 
             <section>
                 <!-- Flash messages -->
