@@ -96,6 +96,10 @@ a {
 	padding: 5px 0px;
 }
 
+.header{
+	padding: 10px 16px;
+}
+
 .btn {
 	display: flex;
 	justify-content: center;
@@ -550,10 +554,6 @@ h1 a {
 }
 
 /* ---------- Account ---------- */
-#account-header{
-	padding: 10px 16px;
-}
-
 .section {
 	display: flex;
 	flex-direction: column;
@@ -626,6 +626,17 @@ h1 a {
 .card-action {
 	display: flex;
 	padding: 0px 10px;
+}
+
+/* ---------- Contact ---------- */
+.contact-title{
+	text-align: left;
+}
+
+.contact-text{
+	padding: 0px 16px 10px;
+	color: var(--light-text);
+	text-align: center;
 }
 
 /* ---------- forms ---------- */
