@@ -105,13 +105,15 @@
         {% if not session.user == 'none' %}
             <footer>
                 <div class='footer sticky bottom'>
-                    <div class="add-task-btn">
-                        <a href='{{ url_for("add_task") }}'>
-                            <img class="add" src='{{ url_for("static", filename="imgs/add.svg") }}'></img>
-                        </a>
-                    </div>
+                    <div class="add-task">
+                        <div class="add-task-btn">
+                            <a href='{{ url_for("add_task") }}'>
+                                <img class="add" src='{{ url_for("static", filename="imgs/add.svg") }}'></img>
+                            </a>
+                        </div>
                         <div class="container add-task-words">
-                        <em>Add a Task</em>
+                            <em>Add a Task</em>
+                        </div>
                     </div>
                     <div class="container progress-bar-container">
                         <div id='progress-bar'>

@@ -227,13 +227,17 @@ const toggleSection = (thisSection, allSections) => {
         let vh = document.getElementById('main').offsetHeight
         console.log('vh :>> ', vh);
 
-        let knownHeight = 175
-        console.log('knownHeight :>> ', knownHeight);
-        
-        let height = vh - knownHeight
-        console.log('height :>> ', height);
-    
-        parent.lastElementChild.style.height = `${height}px`;
+		let viewPort = window.screen.width
+
+		if (viewPort > 922 ){
+			let knownHeight = 180
+			let height = vh - knownHeight
+			parent.lastElementChild.style.height = `${height}px`;
+		} else {
+			let knownHeight = 175
+			let height = vh - knownHeight
+			parent.lastElementChild.style.height = `${height}px`;
+		}
     }
 
 }

@@ -87,10 +87,12 @@ def home():
     # ---------- All Task ----------
     # Get all the tasks and put them in order
     tasks = (importantUserTasks + otherUserTasks + doneTasks)
+    # Gets the To Do tasks
+    toDo = (importantUserTasks + otherUserTasks)
     
     # When the Get methord is called load the page with all the users
     # tasks on it
-    return render_template("home.html", tasks=tasks, 
+    return render_template("home.html", tasks=tasks, doneTasks=doneTasks, toDo=toDo,
         progressBar=progressBar)
 
 
@@ -141,8 +143,6 @@ def login():
             if check_password_hash(
                 existing_user["password"], form.password.data):
                     session["user"] = form.username.data.lower()
-                    flash("Welcome, {}".format(
-                        form.username.data.capitalize()))
                     # If they do match redirect the user to the account page
                     return redirect(url_for(
                         "account", username=session["user"]))
@@ -319,7 +319,6 @@ def delete_category(category_id):
 @app.route("/logout")
 def logout():
     # Remove user from session cookies
-    flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("home"))
 
@@ -615,7 +614,7 @@ def delete_task(task_id):
     # Get the task that is to be deleted and remove it form the database
     mongo.db.tasks.remove({"_id": ObjectId(task_id)})
     flash("Task Successfully Deleted")
-    return redirect(url_for("home"))
+    return redirect(request.referrer)
 
 
 @app.route("/done_task/<task_id>", methods=["GET", "POST"])

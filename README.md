@@ -278,12 +278,11 @@ at the design conception stage.
 -   [HTML5](https://en.wikipedia.org/wiki/HTML5)
 -   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 -   [JS](https://en.wikipedia.org/wiki/JavaScript)
+-   [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 
 ### Frameworks, Libraries & Programs Used
 
--   [SweetAlert2](https://sweetalert2.github.io/)
 -   [Google Fonts](https://fonts.google.com/)
--   [Font Awesome](https://fontawesome.com/)
 -   [RandomKeygen](https://randomkeygen.com/)
 -   [Heroku](https://id.heroku.com/)
 -   [WTForms](https://wtforms.readthedocs.io/en/2.3.x/)

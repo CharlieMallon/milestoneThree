@@ -331,6 +331,10 @@ h1 a {
 	margin: 15px;
 }
 
+.large-screen {
+	display: none;
+}
+
 /* ---------- Task Card ---------- */
 .task {
 	width: 100%;
@@ -868,8 +872,106 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 
 /* ---------- Medium devices ---------- Tablets, 768px and Up ---------- */
 @media (min-width: 768px) {
-	main {
-		padding-top: 90px;
+	/* ----------  Home page not logged in ---------- */
+	
+	.cta {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.smallcta {
+		display: flex;
+		flex-direction: column;
+		width: 50%;
+	}
+
+	.largecta {
+		height: 60vh;
+	}
+	
+	.cta-right {
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		margin-right: 10%;
+		margin-left: 40%;
+	}
+	
+	.cta-left {
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		margin-right: 40%;
+		margin-left: 10%;
+	}
+
+	.cta-text{
+		padding: 15px;
+	}
+
+	/* ---------- Task Card ---------- */
+	.task {
+		width: 100%;
+		height: inherit;
+	}
+
+	.task-card {
+		width: 98%;
+		margin: 1%;
+	}
+	
+	/* ---------- Account ---------- */
+	.cat-card {
+		width: 98%;
+		margin: 1%;
+	}
+	
+	/* ---------- Contact ---------- */
+	.contact-title{
+		width: 90%;
+	}
+	
+	.contact-title .header{
+		padding: 10px 0px;
+	}
+	
+	.contact-text{
+		padding: 0px 10px 10px 10px;
+	}
+	
+	/* ---------- forms ---------- */
+	.form-field {
+		padding: 10px 0px;
+	}
+	
+	.form-control {
+		min-width: 70%;
+	}
+	
+	.form-label {
+		min-width: 20%;
+	}
+	
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	.large-screen{
+		display: flex;
+		/* border-bottom: solid 20px var(--background2); */
+	}
+
+	.small-screen{
+		display: none;
+	}
+
+	#main.no-user {
+		margin: 75px 0px 0px 0px;
+	}
+
+	#main {
+		margin: 75px 0px 90px 0px;
 	}
 
 	.mobile-nav-bar {
@@ -897,7 +999,7 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 
 	.desktop-nav li {
 		padding: 10px;
-		border: solid 1px black;
+		background-color: var(--light-text);
 		border-radius: 5px;
 		margin: 5px;
 		-webkit-border-radius: 5px;
@@ -906,33 +1008,61 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 		-o-border-radius: 5px;
 	}
 
-	/* ----------  Home page not logged in ---------- */
+	/* ---------- Main Page ---------- */
 
-	.cta {
+	.main-section {
 		display: flex;
 		flex-direction: column;
+		justify-content: flex-start;
 		align-items: center;
-		height: 150px;
-	}
-
-	.smallcta {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
 		width: 50%;
 	}
 
-	.cta-right {
-		display: flex;
-		justify-content: center;
-		margin-left: 50%;
+	.toDo {
+		border-left: solid 10px var(--background2);
+		border-right: solid 10px var(--background2);
 	}
 
-	.cta-left {
-		display: flex;
-		justify-content: center;
-		margin-right: 50%;
+	.doneSection {
+		border-right: solid 10px var(--background2);
 	}
+	
+	.main-section-header {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		line-height: 30px;
+		padding: 0px 16px;
+	}
+	
+	.main-section-content {
+		width: 100%;
+		background-color: var(--background);
+		height: calc(100vh - (75px + 90px + 40px));
+		overflow: scroll;
+	}
+
+	.task-list{
+		display: flex;
+		align-items: flex-start;
+		width: 100%;
+		overflow: scroll;
+	}
+	
+	/* ---------- Task Card ---------- */
+
+	.task {
+		/* display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: center; */
+	}
+
+	.task-card {
+		width: 100%;
+		margin: 5px;
+	}
+
 }
 
 /* ---------- master categories ---------- */
