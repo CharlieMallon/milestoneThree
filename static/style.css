@@ -653,6 +653,7 @@ h1 a {
 
 .form {
 	width: 90%;
+	max-width: 700px;
 	color: var(--light-text);
 }
 
@@ -869,6 +870,18 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 	-o-border-radius: 7px;
 }
 
+/* ---------- landscape phone ---------- 568px ---------- */
+@media (min-width: 568px) {
+	.register-form .form-label {
+		min-width: 150px;
+	}
+
+	.form-control {
+		min-width: 70%;
+	}
+
+}
+
 /* ---------- Medium devices ---------- Tablets, 768px and Up ---------- */
 @media (min-width: 768px) {
 	/* ----------  Home page not logged in ---------- */
@@ -1056,10 +1069,21 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 		overflow: scroll;
 	}
 	
+	/* ---------- Account Page --------- */
+
+	.section-content{
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.task {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
 	/* ---------- Task Card ---------- */
 	.task-card {
-		width: 98%;
-		margin: 1%;
+		width: 40%;
 	}
 
 }

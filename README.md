@@ -296,7 +296,6 @@ at the design conception stage.
 -   [YouTube](https://www.youtube.com/)
 -   [CSS-Tricks](https://css-tricks.com/)
 -   [Balsamiq](https://balsamiq.com/wireframes/)
--   [info on iPhone design](https://webkit.org/blog/7929/designing-websites-for-iphone-x/)
 
 ## Testing
 
