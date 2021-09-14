@@ -180,13 +180,13 @@
             {% endif %}
         </div>
         <div class="large-screen">
-            <div class="main-section">
+            <div class="main-section toDo">
                 <div class="main-section-header row">
                     <div class="row">
                         <h3>To Do</h3>
                     </div>
                 </div>
-                <div class="main-section-content toDo row">
+                <div class="main-section-content row">
                     <div class='task-list'>
                         {% if toDo|length > 0 %}
                         <ul class='task'>    
@@ -308,13 +308,13 @@
                 </div>
             </div>
 
-            <div class="main-section">
+            <div class="main-section doneSection">
                 <div class="main-section-header row">
                     <div class="row">
                         <h3>Tasks Completed Today</h3>
                     </div>
                 </div>
-                <div class="main-section-content doneSection row">
+                <div class="main-section-content  row">
                     <div class='task-list'>
                         {% if doneTasks|length > 0 %}
                         <ul class='task'>    
