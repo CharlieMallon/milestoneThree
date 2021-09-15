@@ -1,65 +1,13 @@
 # To Do Application - the Reward scheme!
 
-So this project seems to have grown arms and legs.... pretty sure it will run away at some point!
-
-For my MS3 submission I feel it needs to be pulled back quite a bit. I like the To Do aspect, something
-that I really struggled with during my recovery from COVID was the lack of energy and the fact I never
-felt like I achieved anything. so I want to build an aplication that encourages you to think in smaller
-chunks and rewards you for doing simple every day tasks. Specifically I believe the aspect of a
-traditional todo app that is missing when you are recovering from or still in an energy illness is a
-promp to get you to review what you did in a day and review your prioritize at the beginning of the day.
-
-As a stretch I think you should also be able to send messages to each other, send encouragement or just 
-let someone know you thought of them that day.
-
-This project will be based on some guidance from the NHS which I found particularly useful, Pace, plan 
-and Prioritize. [link](https://www.yourcovidrecovery.nhs.uk/your-road-to-recovery/managing-daily-activities/)
-
-Although the intent of this app has evolved I believe that most of the below is still relevant so I 
-will leave it here for now
-
-<!-- [View the live website here]() -->
+[View the live website here](http://cm-ms3-to-did.herokuapp.com/home)
 
 ---
 
 This aplication is a To Do list specifically targeted at people with energy sapping illnesses such
-as chronic fatigue, long COVID or depression. It aims to assist in the recovery back to 'normal' life.
+as chronic fatigue, long COVID or depression. It aims to assist in the recovery back to 'normal' life.  It encourages the user to think how big a task is and doesn't immediately delete done task, meaning the user can review their day.
 
 ---
-
-This application is a To Do list with a Twist, it uses the reward theory to give you rewards for
-completing tasks. This rewards are given at random intervals so as to encourage tasks to be done
-without rewards. The inspiration for this came from an experiment on children -name experiment -
-find experiment - [this one](https://bingschool.stanford.edu/news/mark-lepper-intrinsic-motivation-extrinsic-motivation-and-process-learning)
-
-Started as a To Do app, is now more like a life planner/tracker - integrated life organization app.
-
-Done tasks / not done tasks - no failed tasks.
-
-all about positive reinforcement
-
-When a prioritised task is not completed on the day it was prioritised have a pop up that allows you
- to review/roll over your tasks.
-
-Completed tasks turn green and have a animation that makes them move to the bottom of the list/off
-the list
-
-Canceled tasks line out fade and 'disappear'
-
-Notifications - On phone/watch/computer? - emails?
--   [for android](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API)
--   [for apple](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html)
-
-Done list! - I want to see what I have completed today!
-
-Settings - need to be able to adjust how often you are pinged.
-
-https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a bit about motivation
-
-**Name Ideas**
-
--   DOOO
--   Rewarding To Do's
 
 ## User Experience (UX)
 
@@ -206,26 +154,16 @@ https://www.healthline.com/health/intrinsic-motivation#extrinsic-motivation - a 
 
     -   #### Colour Scheme
 
-        Dark and light modes. I want some calming colours (not to in your face) for the main colours
-        scheme. The done colours on tasks should be a nice positive green.
+        ![colours](assets\images\toDidColours.png)
+        I chose calming colours for the main colour scheme. The colours on tasks is a nice positive green.
 
     -   #### Typography
 
-        simple easy to read - dyslexic font?
-        Tick's should cross the line of the box
+        I chose a simple easy to read font [Rubik](https://fonts.google.com/specimen/Rubik?category=Sans+Serif) from [google fonts](https://fonts.google.com/).
 
-    -   #### Buttons
+    -   #### symbols and buttons
 
-        Circles except the burger menu
-
-    -   #### symbols
-
-        need to find multiple symbols for things, look at font awesome - this is mainly for the tally bit.
-
-    -   #### sound
-
-        when a task is completed it needs to go bing - or some such sound that is a good positive yes I
-        have done this!
+        Symbols came from [google icons](https://fonts.google.com/icons) as they are fairly familiar to most users.  and have nice lines.
 
 *   ### Wireframes
 
@@ -255,15 +193,6 @@ at the design conception stage.
         -   what do you want to use app for?
     -   Prompts that tell the user how to source
 
--   ### curent features
-
-    -   Log in
-    -   all CRUD on Tasks and Categories
-    -   easy to complete/priorities tasks
-    -   tasks are ordered by importance and date
-    -   tasks are caioried (on accounts page)
-    -   
-
 -   ### Issue 2
 
     -
@@ -289,13 +218,13 @@ at the design conception stage.
 
 ### Resources
 
--   [Am I Responsive Design](http://ami.responsivedesign.is/#)
 -   [Code Institute Course Content](https://courses.codeinstitute.net/)
 -   Code Institute **SLACK Community**
 -   [Stack Overflow](https://stackoverflow.com/)
 -   [YouTube](https://www.youtube.com/)
 -   [CSS-Tricks](https://css-tricks.com/)
 -   [Balsamiq](https://balsamiq.com/wireframes/)
+-   [CSS Filter generator](https://codepen.io/sosuke/pen/Pjoqqp)
 
 ## Testing
 
@@ -308,6 +237,10 @@ This section will detail the bugs that I came across coding and the main one tha
 One of the first problems i came across was not something i expected, how to store dates, it doesnt seem like it should be that hard, just drop it into the database as a date.  but in what format? how do i make it readable to all, why wont the database acept the output from wtforms?!? I did some research and concluded that the best way to store the duedate is in accordance with ISO 8601 (good old ISO) which is YY-MM-DD and as a string, that can be manipulated later. [artical](https://www.w3.org/QA/Tips/iso-date)
 
 After great sucess implementing a cool slider for the opening and closing of tasks (lines 19 - 40 in the JS) i tried implementing this to the account page, i had some real troubble with the height turns out that ul's dont have height! who knew! I tried wapping the list in a div (didnt work) so will have to come up with a diffrent aproach to the height of these section.
+
+How do i change the colour of SVG files using css. 
+    https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element
+    i used the [CSS Filter generator](https://codepen.io/sosuke/pen/Pjoqqp)
 
 
 
@@ -335,11 +268,7 @@ https://www.youtube.com/watch?v=EpJRJsmqnn0 - video i used to set up my registra
 https://www.youtube.com/watch?v=HY0le1NAczc&t=0s - clean up code using macro
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible - collapable arrows!
 https://jonsuh.com/hamburgers/ - hamburger!
-
 https://dollarshaveclub.github.io/shave/ - to shorten titles
-
-https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element - how to change colour of sgv file.
-https://codepen.io/sosuke/pen/Pjoqqp - to convert the colours to filter colours
 
 ### Content
 
@@ -355,3 +284,4 @@ https://codepen.io/sosuke/pen/Pjoqqp - to convert the colours to filter colours
 
 -   My Mentor Brian Macharia for some good guidance.
 -   Mr_Bim_alumni for general encouragement and the occasional kick up the backside.
+-   Anthony for the prods in the right direction
