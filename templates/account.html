@@ -17,7 +17,7 @@
         </div>
         <div class="section-content row">
             {% if doneTasks|length > 0 %}
-            <ul class='task'>    
+            <ul class='task section-task'>    
                 {% for task in doneTasks %}
                     {% if session.user|lower == task.created_by|lower %}
                         {% if task.task_size == 'small' %}
@@ -146,7 +146,7 @@
         </div>
         <div class="section-content row">
             {% if importantTasks|length > 0 %}
-            <ul class='task'>    
+            <ul class='task section-task'>    
                 {% for task in importantTasks %}
                     {% if session.user|lower == task.created_by|lower %}
                         {% if task.task_size == 'small' %}
@@ -275,7 +275,7 @@
         </div>
         <div class="section-content row">
             {% if otherTasks|length > 0 %}
-            <ul class='task'>    
+            <ul class='task section-task'>    
                 {% for task in otherTasks %}
                     {% if session.user|lower == task.created_by|lower %}
                         {% if task.task_size == 'small' %}

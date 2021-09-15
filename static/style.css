@@ -2,14 +2,14 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: sans-serif;
+	font-family: 'Rubik', sans-serif;
 	word-break: break-word;
 }
 
 /* ---------- Colours ---------- */
 /* CSS HEX */
 :root {
-	--background2: #12213F;
+	--background2: #132242;
 	--background: #284B8F;
 	--blue: #43afff;
 	--green: #74ffe1;
@@ -18,7 +18,10 @@
 	--dark-text: #132242;
 	--task: #A3E278;
 	--done-task: #509720;
-	--exclamation: invert(55%) sepia(27%) saturate(6665%) hue-rotate(332deg) brightness(98%) contrast(131%);
+	/* colours for svg's */
+	/* hex #ff5333 */
+	--exclamation: invert(47%) sepia(43%) saturate(5859%) hue-rotate(341deg) brightness(106%) contrast(102%);
+	/* hex #f4f4fb */
 	--invert: invert(91%) sepia(33%) saturate(83%) hue-rotate(195deg) brightness(101%) contrast(97%);
 }
 
@@ -1058,7 +1061,6 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 		width: 100%;
 		background-color: var(--background);
 		height: calc(100vh - (75px + 90px + 48px));
-		overflow: scroll;
 	}
 
 	.task-list{
@@ -1074,16 +1076,36 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 	.section-content{
 		display: flex;
 		flex-wrap: wrap;
+		align-items: flex-start;
 	}
 
-	.task {
+	.section-task {
 		display: flex;
 		flex-wrap: wrap;
+		height: auto;
+		width: 100%;
+	}
+
+	.all-cats {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		height: auto;
+	}
+
+	.cat-card{
+		width: 30%;
+		height: 30px;
 	}
 
 	/* ---------- Task Card ---------- */
-	.task-card {
-		width: 40%;
+	.section-task .task-card {
+		width: 48%;
+	}
+
+	/* ---------- Forms ---------- */
+	.add-cat {
+		width: 75%;
 	}
 
 }
