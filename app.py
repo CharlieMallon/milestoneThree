@@ -20,9 +20,9 @@ app.secret_key = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
 
-# repeated functions
+# ---------- Repeated Functions ----------
 def allTasks(user):
-        # ---------- All Task contents ----------
+    # ---------- All Task contents ----------
     # Gets the other tasks and orders them by date
     otherTasks = list(mongo.db.tasks.find({
         'created_by': user,
@@ -82,6 +82,31 @@ def progress(user):
     return progressBar
 
 
+def userCategories(user):
+
+    # ---------- Set up for categories ----------
+    # Gets the user categories in alphabetical order
+    categories_user = list(mongo.db.categories.find({
+        'created_by': user
+        }).sort('category_name', 1))
+
+    return categories_user
+
+
+def categories(user):
+    # Gets the standard categories
+    categories_admin = list(mongo.db.categories.find({'created_by': 'admin'}))
+    # Gets the user categories
+    categories_user = userCategories(user)
+    # Combines the user and standard categories
+    categories = (*categories_admin, *categories_user)
+    # Extracts category names
+    category_names = [(category['category_name']) for category in categories]
+    # Sorts the names in alphabetical order
+    category_names.sort()
+    return category_names
+
+
 # load pages
 @app.route('/')
 def noUser():
@@ -110,31 +135,6 @@ def home():
     # tasks on it
     return render_template('home.html', tasks=tasks, doneTasks=doneTasks, toDo=toDo,
         progressBar=progressBar)
-
-
-def userCategories(user):
-
-    # ---------- Set up for categories ----------
-    # Gets the user categories in alphabetical order
-    categories_user = list(mongo.db.categories.find({
-        'created_by': user
-        }).sort('category_name', 1))
-
-    return categories_user
-
-
-def categories(user):
-    # Gets the standard categories
-    categories_admin = list(mongo.db.categories.find({'created_by': 'admin'}))
-    # Gets the user categories
-    categories_user = userCategories(user)
-    # Combines the user and standard categories
-    categories = (*categories_admin, *categories_user)
-    # Extracts category names
-    category_names = [(category['category_name']) for category in categories]
-    # Sorts the names in alphabetical order
-    category_names.sort()
-    return category_names
 
 
 @app.route('/register', methods=[ 'GET', 'POST'])
@@ -207,7 +207,7 @@ def login():
 def account(username):
     # checks for session cookie before loading page
     if 'user' not in session:
-        return redirect(url_for('noUser'))
+        return redirect(url_for('login'))
 
     # ---------- Set up for categories ----------
     # Gets the user categories in alphabetical order
@@ -218,15 +218,10 @@ def account(username):
     # get progress bar
     progressBar = progress(username)
 
-    # If there is a user in session render account page
-    if session['user']:
-        return render_template('account.html', username=username, 
-            categories=categories, importantTasks=importantTasks, 
-            otherTasks=otherTasks, doneTasks=doneTasks, 
-            progressBar=progressBar)
-
-    # If no session user redirect to login page
-    return redirect(url_for('login'))
+    return render_template('account.html', username=username, 
+        categories=categories, importantTasks=importantTasks, 
+        otherTasks=otherTasks, doneTasks=doneTasks, 
+        progressBar=progressBar)
 
 
 @app.route('/edit_categories/<category_id>', methods=['GET', 'POST'])
@@ -235,8 +230,11 @@ def edit_category(category_id):
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
+    # Get username from the session user
+    username = session['user']
+
     # get progress bar
-    progressBar = progress(session['user'])
+    progressBar = progress(username)
 
     # Set up the form
     form = EditCategoryForm()
@@ -244,15 +242,12 @@ def edit_category(category_id):
     category = mongo.db.categories.find_one_or_404({
         '_id': ObjectId(category_id)})
 
-    # Get username from the session user
-    username = session['user']
-
     # Post contents of add category form to mongodb
     if request.method == 'POST':
         # Put the edited category in a dictionary
         submit = {
             'category_name': form.task_category.data,
-            'created_by': session['user']
+            'created_by': username
         }
         # Update the selected category
         mongo.db.categories.update({'_id': ObjectId(category_id)},submit)
@@ -264,6 +259,7 @@ def edit_category(category_id):
         form.task_category.data = category['category_name']
     # If the category cant be fount return an error
     else:
+        # 404 page here
         flash('oops something went wrong!')
         return redirect(request.referrer)
 
@@ -288,50 +284,10 @@ def logout():
 
 @app.route('/contact')
 def contact():
-    # ---------- Task and Progress Bar contents ----------
-    # Gets the important tasks and orders them by date
-    importantUserTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_priority': True, 
-        'is_done': False
-        }).sort('due_date', 1))
-    # Gets the done tasks and orders them by date/time done
-    doneTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_done': True
-        }).sort('date_done', -1))
-
-    # ---------- Progress Bar contents ----------
-    # Gets the number of important tasks that have been done
-    importantDoneTasks = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_done': True, 
-        'is_priority': True
-        })))
-    # Number of Important tasks (done + not Done)
-    numImportantTasks = importantDoneTasks + len(importantUserTasks)
-    # Number of tasks done that are not important
-    lengthOtherUserTasksDone = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_priority': False, 
-        'is_done': True
-        })))
-    # Number of Tasks that make up the task bar 
-    under = lengthOtherUserTasksDone + numImportantTasks
-    
-    # ---------- Progress Bar ----------
-    # Fill of the Task Bar
-    if under == 0:
-        progress = 0
-    else:
-        progress = round((100/(under))*(len(doneTasks)))
-    # Puts the progress in a dictionary
-    progressBar = {
-        'progress': progress
-    }
+    # get progress bar
+    progressBar = progress(session['user'])
 
     return render_template('contact.html', progressBar=progressBar)
-
 
 
 @app.route('/add_task', methods=[ 'GET', 'POST'])
@@ -343,13 +299,15 @@ def add_task():
     # Set up the form
     form = AddTaskForm()
 
+    username = session['user']
+
     # Get categories
-    category_names = categories(session['user'])
+    category_names = categories(username)
     # Drop down for add task form
     form.task_category.choices = category_names
 
     # get progress bar
-    progressBar = progress(session['user'])
+    progressBar = progress(username)
 
     # Post contents of add task form to mongodb
     if request.method == 'POST':
@@ -365,7 +323,7 @@ def add_task():
                 # If the category doesn't exist then append it to the db
                 category = {
                     'category_name' : form.add_category.data.capitalize(),
-                    'created_by': session['user']
+                    'created_by': username
                 }
                 mongo.db.categories.insert_one(category)
                 # Then populate cat_name with the new name
@@ -386,7 +344,7 @@ def add_task():
             'task_size': form.task_size.data,
             'category_name': cat_name,
             # Ties the user to the task so it can be viewed later
-            'created_by': session['user']
+            'created_by': username
         }
         # Add the task to the database
         mongo.db.tasks.insert_one(task)
@@ -409,13 +367,15 @@ def edit_task(task_id):
     # Edit task form set up
     form = EditTaskForm()
 
+    username = session['user']
+
     # Get categories
-    category_names = categories(session['user'])
+    category_names = categories(username)
     # Drop down for add task form
     form.task_category.choices = category_names
     
     # get progress bar
-    progressBar = progress(session['user'])
+    progressBar = progress(username)
 
     # If the methord is Post, Post contents of edit task form to mongodb
     if request.method == 'POST':
@@ -431,7 +391,7 @@ def edit_task(task_id):
                 # If the category doesn't exist then append it to the db
                 category = {
                     'category_name' : form.add_category.data.capitalize(),
-                    'created_by': session['user']
+                    'created_by': username
                 }
                 mongo.db.categories.insert_one(category)
                 # Then populate cat_name with the new name
@@ -452,7 +412,7 @@ def edit_task(task_id):
             'task_size': form.task_size.data,
             'category_name': cat_name,
             # Ties the user to the task so it can be viewed later
-            'created_by': session['user']
+            'created_by': username
         }
         # Update the task on the database
         mongo.db.tasks.update({'_id': ObjectId(task_id)},submit)
@@ -546,47 +506,9 @@ def priority_task(task_id):
 # # error handling
 # @app.errorhandler(404) 
 # def not_found(error): 
-#         # ---------- Task and Progress Bar contents ----------
-#     # Gets the important tasks and orders them by date
-#     importantUserTasks = list(mongo.db.tasks.find({
-#         'created_by': session['user'], 
-#         'is_priority': True, 
-#         'is_done': False
-#         }).sort('due_date', 1))
-#     # Gets the done tasks and orders them by date/time done
-#     doneTasks = list(mongo.db.tasks.find({
-#         'created_by': session['user'], 
-#         'is_done': True}).sort('date_done', -1))
-
-#     # ---------- Progress Bar contents ----------
-#     # Gets the number of important tasks that have been done
-#     importantDoneTasks = len(list(mongo.db.tasks.find({
-#         'created_by': session['user'], 
-#         'is_done': True, 
-#         'is_priority': True
-#         })))
-#     # Number of Important tasks (done + not Done)
-#     numImportantTasks = importantDoneTasks + len(importantUserTasks)
-#     # Number of tasks done that are not important
-#     lengthOtherUserTasksDone = len(list(mongo.db.tasks.find({
-#         'created_by': session['user'], 
-#         'is_priority': False, 
-#         'is_done': True
-#         })))
-#     # Number of Tasks that make up the task bar 
-#     under = lengthOtherUserTasksDone + numImportantTasks
-    
-#     # ---------- Progress Bar ---------- 
-#     # Fill of the Task Bar
-#     if under == 0:
-#         progress = 0
-#     else:
-#         progress = round((100/(under))*(len(doneTasks)))
-#     # Puts the progress in a dictionary
-#     progressBar = {
-#         'progress': progress
-#     }
-#     return render_template('404.html')
+#     # get progress bar
+#     progressBar = progress(session['user'])
+#     return render_template('404.html', progressBar=progressBar)
 
 
 if __name__ == '__main__':
