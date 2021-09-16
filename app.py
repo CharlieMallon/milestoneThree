@@ -20,7 +20,7 @@ app.secret_key = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
 
-
+# repeated functions
 def allTasks(user):
         # ---------- All Task contents ----------
     # Gets the other tasks and orders them by date
@@ -42,6 +42,13 @@ def allTasks(user):
         'created_by': user,
         'is_done': True
         }).sort('date_done', -1))
+
+    return importantTasks, otherTasks, doneTasks
+
+
+def progress(user):
+
+    importantTasks, otherTasks, doneTasks = allTasks(user)
 
     # ---------- Progress Bar contents ----------
     # Gets the number of important tasks that have been done
@@ -71,9 +78,11 @@ def allTasks(user):
     progressBar = {
         'progress': progress
     }
-    return importantTasks, otherTasks, doneTasks, progressBar
+
+    return progressBar
 
 
+# load pages
 @app.route('/')
 def noUser():
     session['user'] = 'none'
@@ -86,8 +95,10 @@ def home():
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
-    # get task variables and progress bar
-    importantTasks, otherTasks, doneTasks, progressBar = allTasks(session['user'])
+    # get task variables
+    importantTasks, otherTasks, doneTasks = allTasks(session['user'])
+    # get progress bar
+    progressBar = progress(session['user'])
 
     # ---------- All Task ----------
     # Get all the tasks and put them in order
@@ -179,8 +190,10 @@ def account(username):
         'created_by': session['user']
         }).sort('category_name', 1))
 
-    # get task variables and progress bar
-    importantTasks, otherTasks, doneTasks, progressBar = allTasks(session['user'])
+    # get task variables
+    importantTasks, otherTasks, doneTasks = allTasks(session['user'])
+    # get progress bar
+    progressBar = progress(session['user'])
 
     # If there is a user in session render account page
     if session['user']:
@@ -199,8 +212,8 @@ def edit_category(category_id):
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
-    # get the progress bar
-    importantTasks, otherTasks, doneTasks, progressBar = allTasks(session['user'])
+    # get progress bar
+    progressBar = progress(session['user'])
 
     # Set up the form
     form = EditCategoryForm()
@@ -321,8 +334,8 @@ def add_task():
     # Drop down for add task form
     form.task_category.choices = category_names
 
-    # get task variables and progress bar
-    importantTasks, otherTasks, doneTasks, progressBar = allTasks(session['user'])
+    # get progress bar
+    progressBar = progress(session['user'])
 
     # Post contents of add task form to mongodb
     if request.method == 'POST':
@@ -397,8 +410,8 @@ def edit_task(task_id):
     # Drop down for add task form
     form.task_category.choices = category_names
     
-    # get task variables and progress bar
-    importantTasks, otherTasks, doneTasks, progressBar = allTasks(session['user'])
+    # get progress bar
+    progressBar = progress(session['user'])
 
     # If the methord is Post, Post contents of edit task form to mongodb
     if request.method == 'POST':
