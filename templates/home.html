@@ -3,7 +3,7 @@
 {% block content %}
 
     <!-- If not logged in show this screen -->
-    {% if  session.user == 'none' %}
+    {% if  session.user == 'no' %}
     <div class='no-session-user'>
         <div class='cta largecta'>
             <h2>The To Do App to aid recovery</h2>
@@ -42,7 +42,7 @@
     {% endif %}
     
     <!-- List out the tasks -->
-    {% if  not session.user == 'none' %}
+    {% if  not session.user == 'no' %}
         <div class='small-screen'>
             {% if tasks|length > 0 %}
                 <ul class='task'>    

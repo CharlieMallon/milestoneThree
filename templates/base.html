@@ -34,7 +34,7 @@
                     <nav>
                         <ul>
                             <li><a href='{{ url_for("home") }}'>Home</a></li>
-                            {% if not session.user == 'none' %}
+                            {% if not session.user == 'no' %}
                                 <li><a href='{{ url_for("account", 
                                     username=session["user"]) }}'>Account</a></li>
                                 <li><a href='{{ url_for("logout") }}'>Log out</a></li>
@@ -53,7 +53,7 @@
                 <div class='desktop-nav'>
                     <ul>
                         <li><a href='{{ url_for("home") }}'>Home</a></li>
-                        {% if not session.user == 'none' %}
+                        {% if not session.user == 'no' %}
                             <li><a href='{{ url_for("account", 
                                 username=session["user"]) }}'>Account</a></li>
                             <li><a href='{{ url_for("logout") }}'>Log out</a></li>
@@ -68,7 +68,7 @@
         </header>
 
         <!-- Page contents -->
-        {% if  session.user == 'none' %}
+        {% if session.user == 'no' %}
         <main id='main' class='no-user'>
         {% else %}
         <main id='main'>
@@ -98,7 +98,7 @@
             {% endblock %}
         </main>
 
-        {% if not session.user == 'none' %}
+        {% if not session.user == 'no' %}
             <footer>
                 <div class='footer sticky bottom'>
                     <div class='add-task'>

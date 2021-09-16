@@ -22,22 +22,19 @@ mongo = PyMongo(app)
 
 # ---------- Repeated Functions ----------
 def allTasks(user):
-    # ---------- All Task contents ----------
-    # Gets the other tasks and orders them by date
+    # ---------- All User Tasks ordered ----------
     otherTasks = list(mongo.db.tasks.find({
         'created_by': user,
         'is_priority': False, 
         'is_done': False
         }).sort('due_date', 1))
 
-    # ---------- Task and Progress Bar contents ----------
-    # Gets the important tasks and orders them by date
     importantTasks = list(mongo.db.tasks.find({
         'created_by': user,
         'is_priority': True,
         'is_done': False
         }).sort('due_date', 1))
-    # Gets the done tasks and orders them by date/time done
+
     doneTasks = list(mongo.db.tasks.find({
         'created_by': user,
         'is_done': True
@@ -47,34 +44,33 @@ def allTasks(user):
 
 
 def progress(user):
-
+    # ---------- Import variables ----------
     importantTasks, otherTasks, doneTasks = allTasks(user)
 
-    # ---------- Progress Bar contents ----------
-    # Gets the number of important tasks that have been done
+    # ---------- Number of tasks ----------
     importantDoneTasks = len(list(mongo.db.tasks.find({
         'created_by': user, 
         'is_done': True, 
         'is_priority': True
         })))
-    # Number of Important tasks (done + not Done)
+
     numImportantTasks = importantDoneTasks + len(importantTasks)
-    # Number of tasks done that are not important
+
     lengthOtherUserTasksDone = len(list(mongo.db.tasks.find({
         'created_by': user, 
         'is_priority': False, 
         'is_done': True
         })))
-    # Number of Tasks that make up the task bar 
+
     under = lengthOtherUserTasksDone + numImportantTasks
     
     # ---------- Progress Bar ----------
-    # Fill of the Task Bar
     if under == 0:
         progress = 0
     else:
         progress = round((100/(under))*(len(doneTasks)))
-    # Puts the progress in a dictionary
+    
+    # ----------- Create Variable ----------
     progressBar = {
         'progress': progress
     }
@@ -83,9 +79,7 @@ def progress(user):
 
 
 def userCategories(user):
-
-    # ---------- Set up for categories ----------
-    # Gets the user categories in alphabetical order
+    # ---------- User categories in order ----------
     categories_user = list(mongo.db.categories.find({
         'created_by': user
         }).sort('category_name', 1))
@@ -94,52 +88,27 @@ def userCategories(user):
 
 
 def categories(user):
-    # Gets the standard categories
+    # ---------- All categories ----------
     categories_admin = list(mongo.db.categories.find({'created_by': 'admin'}))
-    # Gets the user categories
     categories_user = userCategories(user)
-    # Combines the user and standard categories
+
     categories = (*categories_admin, *categories_user)
-    # Extracts category names
+
+    # gets category names and orders
     category_names = [(category['category_name']) for category in categories]
-    # Sorts the names in alphabetical order
     category_names.sort()
     return category_names
 
 
-# load pages
+# ---------- load pages - no security required ----------
 @app.route('/')
 def noUser():
-    session['user'] = 'none'
+    session['user'] = 'no'
     return render_template('home.html')
-
-
-@app.route('/home')
-def home():
-    # checks for session cookie before loading page
-    if 'user' not in session:
-        return redirect(url_for('noUser'))
-
-    # get task variables
-    importantTasks, otherTasks, doneTasks = allTasks(session['user'])
-    # get progress bar
-    progressBar = progress(session['user'])
-
-    # ---------- All Task ----------
-    # Get all the tasks and put them in order
-    tasks = (importantTasks + otherTasks + doneTasks)
-    # Gets the To Do tasks
-    toDo = (importantTasks + otherTasks)
-    
-    # When the Get methord is called load the page with all the users
-    # tasks on it
-    return render_template('home.html', tasks=tasks, doneTasks=doneTasks, toDo=toDo,
-        progressBar=progressBar)
-
 
 @app.route('/register', methods=[ 'GET', 'POST'])
 def register():
-    # checks for session cookie before loading page
+    # Page security - don't load if no session user
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
@@ -203,9 +172,43 @@ def login():
     return render_template('login.html', form=form)
 
 
+@app.route('/logout')
+def logout():
+    # Remove user from session cookies
+    session.pop('user')
+    return redirect(url_for('home'))
+
+
+@app.route('/contact')
+def contact():
+    # get progress bar
+    progressBar = progress(session['user'])
+
+    return render_template('contact.html', progressBar=progressBar)
+
+
+# ---------- load pages - Security ----------
+@app.route('/home')
+def home():
+    # Page security - don't load if no session user
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+
+    # ---------- Variables ----------
+    importantTasks, otherTasks, doneTasks = allTasks(session['user'])
+    progressBar = progress(session['user'])
+
+    # ---------- Find Tasks ----------
+    tasks = (importantTasks + otherTasks + doneTasks)
+    toDo = (importantTasks + otherTasks)
+    
+    return render_template('home.html', tasks=tasks, doneTasks=doneTasks, toDo=toDo,
+        progressBar=progressBar)
+
+
 @app.route('/account/<username>')
 def account(username):
-    # checks for session cookie before loading page
+    # Page security - don't load if no session user
     if 'user' not in session:
         return redirect(url_for('login'))
 
@@ -226,7 +229,7 @@ def account(username):
 
 @app.route('/edit_categories/<category_id>', methods=['GET', 'POST'])
 def edit_category(category_id):
-    # checks for session cookie before loading page
+    # Page security - don't load if no session user
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
@@ -257,11 +260,9 @@ def edit_category(category_id):
     # Puts the information from the category to edit in the form
     elif request.method == 'GET':
         form.task_category.data = category['category_name']
-    # If the category cant be fount return an error
+    # Error handeling
     else:
-        # 404 page here
-        flash('oops something went wrong!')
-        return redirect(request.referrer)
+        return redirect(url_for('not_found'))
 
     return render_template('edit_category.html', category=category, 
         form=form, progressBar=progressBar)
@@ -269,30 +270,19 @@ def edit_category(category_id):
 
 @app.route('/delete_category/<category_id>')
 def delete_category(category_id):
+    # Page security - don't load if no session user
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+
     # Get the specific category that is to be deleted
     mongo.db.categories.remove({'_id': ObjectId(category_id)})
     flash('Category Successfully Deleted')
     return redirect(request.referrer)
 
 
-@app.route('/logout')
-def logout():
-    # Remove user from session cookies
-    session.pop('user')
-    return redirect(url_for('home'))
-
-
-@app.route('/contact')
-def contact():
-    # get progress bar
-    progressBar = progress(session['user'])
-
-    return render_template('contact.html', progressBar=progressBar)
-
-
 @app.route('/add_task', methods=[ 'GET', 'POST'])
 def add_task():
-    # checks for session cookie before loading page
+    # Page security - don't load if no session user
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
@@ -358,7 +348,7 @@ def add_task():
 
 @app.route('/edit_task/<task_id>', methods=['GET', 'POST'])
 def edit_task(task_id):
-    # checks for session cookie before loading page
+    # Page security - don't load if no session user
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
@@ -436,10 +426,9 @@ def edit_task(task_id):
         form.is_done.data = task['is_done']
         form.task_size.data = task['task_size']
         form.task_category.data = task['category_name']
-    # Error handeling - sent back to home.
+    # Error handeling
     else:
-        flash('oops something went wrong!')
-        return redirect(url_for('home'))
+        return redirect(url_for('not_found'))
 
     return render_template('edit_task.html', task=task, form=form, 
         categories=categories, progressBar=progressBar)
@@ -447,6 +436,10 @@ def edit_task(task_id):
 
 @app.route('/delete_task/<task_id>')
 def delete_task(task_id):
+    # Page security - don't load if no session user
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+
     # Get the task that is to be deleted and remove it form the database
     mongo.db.tasks.remove({'_id': ObjectId(task_id)})
     flash('Task Successfully Deleted')
@@ -455,6 +448,10 @@ def delete_task(task_id):
 
 @app.route('/done_task/<task_id>', methods=['GET', 'POST'])
 def done_task(task_id):
+    # Page security - don't load if no session user
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+
     # Find the task to edit
     task = mongo.db.tasks.find_one_or_404({'_id': ObjectId(task_id)})
     # Populate the dictionary with the task 
@@ -481,6 +478,10 @@ def done_task(task_id):
 
 @app.route('/priority_task/<task_id>', methods=['GET', 'POST'])
 def priority_task(task_id):
+    # Page security - don't load if no session user
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+
     # Find the task to edit
     task = mongo.db.tasks.find_one_or_404({'_id': ObjectId(task_id)})
     # Populate the dictionary with the task 
@@ -503,12 +504,12 @@ def priority_task(task_id):
     return redirect(request.referrer)
 
 
-# # error handling
-# @app.errorhandler(404) 
-# def not_found(error): 
-#     # get progress bar
-#     progressBar = progress(session['user'])
-#     return render_template('404.html', progressBar=progressBar)
+# error handling
+@app.errorhandler(404) 
+def not_found(error): 
+    # get progress bar
+    progressBar = progress(session['user'])
+    return render_template('404.html', progressBar=progressBar)
 
 
 if __name__ == '__main__':
