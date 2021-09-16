@@ -38,16 +38,32 @@ def allTasks(user):
     doneTasks = list(mongo.db.tasks.find({
         'created_by': user,
         'is_done': True
-        }).sort('date_done', -1))
+        }).sort('time_done', -1))
+
+    for task in doneTasks:
+        today = datetime.now().strftime('%Y-%m-%d')
+        if 'date_done' in task:
+            date = task['date_done']
+            if date != today:
+                print('delete', task['task_name'])
+                id = task['_id']
+                print('id', id)
+                    # Get the task that is to be deleted and remove it form the database
+                mongo.db.tasks.remove(id)
+            else:
+                print('dont-delete', task['date_done'])
+        else:
+            print('none')
 
     return importantTasks, otherTasks, doneTasks
 
 
 def progress(user):
-    # ---------- Import variables ----------
+    """ Get all the uses tasks and calculate the persentage of the progress bar 
+    (number of important done task / number of done tasks + important tasks)"""
+
     importantTasks, otherTasks, doneTasks = allTasks(user)
 
-    # ---------- Number of tasks ----------
     importantDoneTasks = len(list(mongo.db.tasks.find({
         'created_by': user, 
         'is_done': True, 
@@ -63,14 +79,12 @@ def progress(user):
         })))
 
     under = lengthOtherUserTasksDone + numImportantTasks
-    
-    # ---------- Progress Bar ----------
+
     if under == 0:
         progress = 0
     else:
         progress = round((100/(under))*(len(doneTasks)))
-    
-    # ----------- Create Variable ----------
+
     progressBar = {
         'progress': progress
     }
@@ -454,8 +468,9 @@ def done_task(task_id):
 
     # Find the task to edit
     task = mongo.db.tasks.find_one_or_404({'_id': ObjectId(task_id)})
-    # Populate the dictionary with the task 
-    done = {
+    # Populate the dictionary with the task
+    if task['is_done'] == True :
+        done = {
         # keeps task populated
         'task_name': task['task_name'],
         'task_description': task['task_description'],
@@ -466,9 +481,25 @@ def done_task(task_id):
         'created_by': task['created_by'],
         # toggles of is_done status
         'is_done': not task['is_done'],
-        # adds done date
-        'date_done': datetime.now()
-    }
+        'date_done': 'none',
+        'time_done': 'none'
+        }
+    else:
+        done = {
+        # keeps task populated
+        'task_name': task['task_name'],
+        'task_description': task['task_description'],
+        'due_date': task['due_date'],
+        'is_priority': task['is_priority'],
+        'task_size': task['task_size'],
+        'category_name': task['category_name'],
+        'created_by': task['created_by'],
+        # toggles of is_done status
+        'is_done': not task['is_done'],
+        'date_done': datetime.now().strftime('%Y-%m-%d'),
+        'time_done': datetime.now()
+        }
+
     # Update the task on the database
     mongo.db.tasks.update({'_id': ObjectId(task_id)},done)
     flash('Task Successfully Done')
