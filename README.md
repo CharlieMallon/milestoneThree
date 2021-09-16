@@ -195,7 +195,7 @@ at the design conception stage.
 
 -   ### Issue 2
 
-    -
+    -   
 
 -   ### Issue 3
     -
@@ -269,6 +269,7 @@ https://www.youtube.com/watch?v=HY0le1NAczc&t=0s - clean up code using macro
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible - collapable arrows!
 https://jonsuh.com/hamburgers/ - hamburger!
 https://dollarshaveclub.github.io/shave/ - to shorten titles
+https://www.geeksforgeeks.org/python-404-error-handling-in-flask/ - what to do with 404 errors
 
 ### Content
 

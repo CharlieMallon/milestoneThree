@@ -21,51 +21,40 @@ app.secret_key = os.environ.get('SECRET_KEY')
 mongo = PyMongo(app)
 
 
-@app.route('/')
-def noUser():
-    session['user'] = 'none'
-    return render_template('home.html')
-
-
-@app.route('/home')
-def home():
-    # checks for session cookie before loading page
-    if 'user' not in session:
-        return redirect(url_for('noUser'))
-
-    # ---------- All Task contents ----------
+def allTasks(user):
+        # ---------- All Task contents ----------
     # Gets the other tasks and orders them by date
-    otherUserTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'],
+    otherTasks = list(mongo.db.tasks.find({
+        'created_by': user,
         'is_priority': False, 
         'is_done': False
         }).sort('due_date', 1))
 
     # ---------- Task and Progress Bar contents ----------
     # Gets the important tasks and orders them by date
-    importantUserTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'],
+    importantTasks = list(mongo.db.tasks.find({
+        'created_by': user,
         'is_priority': True,
         'is_done': False
         }).sort('due_date', 1))
     # Gets the done tasks and orders them by date/time done
     doneTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'],
+        'created_by': user,
         'is_done': True
         }).sort('date_done', -1))
 
     # ---------- Progress Bar contents ----------
     # Gets the number of important tasks that have been done
     importantDoneTasks = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
+        'created_by': user, 
         'is_done': True, 
         'is_priority': True
         })))
     # Number of Important tasks (done + not Done)
-    numImportantTasks = importantDoneTasks + len(importantUserTasks)
+    numImportantTasks = importantDoneTasks + len(importantTasks)
     # Number of tasks done that are not important
     lengthOtherUserTasksDone = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
+        'created_by': user, 
         'is_priority': False, 
         'is_done': True
         })))
@@ -82,12 +71,29 @@ def home():
     progressBar = {
         'progress': progress
     }
+    return importantTasks, otherTasks, doneTasks, progressBar
+
+
+@app.route('/')
+def noUser():
+    session['user'] = 'none'
+    return render_template('home.html')
+
+
+@app.route('/home')
+def home():
+    # checks for session cookie before loading page
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+
+    # get task variables and progress bar
+    importantTasks, otherTasks, doneTasks, progressBar = allTasks(session['user'])
 
     # ---------- All Task ----------
     # Get all the tasks and put them in order
-    tasks = (importantUserTasks + otherUserTasks + doneTasks)
+    tasks = (importantTasks + otherTasks + doneTasks)
     # Gets the To Do tasks
-    toDo = (importantUserTasks + otherUserTasks)
+    toDo = (importantTasks + otherTasks)
     
     # When the Get methord is called load the page with all the users
     # tasks on it
@@ -173,55 +179,8 @@ def account(username):
         'created_by': session['user']
         }).sort('category_name', 1))
 
-    # ---------- Tasks ----------
-    # Gets the important tasks and orders them by date 
-    importantTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_priority': True, 
-        'is_done': False
-        }).sort('due_date', 1))
-    # Gets the other tasks and orders them by date
-    otherTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_priority': False, 
-        'is_done': False
-        }).sort('due_date', 1))
-
-    # ---------- Task and Progress Bar contents ----------
-    # Gets the done tasks and orders them by date/time done
-    doneTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_done': True
-        }).sort('date_done', -1))
-
-    # ---------- Progress Bar contents ----------
-    # Gets the number of important tasks that have been done
-    importantDoneTasks = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_done': True, 
-        'is_priority': True
-        })))
-    # Number of Important tasks (done + not Done)
-    numImportantTasks = importantDoneTasks + len(importantTasks)
-    # Number of tasks done that are not important
-    lengthOtherUserTasksDone = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_priority': False, 
-        'is_done': True
-        })))
-    # Number of Tasks that make up the task bar 
-    under = lengthOtherUserTasksDone + numImportantTasks
-    
-    # ---------- Progress Bar ----------
-    # Fill of the Task Bar
-    if under == 0:
-        progress = 0
-    else:
-        progress = round((100/(under))*(len(doneTasks)))
-    # Puts the progress in a dictionary
-    progressBar = {
-        'progress': progress
-    }
+    # get task variables and progress bar
+    importantTasks, otherTasks, doneTasks, progressBar = allTasks(session['user'])
 
     # If there is a user in session render account page
     if session['user']:
@@ -240,53 +199,14 @@ def edit_category(category_id):
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
+    # get the progress bar
+    importantTasks, otherTasks, doneTasks, progressBar = allTasks(session['user'])
+
     # Set up the form
     form = EditCategoryForm()
     # Get the specific category that needs editing
     category = mongo.db.categories.find_one_or_404({
         '_id': ObjectId(category_id)})
-
-    # ---------- Task and Progress Bar contents ----------
-    # gets the important tasks and orders them by date
-    importantUserTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_priority': True, 
-        'is_done': False
-        }).sort('due_date', 1))
-    # gets the done tasks and orders them by date/time done
-    doneTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_done': True
-        }).sort('date_done', -1))
-
-    # ---------- Progress Bar contents ----------
-    # gets the number of important tasks that have been done
-    importantDoneTasks = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_done': True, 
-        'is_priority': True
-        })))
-    # Number of Important tasks (done + not Done)
-    numImportantTasks = importantDoneTasks + len(importantUserTasks)
-    # Number of tasks done that are not important
-    lengthOtherUserTasksDone = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_priority': False, 
-        'is_done': True
-        })))
-    # Number of Tasks that make up the task bar 
-    under = lengthOtherUserTasksDone + numImportantTasks
-    
-    # ---------- Progress Bar ---------- 
-    # Fill of the Task Bar
-    if under == 0:
-        progress = 0
-    else:
-        progress = round((100/(under))*(len(doneTasks)))
-    # Puts the progress in a dictionary
-    progressBar = {
-        'progress': progress
-    }
 
     # Get username from the session user
     username = session['user']
@@ -401,46 +321,8 @@ def add_task():
     # Drop down for add task form
     form.task_category.choices = category_names
 
-    # ---------- Task and Progress Bar contents ----------
-    # Gets the important tasks and orders them by date
-    importantUserTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_priority': True, 
-        'is_done': False
-        }).sort('due_date', 1))
-    # Gets the done tasks and orders them by date/time done
-    doneTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_done': True}).sort('date_done', -1))
-
-    # ---------- Progress Bar contents ----------
-    # Gets the number of important tasks that have been done
-    importantDoneTasks = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_done': True, 
-        'is_priority': True
-        })))
-    # Number of Important tasks (done + not Done)
-    numImportantTasks = importantDoneTasks + len(importantUserTasks)
-    # Number of tasks done that are not important
-    lengthOtherUserTasksDone = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_priority': False, 
-        'is_done': True
-        })))
-    # Number of Tasks that make up the task bar 
-    under = lengthOtherUserTasksDone + numImportantTasks
-    
-    # ---------- Progress Bar ---------- 
-    # Fill of the Task Bar
-    if under == 0:
-        progress = 0
-    else:
-        progress = round((100/(under))*(len(doneTasks)))
-    # Puts the progress in a dictionary
-    progressBar = {
-        'progress': progress
-    }
+    # get task variables and progress bar
+    importantTasks, otherTasks, doneTasks, progressBar = allTasks(session['user'])
 
     # Post contents of add task form to mongodb
     if request.method == 'POST':
@@ -515,46 +397,8 @@ def edit_task(task_id):
     # Drop down for add task form
     form.task_category.choices = category_names
     
-    # ---------- Task and Progress Bar contents ----------
-    # Gets the important tasks and orders them by date
-    importantUserTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_priority': True, 
-        'is_done': False
-        }).sort('due_date', 1))
-    # Gets the done tasks and orders them by date/time done
-    doneTasks = list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_done': True}).sort('date_done', -1))
-
-    # ---------- Progress Bar contents ----------
-    # Gets the number of important tasks that have been done
-    importantDoneTasks = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_done': True, 
-        'is_priority': True
-        })))
-    # Number of Important tasks (done + not Done)
-    numImportantTasks = importantDoneTasks + len(importantUserTasks)
-    # Number of tasks done that are not important
-    lengthOtherUserTasksDone = len(list(mongo.db.tasks.find({
-        'created_by': session['user'], 
-        'is_priority': False, 
-        'is_done': True
-        })))
-    # Number of Tasks that make up the task bar 
-    under = lengthOtherUserTasksDone + numImportantTasks
-    
-    # ---------- Progress Bar ---------- 
-    # Fill of the Task Bar
-    if under == 0:
-        progress = 0
-    else:
-        progress = round((100/(under))*(len(doneTasks)))
-    # Puts the progress in a dictionary
-    progressBar = {
-        'progress': progress
-    }
+    # get task variables and progress bar
+    importantTasks, otherTasks, doneTasks, progressBar = allTasks(session['user'])
 
     # If the methord is Post, Post contents of edit task form to mongodb
     if request.method == 'POST':
