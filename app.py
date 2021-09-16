@@ -112,6 +112,31 @@ def home():
         progressBar=progressBar)
 
 
+def userCategories(user):
+
+    # ---------- Set up for categories ----------
+    # Gets the user categories in alphabetical order
+    categories_user = list(mongo.db.categories.find({
+        'created_by': user
+        }).sort('category_name', 1))
+
+    return categories_user
+
+
+def categories(user):
+    # Gets the standard categories
+    categories_admin = list(mongo.db.categories.find({'created_by': 'admin'}))
+    # Gets the user categories
+    categories_user = userCategories(user)
+    # Combines the user and standard categories
+    categories = (*categories_admin, *categories_user)
+    # Extracts category names
+    category_names = [(category['category_name']) for category in categories]
+    # Sorts the names in alphabetical order
+    category_names.sort()
+    return category_names
+
+
 @app.route('/register', methods=[ 'GET', 'POST'])
 def register():
     # checks for session cookie before loading page
@@ -186,14 +211,12 @@ def account(username):
 
     # ---------- Set up for categories ----------
     # Gets the user categories in alphabetical order
-    categories = list(mongo.db.categories.find({
-        'created_by': session['user']
-        }).sort('category_name', 1))
+    categories = userCategories(username)
 
     # get task variables
-    importantTasks, otherTasks, doneTasks = allTasks(session['user'])
+    importantTasks, otherTasks, doneTasks = allTasks(username)
     # get progress bar
-    progressBar = progress(session['user'])
+    progressBar = progress(username)
 
     # If there is a user in session render account page
     if session['user']:
@@ -310,6 +333,7 @@ def contact():
     return render_template('contact.html', progressBar=progressBar)
 
 
+
 @app.route('/add_task', methods=[ 'GET', 'POST'])
 def add_task():
     # checks for session cookie before loading page
@@ -319,18 +343,8 @@ def add_task():
     # Set up the form
     form = AddTaskForm()
 
-    # ---------- Set up for drop down for add task form ----------
-    # Gets the standard categories
-    categories_admin = list(mongo.db.categories.find({'created_by': 'admin'}))
-    # Gets the user categories
-    categories_user = list(mongo.db.categories.find({
-        'created_by': session['user']}))
-    # Combines the user and standard categories
-    categories = (*categories_admin, *categories_user)
-    # Extracts category names
-    category_names = [(category['category_name']) for category in categories]
-    # Sorts the names in alphabetical order
-    category_names.sort()
+    # Get categories
+    category_names = categories(session['user'])
     # Drop down for add task form
     form.task_category.choices = category_names
 
@@ -395,18 +409,8 @@ def edit_task(task_id):
     # Edit task form set up
     form = EditTaskForm()
 
-    # ---------- Set up for drop down for add task form ----------
-    # Gets the standard categories
-    categories_admin = list(mongo.db.categories.find({'created_by': 'admin'}))
-    # Gets the user categories
-    categories_user = list(mongo.db.categories.find({
-        'created_by': session['user']}))
-    # Combines the user and standard categories
-    categories = (*categories_admin, *categories_user)
-    # Extracts category names
-    category_names = [(category['category_name']) for category in categories]
-    # Sorts the names in alphabetical order
-    category_names.sort()
+    # Get categories
+    category_names = categories(session['user'])
     # Drop down for add task form
     form.task_category.choices = category_names
     
