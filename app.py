@@ -475,12 +475,12 @@ def priority_task(task_id):
 
 
 # error handling
+@app.errorhandler(500) 
 @app.errorhandler(404) 
 def not_found(error): 
     """Load error Page"""
     progressBar = progress(session['user'])
-    return render_template('404.html', progressBar=progressBar)
-
+    return render_template('error.html', progressBar=progressBar)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

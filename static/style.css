@@ -873,6 +873,11 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 	-o-border-radius: 7px;
 }
 
+/* ---------- Error Page ---------- */
+.error-body{
+	color: var(--light-text);
+}
+
 /* ---------- landscape phone ---------- 568px ---------- */
 @media (min-width: 568px) {
 	.register-form .form-label {
