@@ -7,9 +7,9 @@
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <!-- Google Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+        <link rel='preconnect' href='https://fonts.googleapis.com'>
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+        <link href='https://fonts.googleapis.com/css2?family=Rubik&display=swap' rel='stylesheet'>
         <!-- My style Sheet -->
         <link rel='stylesheet' href='{{ url_for("static", filename="style.css") }}'
         type='text/css'>
@@ -24,9 +24,9 @@
             <div class='mobile-nav-bar sticky top'>
                 <div class='mobile-nav'>
                     <h1><a href='{{ url_for("home") }}'>To Did App</a></h1>
-					<div id="burger-btn" class="hamburger--vortex">
-						<div class="hamburger-box">
-							<div class="hamburger-inner"></div>
+					<div id='burger-btn' class='hamburger--vortex'>
+						<div class='hamburger-box'>
+							<div class='hamburger-inner'></div>
 						</div>
 					</div>
                 </div>
@@ -69,9 +69,9 @@
 
         <!-- Page contents -->
         {% if  session.user == 'none' %}
-        <main id="main" class="no-user">
+        <main id='main' class='no-user'>
         {% else %}
-        <main id="main">
+        <main id='main'>
         {% endif %}
 
             <section>
@@ -79,11 +79,11 @@
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
-                        <div class="modal-background" data-closer="close">
+                        <div class='modal-background' data-closer='close'>
                             <!-- Modal content -->
-                            <div class="modal">
-                                <div class="modal-content">
-                                    <div class="modal-par">
+                            <div class='modal'>
+                                <div class='modal-content'>
+                                    <div class='modal-par'>
                                         {{ message }}
                                     </div>
                                 </div>
@@ -101,19 +101,19 @@
         {% if not session.user == 'none' %}
             <footer>
                 <div class='footer sticky bottom'>
-                    <div class="add-task">
-                        <div class="add-task-btn">
+                    <div class='add-task'>
+                        <div class='add-task-btn'>
                             <a href='{{ url_for("add_task") }}'>
-                                <img class="add" src='{{ url_for("static", filename="imgs/add.svg") }}'></img>
+                                <img class='add' src='{{ url_for("static", filename="imgs/add.svg") }}'></img>
                             </a>
                         </div>
-                        <div class="container add-task-words">
+                        <div class='container add-task-words'>
                             <em>Add a Task</em>
                         </div>
                     </div>
-                    <div class="container progress-bar-container">
+                    <div class='container progress-bar-container'>
                         <div id='progress-bar'>
-                            <div id="progress" style="width:{{ progressBar.progress }}%">
+                            <div id='progress' style='width:{{ progressBar.progress }}%'>
                                 {{ progressBar.progress }}%
                             </div>
                         </div>
