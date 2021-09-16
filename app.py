@@ -22,17 +22,16 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
+def noUser():
+    session['user'] = 'none'
+    return render_template('home.html')
+
+
 @app.route('/home')
 def home():
-    # See if there is a user logged in
-    try:
-        # If there is pop them in the session user
-        if session['user']:
-            session['user'] = session['user']
-    except:
-        # If not make the session user none
-        # change this to something shorter
-        session['user'] = 'none'
+    # checks for session cookie before loading page
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
 
     # ---------- All Task contents ----------
     # Gets the other tasks and orders them by date
@@ -98,6 +97,10 @@ def home():
 
 @app.route('/register', methods=[ 'GET', 'POST'])
 def register():
+    # checks for session cookie before loading page
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+
     # Set up the form
     form = RegistrationForm()
 
@@ -160,9 +163,9 @@ def login():
 
 @app.route('/account/<username>')
 def account(username):
-    # Grab the session user's username from the db
-    username = mongo.db.users.find_one(
-            {'username': session['user']})['username']
+    # checks for session cookie before loading page
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
 
     # ---------- Set up for categories ----------
     # Gets the user categories in alphabetical order
@@ -233,6 +236,10 @@ def account(username):
 
 @app.route('/edit_categories/<category_id>', methods=['GET', 'POST'])
 def edit_category(category_id):
+    # checks for session cookie before loading page
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+
     # Set up the form
     form = EditCategoryForm()
     # Get the specific category that needs editing
@@ -372,6 +379,10 @@ def contact():
 
 @app.route('/add_task', methods=[ 'GET', 'POST'])
 def add_task():
+    # checks for session cookie before loading page
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+
     # Set up the form
     form = AddTaskForm()
 
@@ -480,6 +491,10 @@ def add_task():
 
 @app.route('/edit_task/<task_id>', methods=['GET', 'POST'])
 def edit_task(task_id):
+    # checks for session cookie before loading page
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+
     # Find the task to edit
     task = mongo.db.tasks.find_one_or_404({'_id': ObjectId(task_id)})
     # Edit task form set up
