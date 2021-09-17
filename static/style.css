@@ -961,16 +961,38 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 	}
 	
 	/* ---------- forms ---------- */
+	.form-contents{
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		max-height: 370px;
+		width: 100%;
+	}
+
 	.form-field {
-		padding: 10px 0px;
+		padding: 10px 10px;
+		width: 50%;
 	}
 	
+	.cat .form-field {
+		width: 100%;
+	}
+
 	.form-control {
 		min-width: 70%;
 	}
 	
 	.form-label {
 		min-width: 20%;
+	}
+
+	.form-field.inline .form-label, .form-field.inline .form-control{
+		width: 50%;
+		min-width: auto;
+	}
+
+	#task_description {
+		height: 150px;
 	}
 	
 }
@@ -1106,11 +1128,6 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 	/* ---------- Task Card ---------- */
 	.section-task .task-card {
 		width: 48%;
-	}
-
-	/* ---------- Forms ---------- */
-	.add-cat {
-		width: 75%;
 	}
 
 }

@@ -9,30 +9,31 @@
     <div class='form'>
         {% if session.user %}
         <form action='{{ url_for("edit_task", task_id=task._id) }}' method='POST'>
-            
-            {{ displayField(form.task_name, 'title', 'no') }}
-            {{ displayField(form.task_description, 'task_description', 'no') }}
-            {{ displayField(form.due_date, 'due_date', 'no') }}
-            {{ displayField(form.is_priority, 'none', 'yes') }}
-            {{ displayField(form.is_done, 'none', 'yes') }}
-            {{ displayField(form.task_size, 'none', 'no', class='no-list select-size') }}
-            <div class="cat">
-                {{ displayField(form.task_category, 'none', 'no') }}
-            </div>
-            <div class="cat hidden">
-                {{ displayField(form.add_category, 'New Category', 'no') }}
-            </div>
-            </div>
-            <div class="cat add-cat">
-                <p>Add new category</p>
-            </div>
-            
-            <div class='submit-button'>
-                <div class="btn">
-                    {{ form.submit_button }}
+            <div class="form-contents">
+                {{ displayField(form.task_name, 'title', 'no') }}
+                {{ displayField(form.task_description, 'task_description', 'no') }}
+                {{ displayField(form.is_priority, 'none', 'yes') }}
+                {{ displayField(form.due_date, 'due_date', 'no') }}
+                {{ displayField(form.task_size, 'none', 'no', class='no-list select-size') }}
+                <div class="cat">
+                    {{ displayField(form.task_category, 'none', 'no') }}
+                    <div class="cat add-cat">
+                        <p>Add new category</p>
+                    </div>
                 </div>
-                <div class="btn">
-                    {{ form.cancel_button }}
+                <div class="cat hidden">
+                    {{ displayField(form.add_category, 'New Category', 'no') }}
+                </div>
+                {{ displayField(form.is_done, 'none', 'yes') }}
+            </div>
+            <div class="form-buttons">
+                <div class='submit-button'>
+                    <div class="btn">
+                        {{ form.submit_button }}
+                    </div>
+                    <div class="btn">
+                        {{ form.cancel_button }}
+                    </div>
                 </div>
             </div>
         
