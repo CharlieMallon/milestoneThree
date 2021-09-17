@@ -107,9 +107,9 @@ h2 {
 }
 
 #main {
-	margin: 57px 0px 90px 0px;
+	margin: 58px 0px 92px 0px;
 	background-color: var(--background2);
-	min-height: calc(100vh - (57px + 90px));
+	min-height: calc(100vh - (150px));
 	border-top: solid 1px var(--background2);
 	border-bottom: solid 1px var(--background2);
 }
@@ -638,6 +638,7 @@ h1 a {
 
 .section.open .section-content{
 	display: flex;
+	border-top: solid 5px var(--background);
 	border-bottom: solid 5px var(--background);
 	overflow: scroll;
 	transition: height 500ms;
@@ -803,6 +804,7 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 	padding: 20px;
 	border-radius: 20px;
 	width: 80%;
+	max-width: 500px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	-ms-border-radius: 20px;
@@ -1171,10 +1173,11 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 		flex-direction: row;
 		flex-wrap: wrap;
 		height: auto;
+		justify-content: space-between
 	}
 
 	.cat-card{
-		width: 30%;
+		width: 31%;
 		height: 30px;
 	}
 
@@ -1185,8 +1188,24 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 
 }
 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	.task{
+		justify-content: center;
+	}
+
+	.task-card{
+		margin: 10px;
+	}
+
+}
+
 /* ---------- master categories ---------- */
 
 .hidden {
 	display: none;
+}
+
+.invisible{
+	height: 0px;
 }

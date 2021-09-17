@@ -132,8 +132,11 @@
                                     </div>
                                 </div>
                             </li>
-                        {% endif %}
+                    {% endif %}
                 {% endfor %}
+                        <li class='task-card invisible'>
+                            <!-- sudo element for spacing -->
+                        </li>
             </ul>
             {% else %}
                 <h3>No Tasks Found</h3>
@@ -269,6 +272,9 @@
                             </li>
                         {% endif %}
                 {% endfor %}
+                <li class='task-card invisible'>
+                    <!-- sudo element for spacing -->
+                </li>
             </ul>
             {% else %}
                 <h3>No Tasks Found</h3>
@@ -404,6 +410,9 @@
                             </li>
                         {% endif %}
                 {% endfor %}
+                <li class='task-card invisible'>
+                    <!-- sudo element for spacing -->
+                </li>
             </ul>
             {% else %}
                 <h3>No Tasks Found</h3>
