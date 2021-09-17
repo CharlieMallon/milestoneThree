@@ -1,6 +1,6 @@
 import os
 from flask import (Flask, render_template,
-    redirect, url_for, flash, request, session)
+    redirect, url_for, flash, request, session, abort)
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
@@ -11,7 +11,8 @@ if os.path.exists('env.py'):
     import env
 
 
-# configure app
+# ---------- configure app ----------
+
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
@@ -107,6 +108,7 @@ def categories(user):
     category_names.sort()
     return category_names
 
+
 def addCategory(cat_name, username):
     """If the task category exists, find it on the database, if not create a new user category."""
     existing_cat = mongo.db.categories.find_one(
@@ -118,6 +120,24 @@ def addCategory(cat_name, username):
             }
         mongo.db.categories.insert_one(category)
         flash('New Category Added')
+
+
+def findOneCat(category_id):
+    try:
+        category = mongo.db.categories.find_one_or_404({
+            '_id': ObjectId(category_id)})
+        return category
+    except:
+        abort(404)
+
+
+def findOneTask(task_id):
+    try:
+        task = mongo.db.tasks.find_one_or_404({
+            '_id': ObjectId(task_id)})
+        return task
+    except:
+        abort(404)
 
 
 # ---------- load pages - no security required ----------
@@ -228,6 +248,9 @@ def account(username):
     if 'user' not in session:
         return redirect(url_for('login'))
 
+    user = session['user']
+    if user != username:
+        return redirect(url_for('login'))
 
     categories = userCategories(username)
     importantTasks, otherTasks, doneTasks = allTasks(username)
@@ -250,22 +273,20 @@ def edit_category(category_id):
     username = session['user']
     progressBar = progress(username)
     form = EditCategoryForm()
-
-    category = mongo.db.categories.find_one_or_404({
-        '_id': ObjectId(category_id)})
+    category = findOneCat(category_id)
 
     if request.method == 'POST':
         submit = {
             'category_name': form.task_category.data,
             'created_by': username
         }
-        mongo.db.categories.update({'_id': ObjectId(category_id)},submit)
+        mongo.db.categories.update({'_id': category},submit)
         flash('Task Successfully Updated')
         return redirect(url_for('account', username=username))
     elif request.method == 'GET':
         form.task_category.data = category['category_name']
     else:
-        return redirect(url_for('not_found'))
+        abort(404)
 
     return render_template('edit_category.html', category=category, 
         form=form, progressBar=progressBar)
@@ -278,7 +299,9 @@ def delete_category(category_id):
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
-    mongo.db.categories.remove({'_id': ObjectId(category_id)})
+    category = findOneCat(category_id)
+
+    mongo.db.categories.remove({'_id': category})
     flash('Category Successfully Deleted')
     return redirect(request.referrer)
 
@@ -335,7 +358,7 @@ def edit_task(task_id):
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
-    task = mongo.db.tasks.find_one_or_404({'_id': ObjectId(task_id)})
+    task = findOneTask(task_id)
     form = EditTaskForm()
     username = session['user']
     category_names = categories(username)
@@ -393,7 +416,9 @@ def delete_task(task_id):
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
-    mongo.db.tasks.remove({'_id': ObjectId(task_id)})
+    task = findOneTask(task_id)
+
+    mongo.db.tasks.remove({'_id': task})
     flash('Task Successfully Deleted')
     return redirect(request.referrer)
 
@@ -405,12 +430,10 @@ def done_task(task_id):
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
-    # Find the task to edit
-    task = mongo.db.tasks.find_one_or_404({'_id': ObjectId(task_id)})
-    # Populate the dictionary with the task
+    task = findOneTask(task_id)
+
     if task['is_done'] == True :
         done = {
-        # keeps task populated
         'task_name': task['task_name'],
         'task_description': task['task_description'],
         'due_date': task['due_date'],
@@ -418,7 +441,6 @@ def done_task(task_id):
         'task_size': task['task_size'],
         'category_name': task['category_name'],
         'created_by': task['created_by'],
-        # toggles of is_done status
         'is_done': not task['is_done'],
         'date_done': 'none',
         'time_done': 'none'
@@ -426,7 +448,6 @@ def done_task(task_id):
         status = 'Task Successfully Un-done'
     else:
         done = {
-        # keeps task populated
         'task_name': task['task_name'],
         'task_description': task['task_description'],
         'due_date': task['due_date'],
@@ -434,17 +455,14 @@ def done_task(task_id):
         'task_size': task['task_size'],
         'category_name': task['category_name'],
         'created_by': task['created_by'],
-        # toggles of is_done status
         'is_done': not task['is_done'],
         'date_done': datetime.now().strftime('%Y-%m-%d'),
         'time_done': datetime.now()
         }
         status = 'Task Successfully Done'
 
-    # Update the task on the database
     mongo.db.tasks.update({'_id': ObjectId(task_id)},done)
     flash(status)
-    # Refreshed the page
     return redirect(request.referrer)
 
 
@@ -455,7 +473,7 @@ def priority_task(task_id):
     if 'user' not in session:
         return redirect(url_for('noUser'))
 
-    task = mongo.db.tasks.find_one_or_404({'_id': ObjectId(task_id)})
+    task = findOneTask(task_id)
 
     priority = {
         'task_name': task['task_name'],
@@ -468,15 +486,20 @@ def priority_task(task_id):
         'is_done': task['is_done'],
     }
 
+    if task['is_priority'] == True :
+        status = 'Task Successfully Un-prioritised'
+    else:
+        status = 'Task Successfully prioritised'
+
     mongo.db.tasks.update({'_id': ObjectId(task_id)},priority)
-    flash('Task Successfully prioritised')
+    flash(status)
 
     return redirect(request.referrer)
 
 
 # error handling
 @app.errorhandler(500) 
-@app.errorhandler(404) 
+@app.errorhandler(404)
 def not_found(error): 
     """Load error Page"""
     progressBar = progress(session['user'])
@@ -485,5 +508,4 @@ def not_found(error):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
-# REMEMBER to change debug to False before submition!!!!!!!!!!!!!!!!!!!!
+            debug=os.environ.get('DEVELOPMENT')),
