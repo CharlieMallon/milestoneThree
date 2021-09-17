@@ -1,4 +1,5 @@
 import os
+import re
 from flask import (Flask, render_template,
     redirect, url_for, flash, request, session, abort)
 from flask_pymongo import PyMongo
@@ -22,6 +23,14 @@ app.secret_key = os.environ.get('SECRET_KEY')
 mongo = PyMongo(app)
 
 # ---------- Repeated Functions ----------
+def security(user):
+    
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+    
+    return user
+
+
 def allTasks(user):
     """ Get all the uses tasks. Delete the tasks that are more than a day old"""
 
@@ -109,14 +118,14 @@ def categories(user):
     return category_names
 
 
-def addCategory(cat_name, username):
+def addCategory(cat_name, user):
     """If the task category exists, find it on the database, if not create a new user category."""
     existing_cat = mongo.db.categories.find_one(
         {'category_name': cat_name})
     if not existing_cat:
         category = {
             'category_name' : cat_name,
-            'created_by': username
+            'created_by': user
             }
         mongo.db.categories.insert_one(category)
         flash('New Category Added')
@@ -138,6 +147,12 @@ def findOneTask(task_id):
         return task
     except:
         abort(404)
+
+
+def authorised(user, item):
+    if item['created_by'] == user:
+        return item
+    abort(403)
 
 
 # ---------- load pages - no security required ----------
@@ -212,6 +227,7 @@ def login():
 def logout():
     """Remove user from session cookies"""
     session.pop('user')
+    session['user'] = 'no'
     return redirect(url_for('home'))
 
 
@@ -226,13 +242,12 @@ def contact():
 # ---------- load pages - Security ----------
 @app.route('/home')
 def home():
-    """When there is a user logged in, display the Users Task"""
+    """When there is a user logged in, display the Users Tasks"""
 
-    if 'user' not in session:
-        return redirect(url_for('noUser'))
+    user = security(session['user'])
 
-    importantTasks, otherTasks, doneTasks = allTasks(session['user'])
-    progressBar = progress(session['user'])
+    importantTasks, otherTasks, doneTasks = allTasks(user)
+    progressBar = progress(user)
 
     tasks = (importantTasks + otherTasks + doneTasks)
     toDo = (importantTasks + otherTasks)
@@ -245,10 +260,8 @@ def home():
 def account(username):
     """When there is a user logged in, display the Users Tasks and Categories"""
 
-    if 'user' not in session:
-        return redirect(url_for('login'))
+    user = security(session['user'])
 
-    user = session['user']
     if user != username:
         return redirect(url_for('login'))
 
@@ -256,7 +269,7 @@ def account(username):
     importantTasks, otherTasks, doneTasks = allTasks(username)
     progressBar = progress(username)
 
-    return render_template('account.html', username=username, 
+    return render_template('account.html', username=user, 
         categories=categories, importantTasks=importantTasks, 
         otherTasks=otherTasks, doneTasks=doneTasks, 
         progressBar=progressBar)
@@ -267,22 +280,21 @@ def edit_category(category_id):
     """Gets one of the user categories puts it on the page, updates the 
     database with the editted category"""
 
-    if 'user' not in session:
-        return redirect(url_for('noUser'))
+    user = security(session['user'])
 
-    username = session['user']
-    progressBar = progress(username)
+    progressBar = progress(user)
     form = EditCategoryForm()
-    category = findOneCat(category_id)
+    item = findOneCat(category_id)
+    category = authorised(user, item)
 
     if request.method == 'POST':
         submit = {
             'category_name': form.task_category.data,
-            'created_by': username
+            'created_by': user
         }
-        mongo.db.categories.update({'_id': category},submit)
+        mongo.db.categories.update({'_id': category['_id']},submit)
         flash('Task Successfully Updated')
-        return redirect(url_for('account', username=username))
+        return redirect(url_for('account', username=user))
     elif request.method == 'GET':
         form.task_category.data = category['category_name']
     else:
@@ -296,8 +308,9 @@ def edit_category(category_id):
 def delete_category(category_id):
     """Gets the categories by ID and deletes the category"""
 
-    if 'user' not in session:
-        return redirect(url_for('noUser'))
+    security(session['user'])
+
+    # post methord here
 
     category = findOneCat(category_id)
 
@@ -312,13 +325,11 @@ def add_task():
     Gets the new task and adds it to the database. Select or create task category.
     If no task details given then fill in with an empty string"""
 
-    if 'user' not in session:
-        return redirect(url_for('noUser'))
+    user = security(session['user'])
 
     form = AddTaskForm()
-    username = session['user']
-    category_names = categories(username)
-    progressBar = progress(username)
+    category_names = categories(user)
+    progressBar = progress(user)
 
     form.task_category.choices = category_names
 
@@ -326,7 +337,7 @@ def add_task():
 
         if form.add_category.data != '':
             cat_name = form.add_category.data.capitalize()
-            addCategory(cat_name, username)
+            addCategory(cat_name, user)
         else:
             cat_name = form.task_category.data.capitalize()
 
@@ -338,7 +349,7 @@ def add_task():
             'is_done': form.is_done.data,
             'task_size': form.task_size.data,
             'category_name': cat_name,
-            'created_by': username
+            'created_by': user
         }
 
         mongo.db.tasks.insert_one(task)
@@ -355,21 +366,21 @@ def edit_task(task_id):
     database with the editted task. Select or create task category. 
     If no task details given then fill in with an empty string"""
 
-    if 'user' not in session:
-        return redirect(url_for('noUser'))
+    user = security(session['user'])
 
-    task = findOneTask(task_id)
+    item = findOneTask(task_id)
+    task = authorised(user, item)
+
     form = EditTaskForm()
-    username = session['user']
-    category_names = categories(username)
-    progressBar = progress(username)
+    category_names = categories(user)
+    progressBar = progress(user)
 
     form.task_category.choices = category_names
 
     if request.method == 'POST':
         if form.add_category.data != '':
             cat_name = form.add_category.data.capitalize()
-            addCategory(cat_name, username)
+            addCategory(cat_name, user)
         else:
             cat_name = form.task_category.data.capitalize()
 
@@ -381,7 +392,7 @@ def edit_task(task_id):
             'is_done': form.is_done.data,
             'task_size': form.task_size.data,
             'category_name': cat_name,
-            'created_by': username
+            'created_by': user
         }
 
         mongo.db.tasks.update({'_id': ObjectId(task_id)},submit)
@@ -413,8 +424,9 @@ def edit_task(task_id):
 def delete_task(task_id):
     """Gets the task by ID and deletes the task"""
 
-    if 'user' not in session:
-        return redirect(url_for('noUser'))
+    security(session['user'])
+
+    # post methord here
 
     task = findOneTask(task_id)
 
@@ -427,8 +439,9 @@ def delete_task(task_id):
 def done_task(task_id):
     """Gets the task by ID and toggles the done state"""
 
-    if 'user' not in session:
-        return redirect(url_for('noUser'))
+    security(session['user'])
+
+    # post methord here
 
     task = findOneTask(task_id)
 
@@ -470,8 +483,9 @@ def done_task(task_id):
 def priority_task(task_id):
     """Gets the task by ID and toggles the priority state"""
 
-    if 'user' not in session:
-        return redirect(url_for('noUser'))
+    security(session['user'])
+
+    # post methord here
 
     task = findOneTask(task_id)
 
@@ -504,6 +518,12 @@ def not_found(error):
     """Load error Page"""
     progressBar = progress(session['user'])
     return render_template('error.html', progressBar=progressBar)
+
+@app.errorhandler(403)
+def access_denied(error): 
+    """Load error Page"""
+    progressBar = progress(session['user'])
+    return render_template('denied.html', progressBar=progressBar)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
