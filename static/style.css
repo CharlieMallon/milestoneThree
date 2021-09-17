@@ -991,6 +991,18 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 		min-width: auto;
 	}
 
+	form.small-form .form-field {
+		width: 100%;
+	}
+
+	form.small-form .form-field .form-label {
+		width: 30%;
+	}
+
+	form.small-form .form-field .form-control {
+		width: 70%;
+	}
+
 	#task_description {
 		height: 150px;
 	}
