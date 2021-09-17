@@ -1,5 +1,4 @@
 import os
-import re
 from flask import (Flask, render_template,
     redirect, url_for, flash, request, session, abort)
 from flask_pymongo import PyMongo
@@ -182,7 +181,7 @@ def register():
             'password': generate_password_hash(form.password.data)
             }
         mongo.db.users.insert_one(register)
-        
+
         session['user'] = form.username.data.lower()
         flash('Registration Successful!')
 
@@ -261,6 +260,7 @@ def account(username):
     """When there is a user logged in, display the Users Tasks and Categories"""
 
     user = security(session['user'])
+    form = DeleteForm()
 
     if user != username:
         return redirect(url_for('login'))
@@ -272,7 +272,7 @@ def account(username):
     return render_template('account.html', username=user, 
         categories=categories, importantTasks=importantTasks, 
         otherTasks=otherTasks, doneTasks=doneTasks, 
-        progressBar=progressBar)
+        progressBar=progressBar, form=form)
 
 
 @app.route('/edit_categories/<category_id>', methods=['GET', 'POST'])
@@ -304,19 +304,26 @@ def edit_category(category_id):
         form=form, progressBar=progressBar)
 
 
-@app.route('/delete_category/<category_id>')
+@app.route('/delete_category/<category_id>', methods=['GET', 'POST'])
 def delete_category(category_id):
     """Gets the categories by ID and deletes the category"""
 
     security(session['user'])
 
-    # post methord here
-
     category = findOneCat(category_id)
+    form = DeleteForm()
+    user = security(session['user'])
 
-    mongo.db.categories.remove({'_id': category})
-    flash('Category Successfully Deleted')
-    return redirect(request.referrer)
+    item = findOneCat(category_id)
+    category = authorised(user, item)
+
+    if request.method == 'POST':
+        if form.submit_button.data:
+            mongo.db.categories.remove({'_id': category['_id']})
+            flash('Category Successfully Deleted')
+        return redirect(request.referrer)
+    else:
+        abort(404)
 
 
 @app.route('/add_task', methods=[ 'GET', 'POST'])
@@ -520,6 +527,7 @@ def not_found(error):
     return render_template('error.html', progressBar=progressBar)
 
 @app.errorhandler(403)
+@app.errorhandler(405)
 def access_denied(error): 
     """Load error Page"""
     progressBar = progress(session['user'])
