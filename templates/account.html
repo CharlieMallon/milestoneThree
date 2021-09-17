@@ -89,6 +89,8 @@
                                         <div class='due-date'>
                                             {% if task.due_date != 'None' %}
                                                 <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
+                                            {% else %}
+                                                <p>No Due Date</p>
                                             {% endif %}
                                         </div>
                                         <div class="task-buttons">
@@ -106,14 +108,18 @@
                                                         <div class="modal-par">
                                                             <p>Are you sure you want to delete the "{{ task.task_name }}" Task?</p>
                                                         </div>
-                                                        <div class="modal-btns">
-                                                            <div class="btn m-btn">
-                                                                <a href='{{ url_for("delete_task", task_id=task._id) }}'>Yes</a>
+                                                        <form action='{{ url_for("delete_task", task_id=task._id) }}' method='POST'>
+                                                            <div class="modal-btns">
+                                                                <div class="btn m-btn">
+                                                                    {{ form.submit_button }}
+                                                                </div>
+                                                                <div class="btn m-btn">
+                                                                    <div data-closer='close'>
+                                                                        {{ form.cancel_button }}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="btn m-btn">
-                                                                <p class="no-btn" data-closer="close">No</p>
-                                                            </div>
-                                                        </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -218,6 +224,8 @@
                                         <div class='due-date'>
                                             {% if task.due_date != 'None' %}
                                                 <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
+                                            {% else %}
+                                                <p>No Due Date</p>
                                             {% endif %}
                                         </div>
                                         <div class="task-buttons">
@@ -235,14 +243,18 @@
                                                         <div class="modal-par">
                                                             <p>Are you sure you want to delete the "{{ task.task_name }}" Task?</p>
                                                         </div>
-                                                        <div class="modal-btns">
-                                                            <div class="btn m-btn">
-                                                                <a href='{{ url_for("delete_task", task_id=task._id) }}'>Yes</a>
+                                                        <form action='{{ url_for("delete_task", task_id=task._id) }}' method='POST'>
+                                                            <div class="modal-btns">
+                                                                <div class="btn m-btn">
+                                                                    {{ form.submit_button }}
+                                                                </div>
+                                                                <div class="btn m-btn">
+                                                                    <div data-closer='close'>
+                                                                        {{ form.cancel_button }}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="btn m-btn">
-                                                                <p class="no-btn" data-closer="close">No</p>
-                                                            </div>
-                                                        </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -347,6 +359,8 @@
                                         <div class='due-date'>
                                             {% if task.due_date != 'None' %}
                                                 <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
+                                            {% else %}
+                                                <p>No Due Date</p>
                                             {% endif %}
                                         </div>
                                         <div class="task-buttons">
@@ -364,14 +378,18 @@
                                                         <div class="modal-par">
                                                             <p>Are you sure you want to delete the "{{ task.task_name }}" Task?</p>
                                                         </div>
-                                                        <div class="modal-btns">
-                                                            <div class="btn m-btn">
-                                                                <a href='{{ url_for("delete_task", task_id=task._id) }}'>Yes</a>
+                                                        <form action='{{ url_for("delete_task", task_id=task._id) }}' method='POST'>
+                                                            <div class="modal-btns">
+                                                                <div class="btn m-btn">
+                                                                    {{ form.submit_button }}
+                                                                </div>
+                                                                <div class="btn m-btn">
+                                                                    <div data-closer='close'>
+                                                                        {{ form.cancel_button }}
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="btn m-btn">
-                                                                <p class="no-btn" data-closer="close">No</p>
-                                                            </div>
-                                                        </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -432,11 +450,11 @@
                                                     <div class="btn m-btn">
                                                         {{ form.submit_button }}
                                                     </div>
+                                                    <div class="btn m-btn">
+                                                        <div data-closer='close'>
+                                                            {{ form.cancel_button }}
+                                                        </div>
                                                 </div>
-                                                <div class="btn m-btn">
-                                                    <div data-closer='close'>
-                                                        {{ form.cancel_button }}
-                                                    </div>
                                                 </div>
                                             </form>
                                         </div>

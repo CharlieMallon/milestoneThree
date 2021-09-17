@@ -243,6 +243,7 @@ def contact():
 def home():
     """When there is a user logged in, display the Users Tasks"""
 
+    form = DeleteForm()
     user = security(session['user'])
 
     importantTasks, otherTasks, doneTasks = allTasks(user)
@@ -252,7 +253,7 @@ def home():
     toDo = (importantTasks + otherTasks)
     
     return render_template('home.html', tasks=tasks, doneTasks=doneTasks, toDo=toDo,
-        progressBar=progressBar)
+        progressBar=progressBar, form=form)
 
 
 @app.route('/account/<username>')
@@ -427,19 +428,24 @@ def edit_task(task_id):
         categories=categories, progressBar=progressBar)
 
 
-@app.route('/delete_task/<task_id>')
+@app.route('/delete_task/<task_id>', methods=['GET', 'POST'])
 def delete_task(task_id):
     """Gets the task by ID and deletes the task"""
 
-    security(session['user'])
-
-    # post methord here
-
     task = findOneTask(task_id)
+    form = DeleteForm()
+    user = security(session['user'])
 
-    mongo.db.tasks.remove({'_id': task})
-    flash('Task Successfully Deleted')
-    return redirect(request.referrer)
+    item = findOneTask(task_id)
+    task = authorised(user, item)
+
+    if request.method == 'POST':
+        if form.submit_button.data:
+            mongo.db.tasks.remove({'_id': task['_id']})
+            flash('Task Successfully Deleted')
+        return redirect(request.referrer)
+    else:
+        abort(404)
 
 
 @app.route('/done_task/<task_id>', methods=['GET', 'POST'])
