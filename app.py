@@ -55,7 +55,7 @@ def allTasks(user):
         date = task['date_done']
         if date != today:
             id = task['_id']
-            mongo.db.tasks.remove(id)
+            mongo.db.tasks.delete_one(id)
 
     return importantTasks, otherTasks, doneTasks
 
@@ -300,7 +300,7 @@ def edit_category(category_id):
             'category_name': form.task_category.data,
             'created_by': user
         }
-        mongo.db.categories.update({'_id': category['_id']},submit)
+        mongo.db.categories.update_one({'_id': category['_id']},submit)
         flash('Task Successfully Updated')
         return redirect(url_for('account', username=user))
     elif request.method == 'GET':
@@ -328,7 +328,7 @@ def delete_category(category_id):
     if request.method == 'POST':
         if form.cancel_button.data:
             return redirect(url_for('home'))
-        mongo.db.categories.remove({'_id': category['_id']})
+        mongo.db.categories.delete_one({'_id': category['_id']})
         flash('Category Successfully Deleted')
         return redirect(request.referrer)
     else:
@@ -414,7 +414,7 @@ def edit_task(task_id):
             'created_by': user
         }
 
-        mongo.db.tasks.update({'_id': ObjectId(task_id)},submit)
+        mongo.db.tasks.update_one({'_id': ObjectId(task_id)},submit)
         flash('Task Successfully Updated')
         return redirect(request.referrer)
 
@@ -453,7 +453,7 @@ def delete_task(task_id):
     if request.method == 'POST':
         if form.cancel_button.data:
             return redirect(url_for('home'))
-        mongo.db.tasks.remove({'_id': task['_id']})
+        mongo.db.tasks.delete_one({'_id': task['_id']})
         flash('Task Successfully Deleted')
         return redirect(request.referrer)
     else:
@@ -499,7 +499,7 @@ def done_task(task_id):
         }
         status = 'Task Successfully Done'
 
-    mongo.db.tasks.update({'_id': ObjectId(task_id)},done)
+    mongo.db.tasks.update_one({'_id': ObjectId(task_id)},done)
     flash(status)
     return redirect(request.referrer)
 
@@ -530,7 +530,7 @@ def priority_task(task_id):
     else:
         status = 'Task Successfully prioritised'
 
-    mongo.db.tasks.update({'_id': ObjectId(task_id)},priority)
+    mongo.db.tasks.update_one({'_id': ObjectId(task_id)},priority)
     flash(status)
 
     return redirect(request.referrer)
