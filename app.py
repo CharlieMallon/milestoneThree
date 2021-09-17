@@ -168,7 +168,10 @@ def register():
 
     form = RegistrationForm()
 
-    if request.method == 'POST' and form.validate_on_submit():
+    if request.method == 'POST':
+        if form.cancel_button.data:
+            return redirect(url_for('home'))
+
         existing_user = mongo.db.users.find_one(
             {'username': form.username.data.lower()})
 
@@ -198,6 +201,8 @@ def login():
     form = LogInForm()
 
     if request.method == 'POST':
+        if form.cancel_button.data:
+            return redirect(url_for('home'))
 
         existing_user = mongo.db.users.find_one(
             {'username': form.username.data.lower()})
@@ -289,6 +294,8 @@ def edit_category(category_id):
     category = authorised(user, item)
 
     if request.method == 'POST':
+        if form.cancel_button.data:
+            return redirect(url_for('account', username=user))
         submit = {
             'category_name': form.task_category.data,
             'created_by': user
@@ -319,9 +326,10 @@ def delete_category(category_id):
     category = authorised(user, item)
 
     if request.method == 'POST':
-        if form.submit_button.data:
-            mongo.db.categories.remove({'_id': category['_id']})
-            flash('Category Successfully Deleted')
+        if form.cancel_button.data:
+            return redirect(url_for('home'))
+        mongo.db.categories.remove({'_id': category['_id']})
+        flash('Category Successfully Deleted')
         return redirect(request.referrer)
     else:
         abort(404)
@@ -342,7 +350,8 @@ def add_task():
     form.task_category.choices = category_names
 
     if request.method == 'POST':
-
+        if form.cancel_button.data:
+            return redirect(url_for('home'))
         if form.add_category.data != '':
             cat_name = form.add_category.data.capitalize()
             addCategory(cat_name, user)
@@ -386,6 +395,8 @@ def edit_task(task_id):
     form.task_category.choices = category_names
 
     if request.method == 'POST':
+        if form.cancel_button.data:
+            return redirect(url_for('home'))
         if form.add_category.data != '':
             cat_name = form.add_category.data.capitalize()
             addCategory(cat_name, user)
@@ -405,7 +416,7 @@ def edit_task(task_id):
 
         mongo.db.tasks.update({'_id': ObjectId(task_id)},submit)
         flash('Task Successfully Updated')
-        return redirect(url_for('home'))
+        return redirect(request.referrer)
 
     elif request.method == 'GET':
         if task['due_date'] != 'None':
@@ -440,9 +451,10 @@ def delete_task(task_id):
     task = authorised(user, item)
 
     if request.method == 'POST':
-        if form.submit_button.data:
-            mongo.db.tasks.remove({'_id': task['_id']})
-            flash('Task Successfully Deleted')
+        if form.cancel_button.data:
+            return redirect(url_for('home'))
+        mongo.db.tasks.remove({'_id': task['_id']})
+        flash('Task Successfully Deleted')
         return redirect(request.referrer)
     else:
         abort(404)

@@ -40,10 +40,12 @@ class AddTaskForm(FlaskForm):
         Length(min=4, max=20, 
             message="Category must be between 4 and 20 charactors")])
     submit_button = SubmitField("Add Task")
+    cancel_button = SubmitField("Cancel", render_kw={'formnovalidate': True})
 
 # Edit Task form
 class EditTaskForm(AddTaskForm):
     submit_button = SubmitField("Edit Task")
+    cancel_button = SubmitField("Cancel", render_kw={'formnovalidate': True})
 
 # Edit Category form
 class EditCategoryForm(FlaskForm):
@@ -51,8 +53,9 @@ class EditCategoryForm(FlaskForm):
         Length(min=4, max=17, 
             message="Category must be between 4 and 20 charactors")])
     submit_button = SubmitField("Edit Category")
+    cancel_button = SubmitField("Cancel", render_kw={'formnovalidate': True})
 
 # Delete form
 class DeleteForm(FlaskForm):
     submit_button = SubmitField("Yes")
-    cancel_button = SubmitField("No")
+    cancel_button = SubmitField("No", render_kw={'formnovalidate': True})
