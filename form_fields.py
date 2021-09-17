@@ -16,6 +16,7 @@ class LogInForm(FlaskForm):
         Length(min=4, max=25, 
             message="Password must be between 4 and 25 charactors")])
     submit_button = SubmitField("Log In")
+    cancel_button = SubmitField("Cancel", render_kw={'formnovalidate': True})
 
 #registation form
 class RegistrationForm(LogInForm):
@@ -23,6 +24,7 @@ class RegistrationForm(LogInForm):
         InputRequired(message="Please confirm your password"),
         EqualTo('password', message="Passwords must match")])
     submit_button = SubmitField("Register")
+    cancel_button = SubmitField("Cancel", render_kw={'formnovalidate': True})
 
 # add task form
 class AddTaskForm(FlaskForm):
