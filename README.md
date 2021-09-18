@@ -240,7 +240,7 @@ After great sucess implementing a cool slider for the opening and closing of tas
 
 How do i change the colour of SVG files using css. 
     https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element
-    i used the [CSS Filter generator](https://codepen.io/sosuke/pen/Pjoqqp)
+    I used the [CSS Filter generator](https://codepen.io/sosuke/pen/Pjoqqp)
 
 
 
@@ -270,6 +270,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible - colla
 https://jonsuh.com/hamburgers/ - hamburger!
 https://dollarshaveclub.github.io/shave/ - to shorten titles
 https://www.geeksforgeeks.org/python-404-error-handling-in-flask/ - what to do with 404 errors
+https://css-tricks.com/custom-scrollbars-in-webkit/ - style scroll bars!
 
 ### Content
 
