@@ -67,7 +67,7 @@
                                     <li class='task-card col large'>
                                 {% endif %}
                             {% endif %}
-                                    <div class='task-header row'>
+                                    <div class='task-header row click'>
                                         <div class='row done-box'>
                                             <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
                                                 {% if task.is_done == true %}
@@ -139,7 +139,7 @@
                                             </div>
                                             <div class="task-buttons">
                                                 <div class='open-modal'>
-                                                    <p class="delete"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
+                                                    <p class="delete click"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
                                                 </div>
                                                 <!-- The Delete Task Modal -->
                                                 <div class="modal-background hidden" data-closer="close">
@@ -203,7 +203,7 @@
                                     {% else %}
                                         <li class='task-card col large'>
                                     {% endif %}
-                                            <div class='task-header row'>
+                                            <div class='task-header row click'>
                                                 <div class='row done-box'>
                                                     <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
                                                         {% if task.is_done == true %}
@@ -271,7 +271,7 @@
                                                     </div>
                                                     <div class="task-buttons">
                                                         <div class='open-modal'>
-                                                            <p class="delete"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
+                                                            <p class="delete click"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
                                                         </div>
                                                         <!-- The Delete Task Modal -->
                                                         <div class="modal-background hidden" data-closer="close">
@@ -324,7 +324,7 @@
                         <h3>Tasks Completed Today</h3>
                     </div>
                 </div>
-                <div class="main-section-content  row">
+                <div class="main-section-content row">
                     <div class='task-list'>
                         {% if doneTasks|length > 0 %}
                         <ul class='task'>    
@@ -337,7 +337,7 @@
                                     {% else %}
                                         <li class='task-card col large'>
                                     {% endif %}
-                                            <div class='task-header row'>
+                                            <div class='task-header row click'>
                                                 <div class='row done-box'>
                                                     <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
                                                         {% if task.is_done == true %}
@@ -405,7 +405,7 @@
                                                     </div>
                                                     <div class="task-buttons">
                                                         <div class='open-modal'>
-                                                            <p class="delete"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
+                                                            <p class="delete click"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
                                                         </div>
                                                         <!-- The Delete Task Modal -->
                                                         <div class="modal-background hidden" data-closer="close">

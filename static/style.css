@@ -30,6 +30,10 @@
     width: 12px;
 }
 
+.click{
+	cursor: pointer;
+}
+
 /* Track */
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -761,6 +765,7 @@ input#submit_button, #send, input#cancel_button{
 	padding: 5px;
 	color: var(--dark-text);
 	background-color: var(--light-text);
+	cursor: pointer;
 }
 
 input#is_priority{
