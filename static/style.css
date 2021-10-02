@@ -1064,7 +1064,8 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 	
 }
 
-/* Large devices (desktops, 992px and up) */
+/* ---------- Large devices ---------- Desktops, 992px and Up ---------- */
+
 @media (min-width: 992px) {
 	.large-screen{
 		display: flex;
@@ -1176,6 +1177,7 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 	.section-task {
 		display: flex;
 		flex-wrap: wrap;
+		align-items: flex-start;
 		height: auto;
 		width: 100%;
 	}
@@ -1200,7 +1202,7 @@ input#task_size-0, input#task_size-1, input#task_size-2 {
 
 }
 
-/* Extra large devices (large desktops, 1200px and up) */
+/* ---------- Extra large devices ---------- Large desktops, 1200px and Up ---------- */
 @media (min-width: 1200px) {
 	.task{
 		justify-content: center;
