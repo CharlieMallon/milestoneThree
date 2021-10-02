@@ -256,6 +256,8 @@ How do i change the colour of SVG files using css.
 | -------- | ---------------- | --------------- | --------- | ------- |
 | Test Ref | Test Description | Bug Description | Final fix | Comment |
 
+
+https://glebbahmutov.com/blog/form-validation-in-cypress/ - to test the html 5 required form function
 ## Deployment
 
 ## Credits
@@ -278,12 +280,10 @@ https://css-tricks.com/custom-scrollbars-in-webkit/ - style scroll bars!
 
 ### Media
 
--   [justy](https://giphy.com/justy) on [giphy.com](https://giphy.com) for the confetti background
--   [wifflegif](https://wifflegif.com/) on [giphy.com](https://giphy.com) for the ghost
--   [imgflip](https://imgflip.com/gif-maker?from=images) was used to make the keys.gif
 
 ### Acknowledgements
 
 -   My Mentor Brian Macharia for some good guidance.
 -   Mr_Bim_alumni for general encouragement and the occasional kick up the backside.
--   Anthony for the prods in the right direction
+-   Anthony for the prods in the right direction.
+-   
