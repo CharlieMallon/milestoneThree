@@ -1,8 +1,10 @@
-describe('The login Page', () => {
+describe('The login Page - functionality', () => {
     beforeEach(() => {
+        cy.viewport(320, 480)
         cy
-            .visit('http://localhost:5000')
-            .get('.desktop-nav > ul > :nth-child(3) > a').click();
+            .visit('/')
+            .get('.hamburger-box').click()
+            .get('nav > ul > :nth-child(3) > a').click();
     })
 
     it('greets with Sign In', () => {
@@ -36,15 +38,15 @@ describe('The login Page', () => {
 
     it('requires valid username and password', () => {
         cy
-            .get('#username').type('Charlie')
+            .get('#username').type('CypressTestUser')
             .get('#password').type('password{enter}')
             .get('.modal-par').should('contain', 'Incorrect Username and/or Password');
     })
 
     it('navigates to /account on successful Sign In', () => {
         cy
-        .get('#username').type('Charlie')
-        .get('#password').type('Charlie{enter}')
+        .get('#username').type('CypressTestUser')
+        .get('#password').type('CypressTestUserPassword{enter}')
         .url().should('contain', '/account')
     })
 })
