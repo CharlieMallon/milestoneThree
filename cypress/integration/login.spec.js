@@ -9,7 +9,7 @@ describe('The login Page', () => {
         cy.get('h2').contains('Log In');
     })
 
-    it('links to #/register', () => {
+    it('links to /register', () => {
         cy
             .contains('Need an account?')
             .should('have.attr', 'href', '/register');
@@ -36,18 +36,15 @@ describe('The login Page', () => {
 
     it('requires valid username and password', () => {
         cy
-            .get('#username').type('Username')
-            .get('#password').type('password')
-            .get('form').contains('Log In').click()
+            .get('#username').type('Charlie')
+            .get('#password').type('password{enter}')
             .get('.modal-par').should('contain', 'Incorrect Username and/or Password');
     })
 
-    it('navigates to #/account on successful Sign In', () => {
+    it('navigates to /account on successful Sign In', () => {
         cy
         .get('#username').type('Charlie')
-        .get('#password').type('Charlie')
-        .get('form').contains('Log In').click()
+        .get('#password').type('Charlie{enter}')
         .url().should('contain', '/account')
-        .get('.header').should('contain', 'Charlie')
     })
 })
