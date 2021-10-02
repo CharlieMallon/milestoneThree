@@ -691,6 +691,13 @@ h1 a {
 	text-align: center;
 }
 
+/* ---------- Login / register ---------- */
+.cross_link{
+	display: flex;
+	justify-content: flex-end;
+	color: var(--light-text);
+}
+
 /* ---------- forms ---------- */
 .form-container {
 	display: flex;
