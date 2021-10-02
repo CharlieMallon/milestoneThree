@@ -11,6 +11,23 @@
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
+
+Cypress.Commands.add('login',() => {
+    // sets mobile Viewport
+    cy.viewport(320, 480)
+    // visit the log in page
+    cy
+        .visit('/')
+        .get('.hamburger-box').click()
+        .get('nav > ul > :nth-child(3) > a').click();
+    // log in
+    cy
+    .get('#username').type('CypressTestUser')
+    .get('#password').type('CypressTestUserPassword{enter}')
+    .url().should('contain', '/account')
+
+})
+
 //
 //
 // -- This is a child command --
