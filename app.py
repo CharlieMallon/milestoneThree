@@ -179,6 +179,10 @@ def register():
             flash('Username already exists')
             return redirect(url_for('register'))
 
+        if form.password.data != form.confirm_password.data:
+            flash('Passwords must match')
+            return redirect(url_for('register'))
+
         register = {
             'username': form.username.data.lower(),
             'password': generate_password_hash(form.password.data)
@@ -455,7 +459,7 @@ def delete_task(task_id):
             return redirect(url_for('home'))
         mongo.db.tasks.remove({'_id': task['_id']})
         flash('Task Successfully Deleted')
-        return redirect(request.referrer)
+        return redirect(url_for('home'))
     else:
         abort(404)
 
