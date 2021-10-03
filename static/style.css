@@ -764,6 +764,15 @@ h1 a {
 	padding: 0.25rem 0px;
 }
 
+.error-messages{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	list-style: none;
+	color: var(--orange);
+	font-size: smaller;
+}
+
 .register-form .form-label {
 	width: 100px;
 }

@@ -63,7 +63,6 @@ There are two types of pages on this site, the 'public' pages which are viewed b
 18. You cannot click done in edit task
 
 20. Edit and Delete buttons switch there order, pick a consistent order!
-22. errors need rendering correctly!
 
 9.  Error Pages need more content - images?
 8.  On large screens the tasks should be split into two lists
@@ -84,6 +83,7 @@ There are two types of pages on this site, the 'public' pages which are viewed b
 16. Register Page is registering even when the passwords don't match! - fixed!
 19. Edit task is not re-directing to home page or account page - fixed
 11. Username can be too many characters (over two lines) which messes up the calculations on the accounts page - FIXED - forms were not validating on submission
+22. errors need rendering correctly!
 
 ### Future features
 12. Boxes should turn red when required sections not filled in

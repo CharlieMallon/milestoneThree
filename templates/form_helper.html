@@ -11,17 +11,16 @@
         </div>
         <div class="form-control">
             <!-- Form Field -->
-            {{ fieldName(class_='control', placeholder=placeholderValue, **kwargs) }}
-    
-            <!-- Error Messages -->
-            <ul>
-                {% for error in fieldName.errors %}
-                    <li>
-                        {{ error }}
-                    </li>
-                {% endfor %}
-            </ul>
+            {{ fieldName(class_='control', placeholder=placeholderValue, **kwargs) }}    
         </div>
     </div>
+    <!-- Error Messages -->
+    <ul class="error-messages">
+        {% for error in fieldName.errors %}
+            <li>
+                {{ error }}
+            </li>
+        {% endfor %}
+    </ul>
 
 {% endmacro %}
