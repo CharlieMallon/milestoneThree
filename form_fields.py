@@ -9,8 +9,8 @@ from wtforms.validators import InputRequired, Length, EqualTo
 class LogInForm(FlaskForm):
     username = StringField('Username', validators=[
         InputRequired(message="Username required"),
-        Length(min=4, max=25, 
-            message="Username must be between 4 and 25 charactors")])
+        Length(min=4, max=10, 
+            message="Username must be between 4 and 10 charactors")])
     password = PasswordField('Password', validators=[
         InputRequired(message="Password required"),
         Length(min=4, max=25, 

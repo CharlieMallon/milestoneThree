@@ -169,30 +169,33 @@ def register():
     form = RegistrationForm()
 
     if request.method == 'POST':
+
         if form.cancel_button.data:
             return redirect(url_for('home'))
+    
+        if form.validate_on_submit():
 
-        existing_user = mongo.db.users.find_one(
-            {'username': form.username.data.lower()})
+            existing_user = mongo.db.users.find_one(
+                {'username': form.username.data.lower()})
 
-        if existing_user:
-            flash('Username already exists')
-            return redirect(url_for('register'))
+            if existing_user:
+                flash('Username already exists')
+                return redirect(url_for('register'))
 
-        if form.password.data != form.confirm_password.data:
-            flash('Passwords must match')
-            return redirect(url_for('register'))
+            if form.password.data != form.confirm_password.data:
+                flash('Passwords must match')
+                return redirect(url_for('register'))
 
-        register = {
-            'username': form.username.data.lower(),
-            'password': generate_password_hash(form.password.data)
-            }
-        mongo.db.users.insert_one(register)
+            register = {
+                'username': form.username.data.lower(),
+                'password': generate_password_hash(form.password.data)
+                }
+            mongo.db.users.insert_one(register)
 
-        session['user'] = form.username.data.lower()
+            session['user'] = form.username.data.lower()
 
-        return redirect(url_for(
-                        'account', username=session['user']))
+            return redirect(url_for(
+                            'account', username=session['user']))
 
     return render_template('register.html', form=form)
 
@@ -208,25 +211,27 @@ def login():
         if form.cancel_button.data:
             return redirect(url_for('home'))
 
-        existing_user = mongo.db.users.find_one(
-            {'username': form.username.data.lower()})
+        if form.validate_on_submit():
 
-        if existing_user:
+            existing_user = mongo.db.users.find_one(
+                {'username': form.username.data.lower()})
 
-            if check_password_hash(
-                existing_user['password'], form.password.data):
-                    session['user'] = form.username.data.lower()
+            if existing_user:
 
-                    return redirect(url_for(
-                        'account', username=session['user']))
+                if check_password_hash(
+                    existing_user['password'], form.password.data):
+                        session['user'] = form.username.data.lower()
+
+                        return redirect(url_for(
+                            'account', username=session['user']))
+                else:
+
+                    flash('Incorrect Username and/or Password')
+                    return redirect(url_for('login'))
             else:
 
-                flash('Incorrect Username and/or Password')
-                return redirect(url_for('login'))
-        else:
-
-                flash('Incorrect Username and/or Password')
-                return redirect(url_for('login'))
+                    flash('Incorrect Username and/or Password')
+                    return redirect(url_for('login'))
 
     return render_template('login.html', form=form)
 
@@ -300,13 +305,16 @@ def edit_category(category_id):
     if request.method == 'POST':
         if form.cancel_button.data:
             return redirect(url_for('account', username=user))
-        submit = {
-            'category_name': form.task_category.data,
-            'created_by': user
-        }
-        mongo.db.categories.update({'_id': category['_id']},submit)
-        flash('Task Successfully Updated')
-        return redirect(url_for('account', username=user))
+
+        if form.validate_on_submit():
+            submit = {
+                'category_name': form.task_category.data,
+                'created_by': user
+            }
+            mongo.db.categories.update({'_id': category['_id']},submit)
+            flash('Task Successfully Updated')
+            return redirect(url_for('account', username=user))
+
     elif request.method == 'GET':
         form.task_category.data = category['category_name']
     else:
@@ -356,26 +364,28 @@ def add_task():
     if request.method == 'POST':
         if form.cancel_button.data:
             return redirect(url_for('home'))
-        if form.add_category.data != '':
-            cat_name = form.add_category.data.capitalize()
-            addCategory(cat_name, user)
-        else:
-            cat_name = form.task_category.data.capitalize()
 
-        task = {
-            'task_name': form.task_name.data.capitalize(),
-            'task_description': form.task_description.data,
-            'due_date': str(form.due_date.data),
-            'is_priority': form.is_priority.data,
-            'is_done': form.is_done.data,
-            'task_size': form.task_size.data,
-            'category_name': cat_name,
-            'created_by': user
-        }
+        if form.validate_on_submit():
+            if form.add_category.data != '':
+                cat_name = form.add_category.data.capitalize()
+                addCategory(cat_name, user)
+            else:
+                cat_name = form.task_category.data.capitalize()
 
-        mongo.db.tasks.insert_one(task)
-        flash('Task Successfully Added')
-        return redirect(url_for('home'))
+            task = {
+                'task_name': form.task_name.data.capitalize(),
+                'task_description': form.task_description.data,
+                'due_date': str(form.due_date.data),
+                'is_priority': form.is_priority.data,
+                'is_done': form.is_done.data,
+                'task_size': form.task_size.data,
+                'category_name': cat_name,
+                'created_by': user
+            }
+
+            mongo.db.tasks.insert_one(task)
+            flash('Task Successfully Added')
+            return redirect(url_for('home'))
 
     return render_template('add_task.html', form=form, 
         progressBar=progressBar)
@@ -401,26 +411,28 @@ def edit_task(task_id):
     if request.method == 'POST':
         if form.cancel_button.data:
             return redirect(url_for('home'))
-        if form.add_category.data != '':
-            cat_name = form.add_category.data.capitalize()
-            addCategory(cat_name, user)
-        else:
-            cat_name = form.task_category.data.capitalize()
+        
+        if form.validate_on_submit():
+            if form.add_category.data != '':
+                cat_name = form.add_category.data.capitalize()
+                addCategory(cat_name, user)
+            else:
+                cat_name = form.task_category.data.capitalize()
 
-        submit = {
-            'task_name': form.task_name.data.capitalize(),
-            'task_description': form.task_description.data,
-            'due_date': str(form.due_date.data),
-            'is_priority': form.is_priority.data,
-            'is_done': form.is_done.data,
-            'task_size': form.task_size.data,
-            'category_name': cat_name,
-            'created_by': user
-        }
+            submit = {
+                'task_name': form.task_name.data.capitalize(),
+                'task_description': form.task_description.data,
+                'due_date': str(form.due_date.data),
+                'is_priority': form.is_priority.data,
+                'is_done': form.is_done.data,
+                'task_size': form.task_size.data,
+                'category_name': cat_name,
+                'created_by': user
+            }
 
-        mongo.db.tasks.update({'_id': ObjectId(task_id)},submit)
-        flash('Task Successfully Updated')
-        return redirect(request.referrer)
+            mongo.db.tasks.update({'_id': ObjectId(task_id)},submit)
+            flash('Task Successfully Updated')
+            return redirect(request.referrer)
 
     elif request.method == 'GET':
         if task['due_date'] != 'None':
