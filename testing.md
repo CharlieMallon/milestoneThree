@@ -72,4 +72,5 @@ There are two types of pages on this site, the 'public' pages which are viewed b
 13. Task name should keep the capitals the user writes (eg Test Task not Test task)
 14. Cant click 'done' on add tasks as it doesn't give a 'done-date' to the database
 15. Due by sate on home - mobile is backwards (2021-10-10)
-16.
+16. Register Page is registering even when the passwords don't match!
+17. You cannot edit your user details (username / password)
