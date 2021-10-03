@@ -106,4 +106,13 @@ describe('The Accounts Page', () => {
 			.click()
 			.should('contain', 'Test category one');
 	});
+
+	it('Adds Extra tasks for rest of tests', () => {
+		cy.get('#task_name')
+			.type('Test task four')
+			.get('#submit_button')
+			.click()
+			.get('section > .modal-background')
+			.click();
+	});
 });

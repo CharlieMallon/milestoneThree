@@ -74,3 +74,6 @@ There are two types of pages on this site, the 'public' pages which are viewed b
 15. Due by sate on home - mobile is backwards (2021-10-10)
 16. Register Page is registering even when the passwords don't match!
 17. You cannot edit your user details (username / password)
+18. You cannot click done in edit task
+19. Edit task is not re-directing to home page or account page
+20. Edit and Delete buttons switch there order, pick a consistent order!
