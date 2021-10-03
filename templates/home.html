@@ -4,6 +4,9 @@
 
     <!-- If not logged in show this screen -->
     {% if  session.user == 'no' %}
+    <div class='login-link'>
+        <a href='{{ url_for("login") }}'>Log In</a>
+    </div>
     <div class='no-session-user'>
         <div class='cta largecta'>
             <h2>The To Do App to aid recovery</h2>
@@ -180,7 +183,7 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                <h3>No To Do's found</h3>
+            <h3 class="no-tasks">No Tasks Found</h3>
             {% endif %}
         </div>
         <div class='large-screen'>
@@ -312,7 +315,7 @@
                             {% endfor %}
                         </ul>
                         {% else %}
-                            <h3>No Tasks Found</h3>
+                            <h3 class="no-tasks">No Tasks Found</h3>
                         {% endif %}
                     </div>
                 </div>
@@ -446,7 +449,7 @@
                             {% endfor %}
                         </ul>
                         {% else %}
-                            <h3>No Tasks Found</h3>
+                            <h3 class="no-tasks">No Tasks Found</h3>
                         {% endif %}
                     </div>
                 </div>
