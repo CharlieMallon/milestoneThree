@@ -361,27 +361,35 @@ def add_task():
         if form.cancel_button.data:
             return redirect(url_for('home'))
 
-        if form.validate_on_submit():
-            if form.add_category.data != '':
-                cat_name = form.add_category.data.capitalize()
-                addCategory(cat_name, user)
-            else:
-                cat_name = form.task_category.data.capitalize()
+        if form.add_category.data != '':
+            cat_name = form.add_category.data.capitalize()
+            addCategory(cat_name, user)
+        else:
+            cat_name = form.task_category.data.capitalize()
 
-            task = {
-                'task_name': form.task_name.data.capitalize(),
-                'task_description': form.task_description.data,
-                'due_date': str(form.due_date.data),
-                'is_priority': form.is_priority.data,
-                'is_done': form.is_done.data,
-                'task_size': form.task_size.data,
-                'category_name': cat_name,
-                'created_by': user
-            }
+        if form.is_done.data == True :
+            date_done = 'none'
+            time_done = 'none'
+        else:
+            date_done = datetime.now().strftime('%Y-%m-%d')
+            time_done = datetime.now()
 
-            mongo.db.tasks.insert_one(task)
-            flash('Task Successfully Added')
-            return redirect(url_for('home'))
+        task = {
+            'task_name': form.task_name.data.capitalize(),
+            'task_description': form.task_description.data,
+            'due_date': str(form.due_date.data),
+            'is_priority': form.is_priority.data,
+            'is_done': form.is_done.data,
+            'date_done': date_done,
+            'time_done': time_done,
+            'task_size': form.task_size.data,
+            'category_name': cat_name,
+            'created_by': user
+        }
+
+        mongo.db.tasks.insert_one(task)
+        flash('Task Successfully Added')
+        return redirect(url_for('home'))
 
     return render_template('add_task.html', form=form, 
         progressBar=progressBar)
@@ -408,27 +416,35 @@ def edit_task(task_id):
         if form.cancel_button.data:
             return redirect(url_for('home'))
         
-        if form.validate_on_submit():
-            if form.add_category.data != '':
-                cat_name = form.add_category.data.capitalize()
-                addCategory(cat_name, user)
-            else:
-                cat_name = form.task_category.data.capitalize()
+        if form.add_category.data != '':
+            cat_name = form.add_category.data.capitalize()
+            addCategory(cat_name, user)
+        else:
+            cat_name = form.task_category.data.capitalize()
 
-            submit = {
-                'task_name': form.task_name.data.capitalize(),
-                'task_description': form.task_description.data,
-                'due_date': str(form.due_date.data),
-                'is_priority': form.is_priority.data,
-                'is_done': form.is_done.data,
-                'task_size': form.task_size.data,
-                'category_name': cat_name,
-                'created_by': user
-            }
+        if task['is_done'] == True :
+            date_done = 'none'
+            time_done = 'none'
+        else:
+            date_done = datetime.now().strftime('%Y-%m-%d')
+            time_done = datetime.now()
 
-            mongo.db.tasks.update({'_id': ObjectId(task_id)},submit)
-            flash('Task Successfully Updated')
-            return redirect(request.referrer)
+        submit = {
+            'task_name': form.task_name.data.capitalize(),
+            'task_description': form.task_description.data,
+            'due_date': str(form.due_date.data),
+            'is_priority': form.is_priority.data,
+            'is_done': form.is_done.data,
+            'date_done': date_done,
+            'time_done': time_done,
+            'task_size': form.task_size.data,
+            'category_name': cat_name,
+            'created_by': user
+        }
+
+        mongo.db.tasks.update({'_id': ObjectId(task_id)},submit)
+        flash('Task Successfully Updated')
+        return redirect(url_for('home'))
 
     elif request.method == 'GET':
         if task['due_date'] != 'None':
