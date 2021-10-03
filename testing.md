@@ -60,8 +60,6 @@ There are two types of pages on this site, the 'public' pages which are viewed b
 5.  When no tasks planned/completed the bar should say something like 'No Tasks Prioritised'
 22. add and edit forms are not validating correctly
 
-20. Edit and Delete buttons switch there order, pick a consistent order!
-
 8.  On large screens the tasks should be split into two lists
 21. Contact form - name/email issues
 15. Due by sate on home - mobile is backwards (2021-10-10)
@@ -83,7 +81,8 @@ There are two types of pages on this site, the 'public' pages which are viewed b
 22. errors need rendering correctly!
 9.  Error Pages need more content - images?
 14. Cant click 'done' on add tasks as it doesn't give a 'done-date' to the database
-18. You cannot click done in edit task
+18. You cannot click done in edit task - patch created and issue with the form validation
+20. Edit and Delete buttons switch there order, pick a consistent order! - now edit then Delete on all tasks and categories
 
 ### Future features
 12. Boxes should turn red when required sections not filled in

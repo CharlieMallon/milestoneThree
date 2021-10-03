@@ -141,6 +141,11 @@
                                                 {% endif %}
                                             </div>
                                             <div class="task-buttons">
+                                                <div class='edit'>
+                                                    <a href='{{ url_for("edit_task", task_id=task._id) }}'>
+                                                        <img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img>
+                                                    </a>
+                                                </div>
                                                 <div class='open-modal'>
                                                     <p class="delete click"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
                                                 </div>
@@ -169,11 +174,6 @@
                                                             </form>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class='edit'>
-                                                    <a href='{{ url_for("edit_task", task_id=task._id) }}'>
-                                                        <img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img>
-                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -273,6 +273,11 @@
                                                         {% endif %}
                                                     </div>
                                                     <div class="task-buttons">
+                                                        <div class='edit'>
+                                                            <a href='{{ url_for("edit_task", task_id=task._id) }}'>
+                                                                <img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img>
+                                                            </a>
+                                                        </div>
                                                         <div class='open-modal'>
                                                             <p class="delete click"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
                                                         </div>
@@ -301,11 +306,6 @@
                                                                     </form>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class='edit'>
-                                                            <a href='{{ url_for("edit_task", task_id=task._id) }}'>
-                                                                <img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img>
-                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -407,6 +407,11 @@
                                                         {% endif %}
                                                     </div>
                                                     <div class="task-buttons">
+                                                        <div class='edit'>
+                                                            <a href='{{ url_for("edit_task", task_id=task._id) }}'>
+                                                                <img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img>
+                                                            </a>
+                                                        </div>
                                                         <div class='open-modal'>
                                                             <p class="delete click"><img src='{{ url_for("static", filename="imgs/delete.svg") }}'></img></p>
                                                         </div>
@@ -435,11 +440,6 @@
                                                                     </form>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class='edit'>
-                                                            <a href='{{ url_for("edit_task", task_id=task._id) }}'>
-                                                                <img src='{{ url_for("static", filename="imgs/edit.svg") }}'></img>
-                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
