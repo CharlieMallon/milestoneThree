@@ -58,9 +58,7 @@ There are two types of pages on this site, the 'public' pages which are viewed b
 ## Testing notes
 
 5.  When no tasks planned/completed the bar should say something like 'No Tasks Prioritised'
-
-14. Cant click 'done' on add tasks as it doesn't give a 'done-date' to the database
-18. You cannot click done in edit task
+22. add and edit forms are not validating correctly
 
 20. Edit and Delete buttons switch there order, pick a consistent order!
 
@@ -84,6 +82,8 @@ There are two types of pages on this site, the 'public' pages which are viewed b
 11. Username can be too many characters (over two lines) which messes up the calculations on the accounts page - FIXED - forms were not validating on submission
 22. errors need rendering correctly!
 9.  Error Pages need more content - images?
+14. Cant click 'done' on add tasks as it doesn't give a 'done-date' to the database
+18. You cannot click done in edit task
 
 ### Future features
 12. Boxes should turn red when required sections not filled in
