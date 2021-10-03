@@ -965,8 +965,31 @@ input#task_size-2 {
 }
 
 /* ---------- Error Page ---------- */
-.error-body {
+.error-container{
+	display: flex;
+	justify-content: center;
+}
+
+.error-inner {
+	max-width: 800px;
+}
+
+.error-title{
+	padding: 10px 0px 0px 16px;
+}
+
+.error-text {
 	color: var(--light-text);
+	text-align: center;
+}
+
+.error-gif{
+	justify-content: center;
+}
+
+.error-gif img{
+	padding: 5%;
+	width: 100%;
 }
 
 /* ---------- landscape phone ---------- 568px ---------- */

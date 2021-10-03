@@ -279,7 +279,8 @@ https://css-tricks.com/custom-scrollbars-in-webkit/ - style scroll bars!
 -   All content was written by the developer.
 
 ### Media
-
+-   https://giphy.com/gifs/studiosoriginals-mothers-day-iDiO5gkqaVjZ7cxnSV
+-   https://giphy.com/gifs/looneytunes-looney-tunes-wile-e-coyote-39wBF8ZtAwIXvDnI23
 
 ### Acknowledgements
 

@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class='container'>
-    <div class='error-title'>
-        <h2>Uh oh....</h2>
-    </div>
-    <div class='error-body'>
-        Your not allowed here!
-
-        Forbidden
+<div class='container error-container'>
+    <div class="error-inner">
+        <div class='error-title'>
+            <h2>Access Denied</h2>
+        </div>
+        <div class='error-body'>
+            <div class="error-gif">
+                <img src="https://media.giphy.com/media/iDiO5gkqaVjZ7cxnSV/giphy.gif" alt="pink_nope_gif">
+            </div>
+            <div class="error-text">
+                <p>
+                    Your not allowed here!
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 
