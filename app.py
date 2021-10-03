@@ -182,10 +182,6 @@ def register():
                 flash('Username already exists')
                 return redirect(url_for('register'))
 
-            if form.password.data != form.confirm_password.data:
-                flash('Passwords must match')
-                return redirect(url_for('register'))
-
             register = {
                 'username': form.username.data.lower(),
                 'password': generate_password_hash(form.password.data)
