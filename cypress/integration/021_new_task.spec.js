@@ -1,4 +1,4 @@
-describe('The Accounts Page', () => {
+describe('Create Tasks', () => {
 	beforeEach(() => {
 		cy.login().get('.add').click();
 	});
@@ -26,7 +26,7 @@ describe('The Accounts Page', () => {
 			.click()
 			.get('.small-screen > .task')
 			.should('contain', 'Test task one')
-			.get('.small-screen > .task > .task-card > .task-header > .task-header-internal')
+			.get('.small-screen > .task > :nth-child(1) > .task-header > .task-header-internal')
 			.click()
 			.get('.small-screen > .task > :nth-child(1)')
 			.should('have.class', 'small')
@@ -55,9 +55,6 @@ describe('The Accounts Page', () => {
 			.click()
 			.get('#task_category')
 			.select('Coding')
-			// This bit is broken!
-			// .get('#is_done')
-			// .check()
 			.get('#submit_button')
 			.click()
 			.get('section > .modal-background > .modal > .modal-content > .modal-par')
@@ -76,35 +73,10 @@ describe('The Accounts Page', () => {
 			.should('contain', 'Coding')
 			.should('contain', 'Due by: 2021-10-10')
 			.get(
-				'.small-screen > .task > .task-card > .task-body > :nth-child(1) > .priority > .check-box > img'
+				'.small-screen > .task > .medium > .task-body > :nth-child(1) > .priority > .check-box > img'
 			)
 			.invoke('attr', 'src')
 			.should('include', 'check-box-full');
-	});
-
-	it('Adds a New Task with New category', () => {
-		cy.get('#task_name')
-			.type('Test task three')
-			.get('#task_description')
-			.type('A description of the task goes here is can be quite long! ')
-			.get('#task_size-2')
-			.click()
-			.get('p')
-			.contains('Add new category')
-			.click()
-			.get('#add_category')
-			.type('Test Category One')
-			.get('#submit_button')
-			.click()
-			.get('section > .modal-background > .modal > .modal-content > .modal-par')
-			.should('contain', 'Task Successfully Added');
-		cy.get('section > .modal-background')
-			.click()
-			.get('.small-screen > .task')
-			.should('contain', 'Test task three')
-			.get('.small-screen > .task > :nth-child(3)')
-			.click()
-			.should('contain', 'Test category one');
 	});
 
 	it('Adds Extra tasks for rest of tests', () => {

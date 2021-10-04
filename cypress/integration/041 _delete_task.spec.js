@@ -40,13 +40,31 @@ describe('The Accounts Page', () => {
 	});
 
 	it('Delete Task on Account Page - To Do Today', () => {
-		cy.get(':nth-child(4) > .section-header')
+		cy.get(':nth-child(3) > .section-header')
 			.click()
 			.get(
-				'.open > .section-content > .task > .large > .task-header > .task-header-internal > .task-name > strong > .shave-me'
+				'.open > .section-content > .task > :nth-child(1) > .task-header > .task-header-internal'
 			)
 			.click()
-			.get('.open > .task-body > :nth-child(3) > .task-buttons > .open-modal > .delete > img')
+			.get('.open > .task-body > :nth-child(1) > .priority > .check-box > img')
+			.click()
+			.get('section > .modal-background')
+			.click()
+			.get(':nth-child(3) > .section-header')
+			.click()
+			.get(
+				'.open > .section-content > .task > :nth-child(1) > .task-header > .done-box > .check-box > p'
+			)
+			.click()
+			.get('section > .modal-background')
+			.click()
+			.get(':nth-child(4) > .section-header')
+			.click()
+			.get('.open > .section-content > .task > .small > .task-header > .task-header-internal')
+			.click()
+			.get(
+				'.section.open > .section-content > .task > .small > .task-body > :nth-child(3) > .task-buttons > .open-modal > .delete'
+			)
 			.click()
 			.get(
 				'.open > .task-body > :nth-child(3) > .task-buttons > .modal-background > .modal > .modal-title > h2'
@@ -59,6 +77,10 @@ describe('The Accounts Page', () => {
 			.get('section > .modal-background > .modal > .modal-content > .modal-par')
 			.should('contain', 'Task Successfully Deleted')
 			.get('section > .modal-background')
+			.click()
+			.get('#burger-btn')
+			.click()
+			.get('ul > :nth-child(2) > a')
 			.click()
 			.get(':nth-child(4) > .section-header > :nth-child(2) > p > .section-arrow')
 			.click()
@@ -87,6 +109,10 @@ describe('The Accounts Page', () => {
 			.should('contain', 'Task Successfully Deleted')
 			.get('section > .modal-background')
 			.click()
+			.get('#burger-btn')
+			.click()
+			.get('ul > :nth-child(2) > a')
+			.click()
 			.get(':nth-child(5) > .section-header > :nth-child(2) > p > .section-arrow')
 			.click()
 			.get('.open > .section-content')
@@ -96,7 +122,7 @@ describe('The Accounts Page', () => {
 	it('Delete Task on Account Page - Done Tasks', () => {
 		cy.get(':nth-child(3) > .section-header')
 			.click()
-			.get('.open > .section-content > .task > .task-header')
+			.get('.small > .task-header > .task-header-internal')
 			.click()
 			.get('.open > .task-body > :nth-child(3) > .task-buttons > .open-modal > .delete > img')
 			.click()
@@ -111,6 +137,10 @@ describe('The Accounts Page', () => {
 			.get('section > .modal-background > .modal > .modal-content > .modal-par')
 			.should('contain', 'Task Successfully Deleted')
 			.get('section > .modal-background')
+			.click()
+			.get('#burger-btn')
+			.click()
+			.get('ul > :nth-child(2) > a')
 			.click()
 			.get(':nth-child(3) > .section-header > :nth-child(2) > p > .section-arrow')
 			.click()

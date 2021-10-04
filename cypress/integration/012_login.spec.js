@@ -36,20 +36,29 @@ describe('The login Page - functionality', () => {
 			.should('be.false');
 	});
 
-	it('requires valid username and password', () => {
+	it('requires valid username', () => {
 		cy.get('#username')
-			.type('CypressTestUser')
+			.type('Test')
 			.get('#password')
-			.type('password{enter}')
+			.type('wrong{enter}')
+			.get('.modal-par')
+			.should('contain', 'Incorrect Username and/or Password');
+	});
+
+	it('requires valid password', () => {
+		cy.get('#username')
+			.type('Cypress')
+			.get('#password')
+			.type('wrong{enter}')
 			.get('.modal-par')
 			.should('contain', 'Incorrect Username and/or Password');
 	});
 
 	it('navigates to /account on successful Sign In', () => {
 		cy.get('#username')
-			.type('CypressTestUser')
+			.type('Cypress')
 			.get('#password')
-			.type('CypressTestUserPassword{enter}')
+			.type('password{enter}')
 			.url()
 			.should('contain', '/account');
 	});
