@@ -9,7 +9,7 @@ describe('Log Out', () => {
 			.get('nav > ul > :nth-child(3) > a')
 			.click()
 			.url()
-			.should('contain', '/home');
+			.should('contain', '/');
 	});
 
 	it('Logs Out on Desktop', () => {

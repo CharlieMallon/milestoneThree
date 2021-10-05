@@ -13,7 +13,7 @@ describe('Register Account', () => {
 	});
 
 	it('has a back button', () => {
-		cy.contains('Cancel').click().url().should('contain', '/home');
+		cy.contains('Cancel').click().url().should('contain', '/');
 	});
 
 	it('requires username', () => {
