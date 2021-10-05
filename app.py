@@ -435,12 +435,11 @@ def edit_task(task_id):
             cat_name = form.task_category.data.capitalize()
 
         if task['is_done'] == True:
-            if task['date_done'] == 'none':
-                date_done = datetime.now().strftime('%Y-%m-%d')
-                time_done = datetime.now()
-            else:
-                date_done = task['date_done']
-                time_done = task['time_done']
+            date_done = task['date_done']
+            time_done = task['time_done']
+        elif form.is_done.data == True:
+            date_done = datetime.now().strftime('%Y-%m-%d')
+            time_done = datetime.now()
         else:
             date_done = 'none'
             time_done = 'none'
