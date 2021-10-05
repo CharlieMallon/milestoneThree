@@ -1,7 +1,7 @@
 import os
 from dns.rdatatype import NULL
 from flask import (Flask, render_template,
-                    redirect, url_for, flash, request, session, abort)
+                   redirect, url_for, flash, request, session, abort)
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
@@ -269,7 +269,7 @@ def home():
     toDo = (importantTasks + otherTasks)
 
     return render_template('home.html', tasks=tasks, doneTasks=doneTasks, toDo=toDo,
-                            progressBar=progressBar, form=form)
+                           progressBar=progressBar, form=form)
 
 
 @app.route('/account/<username>')
@@ -290,9 +290,9 @@ def account(username):
     progressBar = progress(username)
 
     return render_template('account.html', username=user,
-                            categories=categories, importantTasks=importantTasks,
-                            otherTasks=otherTasks, doneTasks=doneTasks,
-                            progressBar=progressBar, form=form)
+                           categories=categories, importantTasks=importantTasks,
+                           otherTasks=otherTasks, doneTasks=doneTasks,
+                           progressBar=progressBar, form=form)
 
 
 @app.route('/edit_categories/<category_id>', methods=['GET', 'POST'])
@@ -329,7 +329,7 @@ def edit_category(category_id):
         abort(404)
 
     return render_template('edit_category.html', category=category,
-                            form=form, progressBar=progressBar)
+                           form=form, progressBar=progressBar)
 
 
 @app.route('/delete_category/<category_id>', methods=['GET', 'POST'])
@@ -361,7 +361,7 @@ def add_task():
     """Finds all the categories and populates them on the site.
     Gets the new task and adds it to the database. Select or create task category.
     If no task details given then fill in with an empty string"""
-    
+
     if 'user' not in session:
         return redirect(url_for('login'))
 
@@ -401,7 +401,7 @@ def add_task():
         return redirect(url_for('home'))
 
     return render_template('add_task.html', form=form,
-                            progressBar=progressBar)
+                           progressBar=progressBar)
 
 
 @app.route('/edit_task/<task_id>', methods=['GET', 'POST'])
@@ -435,11 +435,15 @@ def edit_task(task_id):
             cat_name = form.task_category.data.capitalize()
 
         if task['is_done'] == True:
+            if task['date_done'] == 'none':
+                date_done = datetime.now().strftime('%Y-%m-%d')
+                time_done = datetime.now()
+            else:
+                date_done = task['date_done']
+                time_done = task['time_done']
+        else:
             date_done = 'none'
             time_done = 'none'
-        else:
-            date_done = datetime.now().strftime('%Y-%m-%d')
-            time_done = datetime.now()
 
         submit = {
             'task_name': form.task_name.data.capitalize(),
@@ -476,7 +480,7 @@ def edit_task(task_id):
         return redirect(url_for('not_found'))
 
     return render_template('edit_task.html', task=task, form=form,
-                            categories=categories, progressBar=progressBar)
+                           categories=categories, progressBar=progressBar)
 
 
 @app.route('/delete_task/<task_id>', methods=['GET', 'POST'])
