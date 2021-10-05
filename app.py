@@ -1,4 +1,5 @@
 import os
+from dns.rdatatype import NULL
 from flask import (Flask, render_template,
                     redirect, url_for, flash, request, session, abort)
 from flask_pymongo import PyMongo
@@ -242,7 +243,10 @@ def logout():
 @app.route('/contact')
 def contact():
     """load the contact page"""
-    progressBar = progress(session['user'])
+    if 'user' in session:
+        progressBar = progress(session['user'])
+
+    progressBar = NULL
 
     return render_template('contact.html', progressBar=progressBar)
 
