@@ -1,6 +1,6 @@
 import os
 from flask import (Flask, render_template,
-                   redirect, url_for, flash, request, session, abort)
+                    redirect, url_for, flash, request, session, abort)
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
@@ -264,7 +264,7 @@ def home():
     toDo = (importantTasks + otherTasks)
 
     return render_template('home.html', tasks=tasks, doneTasks=doneTasks, toDo=toDo,
-                           progressBar=progressBar, form=form)
+                            progressBar=progressBar, form=form)
 
 
 @app.route('/account/<username>')
@@ -282,9 +282,9 @@ def account(username):
     progressBar = progress(username)
 
     return render_template('account.html', username=user,
-                           categories=categories, importantTasks=importantTasks,
-                           otherTasks=otherTasks, doneTasks=doneTasks,
-                           progressBar=progressBar, form=form)
+                            categories=categories, importantTasks=importantTasks,
+                            otherTasks=otherTasks, doneTasks=doneTasks,
+                            progressBar=progressBar, form=form)
 
 
 @app.route('/edit_categories/<category_id>', methods=['GET', 'POST'])
@@ -318,7 +318,7 @@ def edit_category(category_id):
         abort(404)
 
     return render_template('edit_category.html', category=category,
-                           form=form, progressBar=progressBar)
+                            form=form, progressBar=progressBar)
 
 
 @app.route('/delete_category/<category_id>', methods=['GET', 'POST'])
@@ -386,7 +386,7 @@ def add_task():
         return redirect(url_for('home'))
 
     return render_template('add_task.html', form=form,
-                           progressBar=progressBar)
+                            progressBar=progressBar)
 
 
 @app.route('/edit_task/<task_id>', methods=['GET', 'POST'])
@@ -458,7 +458,7 @@ def edit_task(task_id):
         return redirect(url_for('not_found'))
 
     return render_template('edit_task.html', task=task, form=form,
-                           categories=categories, progressBar=progressBar)
+                            categories=categories, progressBar=progressBar)
 
 
 @app.route('/delete_task/<task_id>', methods=['GET', 'POST'])

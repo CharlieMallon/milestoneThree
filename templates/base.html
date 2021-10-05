@@ -78,18 +78,18 @@
                 <!-- Flash messages -->
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
-                        {% for message in messages %}
-                        <div class='modal-background' data-closer='close'>
-                            <!-- Modal content -->
-                            <div class='modal'>
-                                <div class='modal-content'>
-                                    <div class='modal-par'>
-                                        {{ message }}
-                                    </div>
+                    <div class='modal-background' data-closer='close'>
+                        <!-- Modal content -->
+                        <div class='modal'>
+                            <div class='modal-content'>
+                                {% for message in messages %}
+                                <div class='modal-par'>
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
                     {% endif %}
                 {% endwith %}
             </section>

@@ -1,7 +1,5 @@
 # Testing Doc
 
-#
-
 ## Testing strategy.
 
 There are two types of pages on this site, the 'public' pages which are viewed by users not logged in and the 'user' pages which a log in is required for

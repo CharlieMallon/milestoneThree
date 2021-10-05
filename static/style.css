@@ -764,7 +764,7 @@ h1 a {
 	padding: 0.25rem 0px;
 }
 
-.error-messages{
+.error-messages {
 	display: flex;
 	justify-content: center;
 	text-align: center;
@@ -965,7 +965,7 @@ input#task_size-2 {
 }
 
 /* ---------- Error Page ---------- */
-.error-container{
+.error-container {
 	display: flex;
 	justify-content: center;
 }
@@ -974,7 +974,7 @@ input#task_size-2 {
 	max-width: 800px;
 }
 
-.error-title{
+.error-title {
 	padding: 10px 0px 0px 16px;
 }
 
@@ -983,11 +983,11 @@ input#task_size-2 {
 	text-align: center;
 }
 
-.error-gif{
+.error-gif {
 	justify-content: center;
 }
 
-.error-gif img{
+.error-gif img {
 	padding: 5%;
 	width: 100%;
 }
