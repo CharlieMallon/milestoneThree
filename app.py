@@ -1,6 +1,6 @@
 import os
 from flask import (Flask, render_template,
-                    redirect, url_for, flash, request, session, abort)
+                   redirect, url_for, flash, request, session, abort)
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
@@ -254,6 +254,9 @@ def contact():
 def home():
     """When there is a user logged in, display the Users Tasks"""
 
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
+
     form = DeleteForm()
     user = security(session['user'])
 
@@ -264,7 +267,7 @@ def home():
     toDo = (importantTasks + otherTasks)
 
     return render_template('home.html', tasks=tasks, doneTasks=doneTasks, toDo=toDo,
-                            progressBar=progressBar, form=form)
+                           progressBar=progressBar, form=form)
 
 
 @app.route('/account/<username>')
@@ -282,9 +285,9 @@ def account(username):
     progressBar = progress(username)
 
     return render_template('account.html', username=user,
-                            categories=categories, importantTasks=importantTasks,
-                            otherTasks=otherTasks, doneTasks=doneTasks,
-                            progressBar=progressBar, form=form)
+                           categories=categories, importantTasks=importantTasks,
+                           otherTasks=otherTasks, doneTasks=doneTasks,
+                           progressBar=progressBar, form=form)
 
 
 @app.route('/edit_categories/<category_id>', methods=['GET', 'POST'])
@@ -318,7 +321,7 @@ def edit_category(category_id):
         abort(404)
 
     return render_template('edit_category.html', category=category,
-                            form=form, progressBar=progressBar)
+                           form=form, progressBar=progressBar)
 
 
 @app.route('/delete_category/<category_id>', methods=['GET', 'POST'])
@@ -386,7 +389,7 @@ def add_task():
         return redirect(url_for('home'))
 
     return render_template('add_task.html', form=form,
-                            progressBar=progressBar)
+                           progressBar=progressBar)
 
 
 @app.route('/edit_task/<task_id>', methods=['GET', 'POST'])
@@ -458,7 +461,7 @@ def edit_task(task_id):
         return redirect(url_for('not_found'))
 
     return render_template('edit_task.html', task=task, form=form,
-                            categories=categories, progressBar=progressBar)
+                           categories=categories, progressBar=progressBar)
 
 
 @app.route('/delete_task/<task_id>', methods=['GET', 'POST'])
@@ -486,11 +489,15 @@ def delete_task(task_id):
 def done_task(task_id):
     """Gets the task by ID and toggles the done state"""
 
-    security(session['user'])
+    if 'user' not in session:
+        return redirect(url_for('noUser'))
 
     # post methord here
 
-    task = findOneTask(task_id)
+    user = security(session['user'])
+
+    item = findOneTask(task_id)
+    task = authorised(user, item)
 
     if task['is_done'] == True:
         done = {
@@ -534,7 +541,10 @@ def priority_task(task_id):
 
     # post methord here
 
-    task = findOneTask(task_id)
+    user = security(session['user'])
+
+    item = findOneTask(task_id)
+    task = authorised(user, item)
 
     priority = {
         'task_name': task['task_name'],
@@ -563,6 +573,7 @@ def priority_task(task_id):
 # error handling
 @app.errorhandler(500)
 @app.errorhandler(404)
+@app.errorhandler(410)
 def not_found(error):
     """Load error Page"""
     progressBar = progress(session['user'])

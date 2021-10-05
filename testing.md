@@ -1,5 +1,7 @@
 # Testing Doc
 
+i have used cypress to do a suite of intergration tests.
+
 ## Testing strategy.
 
 There are two types of pages on this site, the 'public' pages which are viewed by users not logged in and the 'user' pages which a log in is required for
@@ -89,3 +91,44 @@ There are two types of pages on this site, the 'public' pages which are viewed b
 ### Future features
 
 12. Boxes should turn red when required sections not filled in
+
+## Security
+
+Denied
+
+Cant access someones else's account
+https://cm-ms3-to-did.herokuapp.com/account/admin
+this should re-direct you to Log In
+
+Cant access someone else's task
+https://cm-ms3-to-did.herokuapp.com/edit_task/615c76092b0f4fbf4afb7f63
+https://cm-ms3-to-did.herokuapp.com/delete_task/615c76092b0f4fbf4afb7f63
+https://cm-ms3-to-did.herokuapp.com/done_task/615c76092b0f4fbf4afb7f63
+https://cm-ms3-to-did.herokuapp.com/priority_task/615c76092b0f4fbf4afb7f63
+this should re-direct you to Access Denied
+
+so i can Prize and 'do' someones tasks! - fixed added security to these pages
+
+
+Cant access someone else's category
+https://cm-ms3-to-did.herokuapp.com/edit_categories/6124f023a1a1b049e04ad919
+https://cm-ms3-to-did.herokuapp.com/delete_category/6124f023a1a1b049e04ad919
+this should re-direct you to Access Denied
+
+Error
+
+Cant access someones else's account
+https://cm-ms3-to-did.herokuapp.com/account/ad
+this should re-direct you to Log In
+
+cant access someone else's task
+https://cm-ms3-to-did.herokuapp.com/edit_task/615c76092b0f4fbf4afb7f6
+https://cm-ms3-to-did.herokuapp.com/delete_task/615c76092b0f4fbf4afb7f6
+https://cm-ms3-to-did.herokuapp.com/done_task/615c76092b0f4fbf4afb7f6
+https://cm-ms3-to-did.herokuapp.com/priority_task/615c76092b0f4fbf4afb7f6
+this should re-direct you to Error
+
+cant access someone else's category
+https://cm-ms3-to-did.herokuapp.com/edit_categories/6124f023a1a1b049e04ad91
+https://cm-ms3-to-did.herokuapp.com/delete_category/6124f023a1a1b049e04ad91
+this should re-direct you to Error

@@ -99,6 +99,7 @@
         </main>
 
         {% if not session.user == 'no' %}
+        {% if progressBar %}
             <footer>
                 <div class='footer sticky bottom'>
                     <div class='add-task'>
@@ -120,6 +121,7 @@
                     </div>
                 </div>
             </footer>
+        {% endif %}
         {% endif %}
     
         <!-- Custom JS -->
