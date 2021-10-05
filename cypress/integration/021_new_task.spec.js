@@ -1,4 +1,4 @@
-describe('Create Tasks', () => {
+describe('Create Tasks - on mobile', () => {
 	beforeEach(() => {
 		cy.login().get('.add').click();
 	});

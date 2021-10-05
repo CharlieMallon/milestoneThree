@@ -14,6 +14,6 @@ describe('Log Out', () => {
 
 	it('Logs Out on Desktop', () => {
 		cy.viewport(992, 600);
-		cy.get('.desktop-nav > ul > :nth-child(3)').click().url().should('contain', '/home');
+		cy.get('.desktop-nav > ul > :nth-child(3)').click().url().should('contain', '/');
 	});
 });
