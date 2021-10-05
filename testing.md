@@ -1,6 +1,6 @@
 # Testing Doc
 
-i have used cypress to do a suite of intergration tests.
+I have used cypress to do a suite of integration tests.
 
 ## Testing strategy.
 
@@ -20,115 +20,62 @@ There are two types of pages on this site, the 'public' pages which are viewed b
 |              | Delete Category |
 |              | Log Out         |
 
-## Testing order
 
--   create phase;
-    -   user
-    -   tasks
-    -   categories
-        -   in new task
-        -   on account page
--   edit phase;
-    -   task
-        -   Account
-            -   To Do
-            -   Other Tasks
-            -   Done Tasks
-        -   Home
-            -   To Do
-            -   Done Tasks
-    -   Categories
-        -   Account section only
-    -   user
-        -   Username
-        -   Password
--   Delete Phase;
-    -   Task
-        -   Account
-            -   To Do
-            -   Other Tasks
-            -   Done Tasks
-        -   Home
-            -   To Do
-            -   Done Tasks
-    -   Categories
-        -   Account section only
-    -   user account and all associated data
+    1.  Public pages
+            Do they all render correctly?
+    2.  Create phase
+            Create a user, create some tasks and create a category in a task. Can you do it from all the right pages? Do the pages render correctly?
+    3.  Edit phase
+            Is the edit tasks accessible from all pages and edit categories on the accounts page. Can you complete/prioritise tasks from all the correct pages? Do the pages render correctly?
+    4.  Delete Phase
+            Can you delete tasks from all pages and delete categories on the accounts page?
+    5.  Logging in/out
+            Can the user log in out?
+    6.  Security / error handling
+            Can you get to parts of the site without logging In or with the wrong credentials? what happens if you try to access something that doesn't exist?
 
-## Testing notes
 
-5.  When no tasks planned/completed the bar should say something like 'No Tasks Prioritised'
-6.  add and edit forms are not validating correctly
+## During Testing
 
-7.  On large screens the tasks should be split into two lists
-8.  Contact form - name/email issues
-9.  Due by date is backwards (2021-10-10)
-10. Task name should keep the capitals the user writes (eg Test Task not Test task)
+The following things where observed during testing 
 
-### 'New' Pages required
-
-2.  You cannot delete your user account
-3.  You cannot edit your user details (username / password)
-4.  You should be able to add a category from the Account Page
-
-### fixed bugs
-
-1.  Nav bar links are not whole buttons - fixed!
-2.  The title on the contact page is not bound - fixed!
-3.  Register function doesn't load the Account Page - fixed!
-4.  When No tasks are found the text needs some padding - fixed!
-5.  Landing Page on mobile should have a 'log in' link in the top right corner (not just the burger icon) - fixed!
-6.  Register Page is registering even when the passwords don't match! - fixed!
-7.  Edit task is not re-directing to home page or account page - fixed
-8.  Username can be too many characters (over two lines) which messes up the calculations on the accounts page - FIXED - forms were not validating on submission
-9.  errors need rendering correctly!
-10. Error Pages need more content - images?
-11. Cant click 'done' on add tasks as it doesn't give a 'done-date' to the database
-12. You cannot click done in edit task - patch created and issue with the form validation
-13. Edit and Delete buttons switch there order, pick a consistent order! - now edit then Delete on all tasks and categories
-14. done date not added when editing the priority.
+| Observation | Action | Comment |
+| --- | --- | --- |
+| When no tasks planned/completed the bar should say something like 'No Tasks Prioritised'|   |  |
+| add and edit forms are not validating correctly|    |  |
+| On large screens the tasks should be split into two lists|    |  |
+| Contact form - name/email issues|    |  |
+| Due by date is backwards (2021-10-10)|    |  |
+| Task name should keep the capitals the user writes (eg Test Task not Test task)|    |  |
+| Nav bar links are not whole buttons| Bug Fixed |  |
+| The title on the contact page is not bound| Bug Fixed |  |
+| Register function doesn't load the Account Page| Bug Fixed |  |
+| When No tasks are found the text needs some padding| Bug Fixed |  |
+| Landing Page on mobile should have a 'log in' link in the top right corner (not just the burger icon)| Bug Fixed |  |
+| Register Page is registering even when the passwords don't match!| Bug Fixed |  |
+| Edit task is not re-directing to home page or account page |  Bug Fixed |  |
+| Username can be too many characters (over two lines) which messes up the calculations on the accounts page | Bug Fixed |  |
+| forms were not validating on submission| Bug Fixed |  |
+| errors need rendering correctly! |  Bug Fixed |  |
+| Error Pages need more content |  Bug Fixed |  |
+| Cant click 'done' on add tasks as it doesn't give a 'done-date' to the database |  Bug Fixed |  |
+| You cannot click done in edit task - patch created and issue with the form validation |  Bug Fixed |  |
+| Edit and Delete buttons switch there order, pick a consistent order! | Bug Fixed | now edit then - Delete on all tasks and categories| 
+| done date not added when editing the priority|  Bug Fixed |  |
 
 ### Future features
 
-12. Boxes should turn red when required sections not filled in
+Boxes should turn red when required sections not filled in
+You cannot delete your user account
+You cannot edit your user details (username / password)
+You should be able to add a category from the Account Page
 
-## Security
+## Security Testing
 
-Denied
+As this site is quite small did this testing by 'hand'.  I clicked on the links in the section when not logged into the site and logged in as myself (not Admin).  I did find that I could edit the prioritize and done status however the page displayed did say I wasn't supposed to have access (see screenshots X & Y). I updated the security in the app route so all the below links should show the 'Access Denied', 'Error' or 'login' pages.
 
-Cant access someones else's account
-https://cm-ms3-to-did.herokuapp.com/account/admin
-this should re-direct you to Log In
-
-Cant access someone else's task
-https://cm-ms3-to-did.herokuapp.com/edit_task/615c76092b0f4fbf4afb7f63
-https://cm-ms3-to-did.herokuapp.com/delete_task/615c76092b0f4fbf4afb7f63
-https://cm-ms3-to-did.herokuapp.com/done_task/615c76092b0f4fbf4afb7f63
-https://cm-ms3-to-did.herokuapp.com/priority_task/615c76092b0f4fbf4afb7f63
-this should re-direct you to Access Denied
-
-so i can Prize and 'do' someones tasks! - fixed added security to these pages
-
-
-Cant access someone else's category
-https://cm-ms3-to-did.herokuapp.com/edit_categories/6124f023a1a1b049e04ad919
-https://cm-ms3-to-did.herokuapp.com/delete_category/6124f023a1a1b049e04ad919
-this should re-direct you to Access Denied
-
-Error
-
-Cant access someones else's account
-https://cm-ms3-to-did.herokuapp.com/account/ad
-this should re-direct you to Log In
-
-cant access someone else's task
-https://cm-ms3-to-did.herokuapp.com/edit_task/615c76092b0f4fbf4afb7f6
-https://cm-ms3-to-did.herokuapp.com/delete_task/615c76092b0f4fbf4afb7f6
-https://cm-ms3-to-did.herokuapp.com/done_task/615c76092b0f4fbf4afb7f6
-https://cm-ms3-to-did.herokuapp.com/priority_task/615c76092b0f4fbf4afb7f6
-this should re-direct you to Error
-
-cant access someone else's category
-https://cm-ms3-to-did.herokuapp.com/edit_categories/6124f023a1a1b049e04ad91
-https://cm-ms3-to-did.herokuapp.com/delete_category/6124f023a1a1b049e04ad91
-this should re-direct you to Error
+| Expected Page | links to... |
+|---|---|
+|Log In | [Admin user](https://cm-ms3-to-did.herokuapp.com/account/admin), [No user](https://cm-ms3-to-did.herokuapp.com/account/no) |
+|Access Denied (if you are logged in)|  [Edit Task](https://cm-ms3-to-did.herokuapp.com/edit_task/615c76092b0f4fbf4afb7f63), [Delete Task](https://cm-ms3-to-did.herokuapp.com/delete_task/615c76092b0f4fbf4afb7f63), [Complete Task](https://cm-ms3-to-did.herokuapp.com/done_task/615c76092b0f4fbf4afb7f63), [Prioritize Task](https://cm-ms3-to-did.herokuapp.com/priority_task/615c76092b0f4fbf4afb7f63), [Edit Category](https://cm-ms3-to-did.herokuapp.com/edit_categories/6124f023a1a1b049e04ad919) and [Delete Category](https://cm-ms3-to-did.herokuapp.com/delete_category/6124f023a1a1b049e04ad919)
+|Error| [Edit Task](https://cm-ms3-to-did.herokuapp.com/edit_task/), [Delete Task](https://cm-ms3-to-did.herokuapp.com/delete_task/63), [Complete Task](https://cm-ms3-to-did.herokuapp.com/done_task/615c76092b0f4fbf4afb7f), [Prioritize Task](https://cm-ms3-to-did.herokuapp.com/priority_task/000000000000000000000000), [Edit Category](https://cm-ms3-to-did.herokuapp.com/edit_categories/ffffffffffffffffffffffff) and [Delete Category](https://cm-ms3-to-did.herokuapp.com/delete_category/6124f023a1a1b049e04ad966666)

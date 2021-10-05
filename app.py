@@ -159,7 +159,6 @@ def authorised(user, item):
 def noUser():
     """Puts no user in session for the home page"""
 
-    session['user'] = 'no'
     return render_template('home.html')
 
 
@@ -237,7 +236,6 @@ def login():
 def logout():
     """Remove user from session cookies"""
     session.pop('user')
-    session['user'] = 'no'
     return redirect(url_for('home'))
 
 
@@ -274,6 +272,9 @@ def home():
 def account(username):
     """When there is a user logged in, display the Users Tasks and Categories"""
 
+    if 'user' not in session:
+        return redirect(url_for('login'))
+
     user = security(session['user'])
     form = DeleteForm()
 
@@ -294,6 +295,9 @@ def account(username):
 def edit_category(category_id):
     """Gets one of the user categories puts it on the page, updates the 
     database with the editted category"""
+
+    if 'user' not in session:
+        return redirect(url_for('login'))
 
     user = security(session['user'])
 
@@ -328,7 +332,8 @@ def edit_category(category_id):
 def delete_category(category_id):
     """Gets the categories by ID and deletes the category"""
 
-    security(session['user'])
+    if 'user' not in session:
+        return redirect(url_for('login'))
 
     category = findOneCat(category_id)
     form = DeleteForm()
@@ -352,6 +357,9 @@ def add_task():
     """Finds all the categories and populates them on the site.
     Gets the new task and adds it to the database. Select or create task category.
     If no task details given then fill in with an empty string"""
+    
+    if 'user' not in session:
+        return redirect(url_for('login'))
 
     user = security(session['user'])
 
@@ -397,6 +405,9 @@ def edit_task(task_id):
     """Gets one of the user tasks by ID puts it on the page, updates the 
     database with the editted task. Select or create task category. 
     If no task details given then fill in with an empty string"""
+
+    if 'user' not in session:
+        return redirect(url_for('login'))
 
     user = security(session['user'])
 
@@ -468,6 +479,9 @@ def edit_task(task_id):
 def delete_task(task_id):
     """Gets the task by ID and deletes the task"""
 
+    if 'user' not in session:
+        return redirect(url_for('login'))
+
     task = findOneTask(task_id)
     form = DeleteForm()
     user = security(session['user'])
@@ -490,9 +504,7 @@ def done_task(task_id):
     """Gets the task by ID and toggles the done state"""
 
     if 'user' not in session:
-        return redirect(url_for('noUser'))
-
-    # post methord here
+        return redirect(url_for('login'))
 
     user = security(session['user'])
 
@@ -537,9 +549,8 @@ def done_task(task_id):
 def priority_task(task_id):
     """Gets the task by ID and toggles the priority state"""
 
-    security(session['user'])
-
-    # post methord here
+    if 'user' not in session:
+        return redirect(url_for('login'))
 
     user = security(session['user'])
 

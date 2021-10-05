@@ -1148,6 +1148,10 @@ input#task_size-2 {
 		display: none;
 	}
 
+	.login-link{
+		display: none;
+	}
+
 	/* ---------- nav bar ---------- */
 
 	.desk-nav-bar {
