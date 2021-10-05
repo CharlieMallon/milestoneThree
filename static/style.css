@@ -1079,7 +1079,6 @@ input#task_size-2 {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: column;
-		max-height: 370px;
 		width: 100%;
 	}
 
@@ -1119,7 +1118,7 @@ input#task_size-2 {
 	}
 
 	#task_description {
-		height: 150px;
+		height: 100px;
 	}
 }
 
@@ -1261,6 +1260,23 @@ input#task_size-2 {
 	/* ---------- Task Card ---------- */
 	.section-task .task-card {
 		width: 48%;
+	}
+
+	/* ---------- Forms ------------ */
+	.big-forms{
+		height: 370px;
+	}
+
+	.big-forms .form-field{
+		width: 50%;
+	}
+
+	#task_description {
+		height: 150px;
+	}
+
+	.cat .form-field{
+		width: 100%;
 	}
 }
 

@@ -7,7 +7,7 @@
 	<div class="form">
 		{% if session.user %}
 		<form action='{{ url_for("add_task") }}' method="POST">
-			<div class="form-contents">
+			<div class="form-contents big-forms">
 				{{ displayField(form.task_name, 'title', 'no') }} {{
 				displayField(form.task_description, 'task_description', 'no') }} {{
 				displayField(form.is_priority, 'none', 'yes') }} {{ displayField(form.due_date,
