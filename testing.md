@@ -80,12 +80,12 @@ As this site is quite small did this testing by 'hand'.  I clicked on the links 
 ## Screenshots
 
 ### Error pages incorrectly displaying behind flash messages
-![Prioritized screenshot](assets\testing_imgs\screenshot_task_prioritized.png)
-![Task Done screenshot](assets\testing_imgs\screenshot_task_done.png)
+![Prioritized screenshot](assets/testing_imgs/screenshot_task_prioritized.png)
+![Task Done screenshot](assets/testing_imgs/screenshot_task_done.png)
 
 ### Correctly displaying Error pages
-![Error screenshot](assets\testing_imgs\screenshot_error.png)
-![Access Denied screenshot](assets\testing_imgs\screenshot_access_denied.png)
+![Error screenshot](assets/testing_imgs/screenshot_error.png)
+![Access Denied screenshot](assets/testing_imgs/screenshot_access_denied.png)
 
 ## Validator and Lighthouse Testing
 
@@ -95,7 +95,7 @@ It passed with no errors through the [PEP 8 Checker](http://pep8online.com/).  T
 
 I also used chromes developer tools to run a lighthouse report.
 
-![Light House Report](assets\testing_imgs\Lighthouse_numbers.png).
+![Light House Report](assets/testing_imgs/Lighthouse_numbers.png).
 
 ## Cypress
 
