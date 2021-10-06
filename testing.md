@@ -41,18 +41,18 @@ The following things where observed during testing
 
 | Observation | Action | Comment |
 | --- | --- | --- |
-| When no tasks planned/completed the bar should say something like 'No Tasks Prioritised'|   |  |
-| add and edit forms are not validating correctly|    |  |
-| On large screens the tasks should be split into two lists|    |  |
-| Contact form - name/email issues|    |  |
-| Due by date is backwards (2021-10-10)|    |  |
-| Task name should keep the capitals the user writes (eg Test Task not Test task)|    |  |
-| Nav bar links are not whole buttons| Bug Fixed |  |
+| When no tasks planned/completed the bar should say something like 'No Tasks Prioritised'| Added to next feature update  |  |
+| On large screens the tasks should be split into two lists|  Added to next feature update  | Stopped them rendering oddly, but will split them in to separately rendered columns on the next feature update |
+| Contact form - name/email issues|  Bug Fixed  | Stopped the form control inputs being very small |
+| Due by date is backwards (2021-10-10)|  Added to next feature update  | Get the page to show the date in nicer format (01-Jan-20) |
+| Task name should keep the capitals the user writes (eg Test Task not Test task)|  Added to next feature update  | currently using the .capitalize function, need to change so it takes the first letter and capitalizes it instead |
+| Nav bar links are not whole buttons| Bug Fixed | moved a tag to outside |
 | The title on the contact page is not bound| Bug Fixed |  |
-| Register function doesn't load the Account Page| Bug Fixed |  |
+| Register function doesn't load the Account Page| Bug Fixed | routing error |
 | When No tasks are found the text needs some padding| Bug Fixed |  |
 | Landing Page on mobile should have a 'log in' link in the top right corner (not just the burger icon)| Bug Fixed |  |
-| Register Page is registering even when the passwords don't match!| Bug Fixed |  |
+| Register Page is registering even when the passwords don't match!| Bug Fixed | Forms were not validating correctly |
+| add and edit forms are not validating correctly|  To Fix next feature update  | The date is stopping the form from submitting when the 'official' form validation is turned on - there is validation on the server side and the error handling will handle any problems until this issue can be correctly fixed |
 | Edit task is not re-directing to home page or account page |  Bug Fixed |  |
 | Username can be too many characters (over two lines) which messes up the calculations on the accounts page | Bug Fixed |  |
 | forms were not validating on submission| Bug Fixed |  |
@@ -72,10 +72,20 @@ You should be able to add a category from the Account Page
 
 ## Security Testing
 
-As this site is quite small did this testing by 'hand'.  I clicked on the links in the section when not logged into the site and logged in as myself (not Admin).  I did find that I could edit the prioritize and done status however the page displayed did say I wasn't supposed to have access (see screenshots X & Y). I updated the security in the app route so all the below links should show the 'Access Denied', 'Error' or 'login' pages.
+As this site is quite small did this testing by 'hand'.  I clicked on the links in the section when not logged into the site and logged in as myself (not Admin).  I did find that I could edit the prioritize and done status however the page displayed did say I wasn't supposed to have access (see screenshots at the bottom of the page). I updated the security in the app route so all the below links should show the 'Access Denied', 'Error' or 'login' pages.
 
 | Expected Page | links to... |
 |---|---|
 |Log In | [Admin user](https://cm-ms3-to-did.herokuapp.com/account/admin), [No user](https://cm-ms3-to-did.herokuapp.com/account/no) |
 |Access Denied (if you are logged in login page if you are not)|  [Edit Task](https://cm-ms3-to-did.herokuapp.com/edit_task/615c76092b0f4fbf4afb7f63), [Delete Task](https://cm-ms3-to-did.herokuapp.com/delete_task/615c76092b0f4fbf4afb7f63), [Complete Task](https://cm-ms3-to-did.herokuapp.com/done_task/615c76092b0f4fbf4afb7f63), [Prioritize Task](https://cm-ms3-to-did.herokuapp.com/priority_task/615c76092b0f4fbf4afb7f63), [Edit Category](https://cm-ms3-to-did.herokuapp.com/edit_categories/6124f023a1a1b049e04ad919) and [Delete Category](https://cm-ms3-to-did.herokuapp.com/delete_category/6124f023a1a1b049e04ad919)
 |Error| [Edit Task](https://cm-ms3-to-did.herokuapp.com/edit_task/), [Delete Task](https://cm-ms3-to-did.herokuapp.com/delete_task/63), [Complete Task](https://cm-ms3-to-did.herokuapp.com/done_task/615c76092b0f4fbf4afb7f), [Prioritize Task](https://cm-ms3-to-did.herokuapp.com/priority_task/000000000000000000000000), [Edit Category](https://cm-ms3-to-did.herokuapp.com/edit_categories/ffffffffffffffffffffffff) and [Delete Category](https://cm-ms3-to-did.herokuapp.com/delete_category/6124f023a1a1b049e04ad966666)
+
+## Screenshots
+
+### Error pages incorrectly displaying behind flash messages
+![Prioritized screenshot](assets\testing_imgs\screenshot_task_prioritized.png)
+![Task Done screenshot](assets\testing_imgs\screenshot_task_done.png)
+
+### Correctly displaying Error pages
+![Error screenshot](assets\testing_imgs\screenshot_error.png)
+![Access Denied screenshot](assets\testing_imgs\screenshot_access_denied.png)
