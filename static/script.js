@@ -243,13 +243,18 @@ const toggleSection = (thisSection, allSections) => {
 
 // Send email using js
 function sendMail() {
+	console.log('sending :>> ');
 	emailjs
-		.send('iCloud-Charlie', 'standard_template', {
-			message: document.getElementById('subject').value,
-			from_name: document.getElementById('fullName').value,
-			from_email: document.getElementById('emailAddress').value,
-			site: 'To Did App',
-		})
+		.send(
+			'iCloud-Charlie',
+			'standard_template',
+			{
+				message: document.getElementById('subject').value,
+				from_name: document.getElementById('fullName').value,
+				from_email: document.getElementById('emailAddress').value,
+				site: 'To Did App',
+			}
+		)
 		.then(
 			function () {
 				console.log('SUCCESS!');

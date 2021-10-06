@@ -777,6 +777,14 @@ h1 a {
 	width: 100px;
 }
 
+.contact-form .inline .form-label{
+	width: 30%;
+}
+
+.contact-form .inline .form-control{
+	width: 70%;
+}
+
 .select-size {
 	display: flex;
 	justify-content: space-around;
@@ -1117,6 +1125,14 @@ input#task_size-2 {
 		width: 70%;
 	}
 
+	.contact-form .inline .form-label{
+		width: 30%;
+	}
+	
+	.contact-form .inline .form-control{
+		width: 70%;
+	}
+
 	#task_description {
 		height: 100px;
 	}
@@ -1277,6 +1293,14 @@ input#task_size-2 {
 
 	.cat .form-field {
 		width: 100%;
+	}
+
+	.contact-form .inline .form-label{
+		width: 30%;
+	}
+	
+	.contact-form .inline .form-control{
+		width: 70%;
 	}
 }
 

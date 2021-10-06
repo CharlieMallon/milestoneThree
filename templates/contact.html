@@ -1,121 +1,102 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="form-container">
-    <div class="container contact-title">
-        <h2 class="header">Contact</h2>
-    </div>
-    <div class="contact-text">
-        <p>Want to get in touch? I look forward to hearing from you!</p>
-    </div>
-    <form class="form" onsubmit="return sendMail(this);">
-        <div class="form-field inline">
-            <!-- Field Name -->
-            <div class="form-label">
-                <label for="fullName">Name</label>
-            </div>
-            <!-- Form Field -->
-            <div class="form-control">
-                <input
-                    type="text"
-                    name="name"
-                    id="fullName"
-                    placeholder="Full Name"
-                    class="control"
-                    required
-                />
-            </div>
-        </div>
-        <div class="form-field inline">
-            <!-- Field Name -->
-            <div class="form-label">
-                <label for="emailAddress">Email</label>
-            </div>
-            <!-- Form Field -->
-            <div class="form-control">
-                <input
-                    type="email"
-                    name="email"
-                    id="emailAddress"
-                    placeholder="Email"
-                    class="control"
-                    required
-                />
-            </div>
-        </div>
-        <div class="form-field">
-            <!-- Field Name -->
-            <div class="form-label">
-                <label for="subject">Message</label>
-            </div>
-            <!-- Form Field -->
-            <div class="form-control">
-                <textarea
-                    name="subject"
-                    id="subject"
-                    rows="4"
-                    class="control"
-                    required
-                ></textarea>
-            </div>
-        </div>
-        <div class="submit-button">
-            <button type="submit" id="send">
-                Send Message
-            </button>
-        </div>
-    </form>
+	<div class="container contact-title">
+		<h2 class="header">Contact</h2>
+	</div>
+	<div class="contact-text">
+		<p>Want to get in touch? I look forward to hearing from you!</p>
+	</div>
+	<form class="form contact-form" onsubmit="return sendMail(this);">
+		<div class="form-field inline">
+			<!-- Field Name -->
+			<div class="form-label">
+				<label for="fullName">Name</label>
+			</div>
+			<!-- Form Field -->
+			<div class="form-control">
+				<input
+					type="text"
+					name="name"
+					id="fullName"
+					placeholder="Full Name"
+					class="control"
+					required
+				/>
+			</div>
+		</div>
+		<div class="form-field inline">
+			<!-- Field Name -->
+			<div class="form-label">
+				<label for="emailAddress">Email</label>
+			</div>
+			<!-- Form Field -->
+			<div class="form-control">
+				<input
+					type="email"
+					name="email"
+					id="emailAddress"
+					placeholder="Email"
+					class="control"
+					required
+				/>
+			</div>
+		</div>
+		<div class="form-field">
+			<!-- Field Name -->
+			<div class="form-label">
+				<label for="subject">Message</label>
+			</div>
+			<!-- Form Field -->
+			<div class="form-control">
+				<textarea name="subject" id="subject" rows="4" class="control" required></textarea>
+			</div>
+		</div>
+		<div class="submit-button">
+			<button type="submit" id="send">Send Message</button>
+		</div>
+	</form>
 </div>
 
 <!-- The sucess Task Modal -->
 <div id="sucess" class="modal-background hidden" data-closer="close">
-    <!-- Modal content -->
-    <div class="modal">
-        <div class="modal-title">
-            <h2>Sucess<span class="close" data-closer="close">&times;</span></h2>
-        </div>
-        <div class="modal-content">
-            <div class="modal-par">
-                <p>Thank you for your email</p>
-            </div>
-            <div class="modal-btns">
-                <div class="btn m-btn">
-                    <p class="no-btn" data-closer="close">Close</p>
-                </div>
-            </div>
-        </div>
-    </div>
+	<!-- Modal content -->
+	<div class="modal">
+		<div class="modal-title">
+			<h2>Sucess<span class="close" data-closer="close">&times;</span></h2>
+		</div>
+		<div class="modal-content">
+			<div class="modal-par">
+				<p>Thank you for your email</p>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- The fail Task Modal -->
 <div id="fail" class="modal-background hidden" data-closer="close">
-    <!-- Modal content -->
-    <div class="modal">
-        <div class="modal-title">
-            <h2>Email Failed to send<span class="close" data-closer="close">&times;</span></h2>
-        </div>
-        <div class="modal-content">
-            <div class="modal-par">
-                <p>Sorry something went wrong</p>
-            </div>
-            <div class="modal-btns">
-                <div class="btn m-btn">
-                    <p class="no-btn" data-closer="close">Close</p>
-                </div>
-            </div>
-        </div>
-    </div>
+	<!-- Modal content -->
+	<div class="modal">
+		<div class="modal-title">
+			<h2>Email Failed to send<span class="close" data-closer="close">&times;</span></h2>
+		</div>
+		<div class="modal-content">
+			<div class="modal-par">
+				<p>Sorry something went wrong</p>
+			</div>
+		</div>
+	</div>
 </div>
 
-{% endblock %}
-
-{% block scripts %}
+{% endblock %} {% block scripts %}
 
 <!-- Email Script for JS -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
-<script>
-    (function () {
-        emailjs.init('user_8bAv4RpyCxxhdDuZ02hoe');
-    })();
+<script
+	type="text/javascript"
+	src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
+></script>
+<script type="text/javascript">
+	(function () {
+		emailjs.init('user_8bAv4RpyCxxhdDuZ02hoe');
+	})();
 </script>
 {% endblock %}
