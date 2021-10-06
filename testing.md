@@ -26,17 +26,21 @@ There are two types of pages on this site, the 'public' pages which are viewed b
     1.  Public pages
             Do they all render correctly?
     2.  Create phase
-            Create a user, create some tasks and create a category in a task. Can you do it from all the right pages? Do the pages render correctly?
+            Create a user, create some tasks and create a category in a task. 
+            Can you do it from all the right pages? Do the pages render correctly?
     3.  Edit phase
-            Is the edit tasks accessible from all pages and edit categories on the accounts page. Can you complete/prioritise tasks from all the correct pages? Do the pages render correctly?
+            Is the edit tasks accessible from all pages and edit categories on the accounts page. 
+            Can you complete/prioritise tasks from all the correct pages? Do the pages render correctly?
     4.  Delete Phase
             Can you delete tasks from all pages and delete categories on the accounts page?
     5.  Logging in/out
             Can the user log in out?
     6.  Security / error handling
-            Can you get to parts of the site without logging In or with the wrong credentials? what happens if you try to access something that doesn't exist?
+            Can you get to parts of the site without logging In or with the wrong credentials? 
+            what happens if you try to access something that doesn't exist?
 
-        Note: As the delete the user section has not been build yet, the cypress test user has to be manually deleted from the database after running the test suite
+        Note: As the delete the user section has not been build yet, 
+        the cypress test user has to be manually deleted from the database after running the test suite
 
 ## During Testing
 
