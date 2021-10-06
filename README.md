@@ -2,7 +2,7 @@
 
 [View the live website here](http://cm-ms3-to-did.herokuapp.com/home)
 
-![mockUp](assets\images\mockup_To_Did.png)
+![mockUp](/assets/images/mockup_To_Did.png)
 
 ---
 
@@ -156,7 +156,7 @@ as chronic fatigue, long COVID or depression. It aims to assist in the recovery 
 
     -   #### Colour Scheme
 
-        ![colours](assets\images\toDidColours.png)
+        ![colours](/assets/images/toDidColours.png)
         I chose calming colours for the main colour scheme. The colours on tasks is a nice positive green.
 
     -   #### Typography
