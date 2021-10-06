@@ -32,7 +32,8 @@ def security(user):
 
 
 def allTasks(user):
-    """ Get all the uses tasks. Delete the tasks that are more than a day old"""
+    """ Get all the uses tasks. Delete the tasks that are
+    more than a day old"""
 
     otherTasks = list(mongo.db.tasks.find({
         'created_by': user,
@@ -62,7 +63,7 @@ def allTasks(user):
 
 
 def progress(user):
-    """ Get all the uses tasks and calculate the persentage of the progress bar 
+    """ Get all the uses tasks and calculate the persentage of the progress bar
     (number of important done task / number of done tasks + important tasks)"""
 
     importantTasks, otherTasks, doneTasks = allTasks(user)
@@ -119,7 +120,8 @@ def categories(user):
 
 
 def addCategory(cat_name, user):
-    """If the task category exists, find it on the database, if not create a new user category."""
+    """If the task category exists, find it on the database,
+    if not create a new user category."""
     existing_cat = mongo.db.categories.find_one(
         {'category_name': cat_name})
     if not existing_cat:
@@ -268,13 +270,15 @@ def home():
     tasks = (importantTasks + otherTasks + doneTasks)
     toDo = (importantTasks + otherTasks)
 
-    return render_template('home.html', tasks=tasks, doneTasks=doneTasks, toDo=toDo,
+    return render_template('home.html', tasks=tasks,
+                           doneTasks=doneTasks, toDo=toDo,
                            progressBar=progressBar, form=form)
 
 
 @app.route('/account/<username>')
 def account(username):
-    """When there is a user logged in, display the Users Tasks and Categories"""
+    """When there is a user logged in,
+    display the Users Tasks and Categories"""
 
     if 'user' not in session:
         return redirect(url_for('login'))
@@ -290,14 +294,16 @@ def account(username):
     progressBar = progress(username)
 
     return render_template('account.html', username=user,
-                           categories=categories, importantTasks=importantTasks,
-                           otherTasks=otherTasks, doneTasks=doneTasks,
+                           categories=categories,
+                           importantTasks=importantTasks,
+                           otherTasks=otherTasks,
+                           doneTasks=doneTasks,
                            progressBar=progressBar, form=form)
 
 
 @app.route('/edit_categories/<category_id>', methods=['GET', 'POST'])
 def edit_category(category_id):
-    """Gets one of the user categories puts it on the page, updates the 
+    """Gets one of the user categories puts it on the page, updates the
     database with the editted category"""
 
     if 'user' not in session:
@@ -359,8 +365,9 @@ def delete_category(category_id):
 @app.route('/add_task', methods=['GET', 'POST'])
 def add_task():
     """Finds all the categories and populates them on the site.
-    Gets the new task and adds it to the database. Select or create task category.
-    If no task details given then fill in with an empty string"""
+    Gets the new task and adds it to the database. Select or
+    create task category. If no task details given then fill
+    in with an empty string"""
 
     if 'user' not in session:
         return redirect(url_for('login'))
@@ -406,8 +413,8 @@ def add_task():
 
 @app.route('/edit_task/<task_id>', methods=['GET', 'POST'])
 def edit_task(task_id):
-    """Gets one of the user tasks by ID puts it on the page, updates the 
-    database with the editted task. Select or create task category. 
+    """Gets one of the user tasks by ID puts it on the page, updates the
+    database with the editted task. Select or create task category.
     If no task details given then fill in with an empty string"""
 
     if 'user' not in session:
@@ -434,10 +441,10 @@ def edit_task(task_id):
         else:
             cat_name = form.task_category.data.capitalize()
 
-        if task['is_done'] == True:
+        if task['is_done']:
             date_done = task['date_done']
             time_done = task['time_done']
-        elif form.is_done.data == True:
+        elif form.is_done.data:
             date_done = datetime.now().strftime('%Y-%m-%d')
             time_done = datetime.now()
         else:
@@ -518,7 +525,7 @@ def done_task(task_id):
     item = findOneTask(task_id)
     task = authorised(user, item)
 
-    if task['is_done'] == True:
+    if task['is_done']:
         done = {
             'task_name': task['task_name'],
             'task_description': task['task_description'],
@@ -577,7 +584,7 @@ def priority_task(task_id):
         'time_done':  task['time_done']
     }
 
-    if task['is_priority'] == True:
+    if task['is_priority']:
         status = 'Task Successfully Un-prioritised'
     else:
         status = 'Task Successfully Prioritised'

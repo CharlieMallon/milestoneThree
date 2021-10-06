@@ -87,7 +87,13 @@ As this site is quite small did this testing by 'hand'.  I clicked on the links 
 
 ## Validator and Lighthouse Testing
 
-I used [w3c markup validator]() and [CSS Validator]() to validate my sites code
+I used [w3c markup validator](), [CSS Validator]()
+
+-       [JSHint](https://jshint.com/)
+
+        
+
+ and [PEP 8 Checker]() to validate my sites code
 
 I also used chromes developer tools to run a lighthouse report.
 
