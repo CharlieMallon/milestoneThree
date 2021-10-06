@@ -53,7 +53,7 @@ describe('The Delete Page', () => {
 			.get(':nth-child(3) > .section-header')
 			.click()
 			.get(
-				'.open > .section-content > .task > :nth-child(1) > .task-header > .done-box > .check-box > p'
+				'.open > .section-content > .task > :nth-child(1) > .task-header > .done-box > .check-box'
 			)
 			.click()
 			.get('section > .modal-background')
@@ -80,9 +80,9 @@ describe('The Delete Page', () => {
 			.click()
 			.get('#burger-btn')
 			.click()
-			.get('ul > :nth-child(2) > a')
+			.get('nav > ul > :nth-child(2) > a')
 			.click()
-			.get(':nth-child(4) > .section-header > :nth-child(2) > p > .section-arrow')
+			.get(':nth-child(4) > .section-header > :nth-child(2) > .section-arrow')
 			.click()
 			.get('.open > .section-content')
 			.should('contain', 'No Tasks Found');
@@ -92,7 +92,7 @@ describe('The Delete Page', () => {
 		cy.get(':nth-child(5) > .section-header')
 			.click()
 			.get(
-				'.open > .section-content > .task > .large > .task-header > .task-header-internal > .task-name > strong > .shave-me'
+				'.open > .section-content > .task > .large > .task-header > .task-header-internal > .task-name > .shave-me'
 			)
 			.click()
 			.get('.open > .task-body > :nth-child(3) > .task-buttons > .open-modal > .delete > img')
@@ -111,9 +111,9 @@ describe('The Delete Page', () => {
 			.click()
 			.get('#burger-btn')
 			.click()
-			.get('ul > :nth-child(2) > a')
+			.get('nav > ul > :nth-child(2) > a')
 			.click()
-			.get(':nth-child(5) > .section-header > :nth-child(2) > p > .section-arrow')
+			.get(':nth-child(5) > .section-header > :nth-child(2) > .section-arrow')
 			.click()
 			.get('.open > .section-content')
 			.should('contain', 'No Tasks Found');
@@ -140,9 +140,9 @@ describe('The Delete Page', () => {
 			.click()
 			.get('#burger-btn')
 			.click()
-			.get('ul > :nth-child(2) > a')
+			.get('nav > ul > :nth-child(2) > a')
 			.click()
-			.get(':nth-child(3) > .section-header > :nth-child(2) > p > .section-arrow')
+			.get(':nth-child(3) > .section-header > :nth-child(2) > .section-arrow')
 			.click()
 			.get('.open > .section-content')
 			.should('contain', 'No Tasks Found');

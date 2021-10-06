@@ -92,7 +92,9 @@ describe('Edit Tasks', () => {
 	it('Completes Task on home', () => {
 		cy.get('.mobile-nav > h1 > a')
 			.click()
-			.get(':nth-child(2) > .task-header > .done-box > .check-box > img')
+			.get(
+				'.small-screen > .task > :nth-child(2) > .task-header > .done-box > .check-box > img'
+			)
 			.click()
 			.get('section > .modal-background > .modal > .modal-content > .modal-par')
 			.should('contain', 'Task Successfully Done')
@@ -128,7 +130,7 @@ describe('Edit Tasks', () => {
 		cy.get(':nth-child(3) > .section-header')
 			.click()
 			.get(
-				'.open > .section-content > .task > :nth-child(1) > .task-header > .done-box > .check-box > p'
+				'.open > .section-content > .task > :nth-child(1) > .task-header > .done-box > .check-box >'
 			)
 			.click()
 			.get('section > .modal-background > .modal > .modal-content > .modal-par')
@@ -139,7 +141,7 @@ describe('Edit Tasks', () => {
 		cy.get(':nth-child(4) > .section-header')
 			.click()
 			.get(
-				'.open > .section-content > .task > .large > .task-header > .done-box > .check-box > p > img'
+				'.open > .section-content > .task > .large > .task-header > .done-box > .check-box > img'
 			)
 			.click()
 			.get('section > .modal-background > .modal > .modal-content > .modal-par')
@@ -150,7 +152,7 @@ describe('Edit Tasks', () => {
 		cy.get(':nth-child(5) > .section-header')
 			.click()
 			.get(
-				'.open > .section-content > .task > :nth-child(2) > .task-header > .done-box > .check-box > p > img'
+				'.open > .section-content > .task > :nth-child(2) > .task-header > .done-box > .check-box > img'
 			)
 			.click()
 			.get('section > .modal-background > .modal > .modal-content > .modal-par')

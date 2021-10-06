@@ -1,464 +1,555 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
+<!-- If not logged in show this screen -->
+{% if not session.user%}
+<div class="login-link">
+	<a href='{{ url_for("login") }}'>Log In</a>
+</div>
+<div class="no-session-user">
+	<div class="cta largecta">
+		<h2>The To Do App to aid recovery</h2>
+		<a href='{{ url_for("register") }}'>
+			<p class="btn cta-btn">Take the first step</p>
+		</a>
+	</div>
+	<div class="cta smallcta cta-left">
+		<h3>Positive Feedback</h3>
+		<p class="cta-text">Shows you what you have completed in your day</p>
+		<a href='{{ url_for("register") }}'>
+			<p class="btn cta-btn">Start Now</p>
+		</a>
+	</div>
+	<div class="cta smallcta cta-right">
+		<h3>Built to assist</h3>
+		<p class="cta-text">Aid you on your road to recovery</p>
+		<a href='{{ url_for("register") }}'>
+			<p class="btn cta-btn">Start Now</p>
+		</a>
+	</div>
+	<div class="cta smallcta cta-left">
+		<h3>Simple Design</h3>
+		<p class="cta-text">Designed to work seamlessly between devices</p>
+		<a href='{{ url_for("register") }}'>
+			<p class="btn cta-btn">Start Now</p>
+		</a>
+	</div>
+	<div class="cta largecta">
+		<h2>Take the first step Today</h2>
+		<a href='{{ url_for("register") }}'>
+			<p class="btn cta-btn">Start Now</p>
+		</a>
+	</div>
+</div>
+{% endif %}
 
-    <!-- If not logged in show this screen -->
-    {% if  not session.user%}
-    <div class='login-link'>
-        <a href='{{ url_for("login") }}'>Log In</a>
-    </div>
-    <div class='no-session-user'>
-        <div class='cta largecta'>
-            <h2>The To Do App to aid recovery</h2>
-            <a href='{{ url_for("register") }}'>
-                <p class='btn cta-btn'>Take the first step</p>
-            </a>
-        </div>
-        <div class='cta smallcta cta-left'>
-            <h3>Positive Feedback</h3>
-            <p class='cta-text'>Shows you what you have completed in your day</p>
-            <a href='{{ url_for("register") }}'>
-                <p class='btn cta-btn'>Start Now</p>
-            </a>
-        </div>
-        <div class='cta smallcta cta-right'>
-            <h3>Built to assist</h3>
-            <p class='cta-text'>Aid you on your road to recovery</p>
-            <a href='{{ url_for("register") }}'>
-                <p class='btn cta-btn'>Start Now</p>
-            </a>
-        </div>
-        <div class='cta smallcta cta-left'>
-            <h3>Simple Design</h3>
-            <p class='cta-text'>Designed to work seamlessly between devices</p>
-            <a href='{{ url_for("register") }}'>
-                <p class='btn cta-btn'>Start Now</p>
-            </a>
-        </div>
-        <div class='cta largecta'>
-            <h2>Take the first step Today</h2>
-            <a href='{{ url_for("register") }}'>
-                <p class='btn cta-btn'>Start Now</p>
-            </a>
-        </div>
-    </div>
-    {% endif %}
-    
-    <!-- List out the tasks -->
-    {% if session.user%}
-        <div class='small-screen'>
-            {% if tasks|length > 0 %}
-                <ul class='task'>    
-                    {% for task in tasks %}
-                        {% if session.user|lower == task.created_by|lower %}
-                            {% if task.task_size == 'small' %}
-                                {% if task.is_done == true %}
-                                    <li class='task-card col small done'>
-                                {% else %}
-                                    <li class='task-card col small'>
-                                {% endif %}   
-                            {% elif task.task_size == 'medium' %}
-                                {% if task.is_done == true %}
-                                    <li class='task-card col medium done'>
-                                {% else %}
-                                    <li class='task-card col medium'>
-                                {% endif %}
-                            {% else %}
-                                {% if task.is_done == true %}
-                                    <li class='task-card col large done'>
-                                {% else %}
-                                    <li class='task-card col large'>
-                                {% endif %}
-                            {% endif %}
-                                    <div class='task-header row click'>
-                                        <div class='row done-box'>
-                                            <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
-                                                {% if task.is_done == true %}
-                                                <img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}' alt='check box full'>
-                                                {% else %}
-                                                <img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}' alt='check box empty'>
-                                                {% endif %}
-                                            </a>
-                                        </div>
-                                        <div class='row task-header-internal'>
-                                            <div class='task-name'>
-                                                <p class='shave-me'>
-                                                        <strong>
-                                                        {{ task.task_name }}
-                                                    </strong>
-                                                    </p>
-                                            </div>
-                                            <div class='buttons'>
-                                                <img class='arrow' src='{{ url_for("static", filename="imgs/down-arrow.svg") }}' alt='expand arrow'>
-                                                {% if task.is_priority == true %}
-                                                <img class='exclamation' src='{{ url_for("static", filename="imgs/priority-high.svg") }}' alt='priority'>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class='task-body col'>
-                                        <div class='task-content-row row info'>
-                                            <div class='category'>
-                                                {% if task.category_name == '' %}
-                                                    <p>
-                                                        <strong>No Category</strong>
-                                                    </p>
-                                                {% else %}
-                                                <p>
-                                                    <strong>
-                                                        {{ task.category_name }}
-                                                    </strong>
-                                                </p>
-                                                {% endif %}
-                                            </div>
-                                            <div class='priority'>
-                                                <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
-                                                    {% if task.is_priority == true %}
-                                                    <img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}' alt='check box full'>
-                                                    <p class="priority-text">
-                                                            <strong>
-                                                            <em>Priority</em>
-                                                        </strong>
-                                                    </p>
-                                                    {% else %}
-                                                    <img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}' alt='check box empty'>
-                                                    <p class='priority-text'>Priority</p>
-                                                    {% endif %}
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class='task-content-row row'>
-                                            {% if task.task_description != '' %}
-                                            <div class='description'>
-                                                {{ task.task_description }}
-                                            </div>
-                                            {% endif %}
-                                        </div>
-                                        <div class='task-content-row row info'>
-                                            <div class='due-date'>
-                                                {% if task.due_date != 'None' %}
-                                                    <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
-                                                {% else %}
-                                                    <p>No Due Date</p>
-                                                {% endif %}
-                                            </div>
-                                            <div class="task-buttons">
-                                                <div class='edit'>
-                                                    <a href='{{ url_for("edit_task", task_id=task._id) }}'>
-                                                        <img src='{{ url_for("static", filename="imgs/edit.svg") }}' alt='edit'>
-                                                    </a>
-                                                </div>
-                                                <div class='open-modal'>
-                                                    <p class="delete click"><img src='{{ url_for("static", filename="imgs/delete.svg") }}' alt='delete'></p>
-                                                </div>
-                                                <!-- The Delete Task Modal -->
-                                                <div class="modal-background hidden" data-closer="close">
-                                                    <!-- Modal content -->
-                                                    <div class="modal">
-                                                        <div class="modal-title">
-                                                            <h2>Delete Task<span class="close" data-closer="close">&times;</span></h2>
-                                                        </div>
-                                                        <div class="modal-content">
-                                                            <div class="modal-par">
-                                                                <p>Are you sure you want to delete the "{{ task.task_name }}" Task?</p>
-                                                            </div>
-                                                            <form action='{{ url_for("delete_task", task_id=task._id) }}' method='POST'>
-                                                                <div class="modal-btns">
-                                                                    <div class="btn m-btn">
-                                                                        {{ form.submit_button }}
-                                                                    </div>
-                                                                    <div class="btn m-btn">
-                                                                        <div data-closer='close'>
-                                                                            {{ form.cancel_button }}
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            {% endif %}
-                    {% endfor %}
-                </ul>
-            {% else %}
-            <h3 class="no-tasks">No Tasks Found</h3>
-            {% endif %}
-        </div>
-        <div class='large-screen'>
-            <div class='main-section toDo'>
-                <div class='main-section-header row'>
-                    <div class='row'>
-                        <h3>To Do</h3>
-                    </div>
-                </div>
-                <div class='main-section-content row'>
-                    <div class='task-list'>
-                        {% if toDo|length > 0 %}
-                        <ul class='task'>    
-                            {% for task in toDo %}
-                                {% if session.user|lower == task.created_by|lower %}
-                                    {% if task.task_size == 'small' %}
-                                        <li class='task-card col small'>    
-                                    {% elif task.task_size == 'medium' %}
-                                        <li class='task-card col medium'>
-                                    {% else %}
-                                        <li class='task-card col large'>
-                                    {% endif %}
-                                            <div class='task-header row click'>
-                                                <div class='row done-box'>
-                                                    <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
-                                                        {% if task.is_done == true %}
-                                                        <img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}' alt='check box full'>
-                                                        {% else %}
-                                                        <img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}' alt='check box empty'>
-                                                        {% endif %}
-                                                    </a>
-                                                </div>
-                                                <div class='row task-header-internal'>
-                                                    <div class='task-name'>
-                                                        <strong>
-                                                            <p class="shave-me">
-                                                                {{ task.task_name }}
-                                                            </p>
-                                                        </strong>
-                                                    </div>
-                                                    <div class="buttons">
-                                                        <img class='arrow' src='{{ url_for("static", filename="imgs/down-arrow.svg") }}' alt='expand arrow'>
-                                                        {% if task.is_priority == true %}
-                                                        <img class='exclamation' src='{{ url_for("static", filename="imgs/priority-high.svg") }}' alt='priority'>
-                                                        {% endif %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class='task-body col'>
-                                                <div class='task-content-row row info'>
-                                                    <div class='category'>
-                                                        {% if task.category_name == '' %}
-                                                            <p>No Category</p>
-                                                        {% else %}
-                                                            {{ task.category_name }}
-                                                        {% endif %}
-                                                    </div>
-                                                    <div class="priority">
-                                                        <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
-                                                            {% if task.is_priority == true %}
-                                                            <img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}' alt='check box full'>
-                                                            <p class="priority-text">
-                                                                <strong>
-                                                                    <em>Priority</em>
-                                                                </strong>
-                                                            </p>
-                                                            {% else %}
-                                                            <img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}' alt='check box empty'>
-                                                            <p class="priority-text">Priority</p>
-                                                            {% endif %}
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class='task-content-row row'>
-                                                    {% if task.task_description != '' %}
-                                                    <div class='description'>
-                                                        {{ task.task_description }}
-                                                    </div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class='task-content-row row info'>
-                                                    <div class='due-date'>
-                                                        {% if task.due_date != 'None' %}
-                                                            <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
-                                                        {% else %}
-                                                            <p>No Due Date</p>
-                                                        {% endif %}
-                                                    </div>
-                                                    <div class="task-buttons">
-                                                        <div class='edit'>
-                                                            <a href='{{ url_for("edit_task", task_id=task._id) }}'>
-                                                                <img src='{{ url_for("static", filename="imgs/edit.svg") }}' alt='edit'>
-                                                            </a>
-                                                        </div>
-                                                        <div class='open-modal'>
-                                                            <p class="delete click"><img src='{{ url_for("static", filename="imgs/delete.svg") }}' alt='delete'></p>
-                                                        </div>
-                                                        <!-- The Delete Task Modal -->
-                                                        <div class="modal-background hidden" data-closer="close">
-                                                            <!-- Modal content -->
-                                                            <div class="modal">
-                                                                <div class="modal-title">
-                                                                    <h2>Delete Task<span class="close" data-closer="close">&times;</span></h2>
-                                                                </div>
-                                                                <div class="modal-content">
-                                                                    <div class="modal-par">
-                                                                        <p>Are you sure you want to delete the "{{ task.task_name }}" Task?</p>
-                                                                    </div>
-                                                                    <form action='{{ url_for("delete_task", task_id=task._id) }}' method='POST'>
-                                                                        <div class="modal-btns">
-                                                                            <div class="btn m-btn">
-                                                                                {{ form.submit_button }}
-                                                                            </div>
-                                                                            <div class="btn m-btn">
-                                                                                <div data-closer='close'>
-                                                                                    {{ form.cancel_button }}
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    {% endif %}
-                            {% endfor %}
-                        </ul>
-                        {% else %}
-                            <h3 class="no-tasks">No Tasks Found</h3>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+<!-- List out the tasks -->
+{% if session.user%}
+<div class="small-screen">
+	{% if tasks|length > 0 %}
+	<ul class="task">
+		{% for task in tasks %} {% if session.user|lower == task.created_by|lower %} {% if
+		task.task_size == 'small' %} {% if task.is_done == true %}
+		<li class="task-card col small done">{% else %}</li>
 
-            <div class="main-section doneSection">
-                <div class="main-section-header row">
-                    <div class="row">
-                        <h3>Tasks Completed Today</h3>
-                    </div>
-                </div>
-                <div class="main-section-content row">
-                    <div class='task-list'>
-                        {% if doneTasks|length > 0 %}
-                        <ul class='task'>    
-                            {% for task in doneTasks %}
-                                {% if session.user|lower == task.created_by|lower %}
-                                    {% if task.task_size == 'small' %}
-                                        <li class='task-card col small'>    
-                                    {% elif task.task_size == 'medium' %}
-                                        <li class='task-card col medium'>
-                                    {% else %}
-                                        <li class='task-card col large'>
-                                    {% endif %}
-                                            <div class='task-header row click'>
-                                                <div class='row done-box'>
-                                                    <a href='{{ url_for("done_task", task_id=task._id) }}' class='check-box'>
-                                                        {% if task.is_done == true %}
-                                                        <img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}' alt='check box full'>
-                                                        {% else %}
-                                                        <img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}' alt='check box empty'>
-                                                        {% endif %}
-                                                    </a>
-                                                </div>
-                                                <div class='row task-header-internal'>
-                                                    <div class='task-name'>
-                                                        <strong>
-                                                            <p class="shave-me">
-                                                                {{ task.task_name }}
-                                                            </p>
-                                                        </strong>
-                                                    </div>
-                                                    <div class="buttons">
-                                                        <img class='arrow' src='{{ url_for("static", filename="imgs/down-arrow.svg") }}' alt='expand arrow'>
-                                                        {% if task.is_priority == true %}
-                                                        <img class='exclamation' src='{{ url_for("static", filename="imgs/priority-high.svg") }}' alt='priority'>
-                                                        {% endif %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class='task-body col'>
-                                                <div class='task-content-row row info'>
-                                                    <div class='category'>
-                                                        {% if task.category_name == '' %}
-                                                            <p>No Category</p>
-                                                        {% else %}
-                                                            {{ task.category_name }}
-                                                        {% endif %}
-                                                    </div>
-                                                    <div class="priority">
-                                                        <a href='{{ url_for("priority_task", task_id=task._id) }}' class='check-box row'>
-                                                            {% if task.is_priority == true %}
-                                                            <img src='{{ url_for("static", filename="imgs/check-box-full.svg") }}' alt='check box full'>
-                                                            <p class="priority-text">
-                                                                <strong>
-                                                                    <em>Priority</em>
-                                                                </strong>
-                                                            </p>
-                                                            {% else %}
-                                                            <img src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}' alt='check box empty'>
-                                                            <p class="priority-text">Priority</p>
-                                                            {% endif %}
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class='task-content-row row'>
-                                                    {% if task.task_description != '' %}
-                                                    <div class='description'>
-                                                        {{ task.task_description }}
-                                                    </div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class='task-content-row row info'>
-                                                    <div class='due-date'>
-                                                        {% if task.due_date != 'None' %}
-                                                            <p>Due by: <span class='date'>{{ task.due_date }}</span></p>
-                                                        {% else %}
-                                                            <p>No Due Date</p>
-                                                        {% endif %}
-                                                    </div>
-                                                    <div class="task-buttons">
-                                                        <div class='edit'>
-                                                            <a href='{{ url_for("edit_task", task_id=task._id) }}'>
-                                                                <img src='{{ url_for("static", filename="imgs/edit.svg") }}' alt='edit'>
-                                                            </a>
-                                                        </div>
-                                                        <div class='open-modal'>
-                                                            <p class="delete click"><img src='{{ url_for("static", filename="imgs/delete.svg") }}' alt='delete'></p>
-                                                        </div>
-                                                        <!-- The Delete Task Modal -->
-                                                        <div class="modal-background hidden" data-closer="close">
-                                                            <!-- Modal content -->
-                                                            <div class="modal">
-                                                                <div class="modal-title">
-                                                                    <h2>Delete Task<span class="close" data-closer="close">&times;</span></h2>
-                                                                </div>
-                                                                <div class="modal-content">
-                                                                    <div class="modal-par">
-                                                                        <p>Are you sure you want to delete the "{{ task.task_name }}" Task?</p>
-                                                                    </div>
-                                                                    <form action='{{ url_for("delete_task", task_id=task._id) }}' method='POST'>
-                                                                        <div class="modal-btns">
-                                                                            <div class="btn m-btn">
-                                                                                {{ form.submit_button }}
-                                                                            </div>
-                                                                            <div class="btn m-btn">
-                                                                                <div data-closer='close'>
-                                                                                    {{ form.cancel_button }}
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    {% endif %}
-                            {% endfor %}
-                        </ul>
-                        {% else %}
-                            <h3 class="no-tasks">No Tasks Found</h3>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+		<li class="task-card col small">
+			{% endif %} {% elif task.task_size == 'medium' %} {% if task.is_done == true %}
+		</li>
 
-        </div>
-    {% endif %}
+		<li class="task-card col medium done">{% else %}</li>
 
+		<li class="task-card col medium">{% endif %} {% else %} {% if task.is_done == true %}</li>
 
-    {% endblock %}
+		<li class="task-card col large done">{% else %}</li>
+
+		<li class="task-card col large">
+			{% endif %} {% endif %}
+			<div class="task-header row click">
+				<div class="row done-box">
+					<a href='{{ url_for("done_task", task_id=task._id) }}' class="check-box">
+						{% if task.is_done == true %}
+						<img
+							src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'
+							alt="check box full"
+						/>
+						{% else %}
+						<img
+							src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'
+							alt="check box empty"
+						/>
+						{% endif %}
+					</a>
+				</div>
+				<div class="row task-header-internal">
+					<div class="task-name">
+						<p class="shave-me">{{ task.task_name }}</p>
+					</div>
+					<div class="buttons">
+						<img
+							class="arrow"
+							src='{{ url_for("static", filename="imgs/down-arrow.svg") }}'
+							alt="expand arrow"
+						/>
+						{% if task.is_priority == true %}
+						<img
+							class="exclamation"
+							src='{{ url_for("static", filename="imgs/priority-high.svg") }}'
+							alt="priority"
+						/>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="task-body col">
+				<div class="task-content-row row info">
+					<div class="category">
+						{% if task.category_name == '' %}
+						<p>
+							<strong>No Category</strong>
+						</p>
+						{% else %}
+						<p>
+							<strong> {{ task.category_name }} </strong>
+						</p>
+						{% endif %}
+					</div>
+					<div class="priority">
+						<a
+							href='{{ url_for("priority_task", task_id=task._id) }}'
+							class="check-box row"
+						>
+							{% if task.is_priority == true %}
+							<img
+								src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'
+								alt="check box full"
+							/>
+							<p class="priority-text">
+								<strong>
+									<em>Priority</em>
+								</strong>
+							</p>
+							{% else %}
+							<img
+								src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'
+								alt="check box empty"
+							/>
+							<p class="priority-text">Priority</p>
+							{% endif %}
+						</a>
+					</div>
+				</div>
+				<div class="task-content-row row">
+					{% if task.task_description != '' %}
+					<div class="description">{{ task.task_description }}</div>
+					{% endif %}
+				</div>
+				<div class="task-content-row row info">
+					<div class="due-date">
+						{% if task.due_date != 'None' %}
+						<p>Due by: <span class="date">{{ task.due_date }}</span></p>
+						{% else %}
+						<p>No Due Date</p>
+						{% endif %}
+					</div>
+					<div class="task-buttons">
+						<div class="edit">
+							<a href='{{ url_for("edit_task", task_id=task._id) }}'>
+								<img
+									src='{{ url_for("static", filename="imgs/edit.svg") }}'
+									alt="edit"
+								/>
+							</a>
+						</div>
+						<div class="open-modal">
+							<p class="delete click">
+								<img
+									src='{{ url_for("static", filename="imgs/delete.svg") }}'
+									alt="delete"
+								/>
+							</p>
+						</div>
+						<!-- The Delete Task Modal -->
+						<div class="modal-background hidden" data-closer="close">
+							<!-- Modal content -->
+							<div class="modal">
+								<div class="modal-title">
+									<h2>
+										Delete Task<span class="close" data-closer="close"
+											>&times;</span
+										>
+									</h2>
+								</div>
+								<div class="modal-content">
+									<div class="modal-par">
+										<p>
+											Are you sure you want to delete the "{{ task.task_name
+											}}" Task?
+										</p>
+									</div>
+									<form
+										action='{{ url_for("delete_task", task_id=task._id) }}'
+										method="POST"
+									>
+										<div class="modal-btns">
+											<div class="btn m-btn">{{ form.submit_button }}</div>
+											<div class="btn m-btn">
+												<div data-closer="close">
+													{{ form.cancel_button }}
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		{% endif %} {% endfor %}
+	</ul>
+	{% else %}
+	<h3 class="no-tasks">No Tasks Found</h3>
+	{% endif %}
+</div>
+<div class="large-screen">
+	<div class="main-section toDo">
+		<div class="main-section-header row">
+			<div class="row">
+				<h3>To Do</h3>
+			</div>
+		</div>
+		<div class="main-section-content row">
+			<div class="task-list">
+				{% if toDo|length > 0 %}
+				<ul class="task">
+					{% for task in toDo %} {% if session.user|lower == task.created_by|lower %} {%
+					if task.task_size == 'small' %}
+					<li class="task-card col small">{% elif task.task_size == 'medium' %}</li>
+
+					<li class="task-card col medium">{% else %}</li>
+
+					<li class="task-card col large">
+						{% endif %}
+						<div class="task-header row click">
+							<div class="row done-box">
+								<a
+									href='{{ url_for("done_task", task_id=task._id) }}'
+									class="check-box"
+								>
+									{% if task.is_done == true %}
+									<img
+										src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'
+										alt="check box full"
+									/>
+									{% else %}
+									<img
+										src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'
+										alt="check box empty"
+									/>
+									{% endif %}
+								</a>
+							</div>
+							<div class="row task-header-internal">
+								<div class="task-name">
+									<p class="shave-me">{{ task.task_name }}</p>
+								</div>
+								<div class="buttons">
+									<img
+										class="arrow"
+										src='{{ url_for("static", filename="imgs/down-arrow.svg") }}'
+										alt="expand arrow"
+									/>
+									{% if task.is_priority == true %}
+									<img
+										class="exclamation"
+										src='{{ url_for("static", filename="imgs/priority-high.svg") }}'
+										alt="priority"
+									/>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="task-body col">
+							<div class="task-content-row row info">
+								<div class="category">
+									{% if task.category_name == '' %}
+									<p>No Category</p>
+									{% else %} {{ task.category_name }} {% endif %}
+								</div>
+								<div class="priority">
+									<a
+										href='{{ url_for("priority_task", task_id=task._id) }}'
+										class="check-box row"
+									>
+										{% if task.is_priority == true %}
+										<img
+											src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'
+											alt="check box full"
+										/>
+										<p class="priority-text">
+											<strong>
+												<em>Priority</em>
+											</strong>
+										</p>
+										{% else %}
+										<img
+											src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'
+											alt="check box empty"
+										/>
+										<p class="priority-text">Priority</p>
+										{% endif %}
+									</a>
+								</div>
+							</div>
+							<div class="task-content-row row">
+								{% if task.task_description != '' %}
+								<div class="description">{{ task.task_description }}</div>
+								{% endif %}
+							</div>
+							<div class="task-content-row row info">
+								<div class="due-date">
+									{% if task.due_date != 'None' %}
+									<p>Due by: <span class="date">{{ task.due_date }}</span></p>
+									{% else %}
+									<p>No Due Date</p>
+									{% endif %}
+								</div>
+								<div class="task-buttons">
+									<div class="edit">
+										<a href='{{ url_for("edit_task", task_id=task._id) }}'>
+											<img
+												src='{{ url_for("static", filename="imgs/edit.svg") }}'
+												alt="edit"
+											/>
+										</a>
+									</div>
+									<div class="open-modal">
+										<p class="delete click">
+											<img
+												src='{{ url_for("static", filename="imgs/delete.svg") }}'
+												alt="delete"
+											/>
+										</p>
+									</div>
+									<!-- The Delete Task Modal -->
+									<div class="modal-background hidden" data-closer="close">
+										<!-- Modal content -->
+										<div class="modal">
+											<div class="modal-title">
+												<h2>
+													Delete Task<span
+														class="close"
+														data-closer="close"
+														>&times;</span
+													>
+												</h2>
+											</div>
+											<div class="modal-content">
+												<div class="modal-par">
+													<p>
+														Are you sure you want to delete the "{{
+														task.task_name }}" Task?
+													</p>
+												</div>
+												<form
+													action='{{ url_for("delete_task", task_id=task._id) }}'
+													method="POST"
+												>
+													<div class="modal-btns">
+														<div class="btn m-btn">
+															{{ form.submit_button }}
+														</div>
+														<div class="btn m-btn">
+															<div data-closer="close">
+																{{ form.cancel_button }}
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					{% endif %} {% endfor %}
+				</ul>
+				{% else %}
+				<h3 class="no-tasks">No Tasks Found</h3>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+	<div class="main-section doneSection">
+		<div class="main-section-header row">
+			<div class="row">
+				<h3>Tasks Completed Today</h3>
+			</div>
+		</div>
+		<div class="main-section-content row">
+			<div class="task-list">
+				{% if doneTasks|length > 0 %}
+				<ul class="task">
+					{% for task in doneTasks %} {% if session.user|lower == task.created_by|lower %}
+					{% if task.task_size == 'small' %}
+					<li class="task-card col small">{% elif task.task_size == 'medium' %}</li>
+
+					<li class="task-card col medium">{% else %}</li>
+
+					<li class="task-card col large">
+						{% endif %}
+						<div class="task-header row click">
+							<div class="row done-box">
+								<a
+									href='{{ url_for("done_task", task_id=task._id) }}'
+									class="check-box"
+								>
+									{% if task.is_done == true %}
+									<img
+										src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'
+										alt="check box full"
+									/>
+									{% else %}
+									<img
+										src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'
+										alt="check box empty"
+									/>
+									{% endif %}
+								</a>
+							</div>
+							<div class="row task-header-internal">
+								<div class="task-name">
+									<p class="shave-me">{{ task.task_name }}</p>
+								</div>
+								<div class="buttons">
+									<img
+										class="arrow"
+										src='{{ url_for("static", filename="imgs/down-arrow.svg") }}'
+										alt="expand arrow"
+									/>
+									{% if task.is_priority == true %}
+									<img
+										class="exclamation"
+										src='{{ url_for("static", filename="imgs/priority-high.svg") }}'
+										alt="priority"
+									/>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="task-body col">
+							<div class="task-content-row row info">
+								<div class="category">
+									{% if task.category_name == '' %}
+									<p>No Category</p>
+									{% else %} {{ task.category_name }} {% endif %}
+								</div>
+								<div class="priority">
+									<a
+										href='{{ url_for("priority_task", task_id=task._id) }}'
+										class="check-box row"
+									>
+										{% if task.is_priority == true %}
+										<img
+											src='{{ url_for("static", filename="imgs/check-box-full.svg") }}'
+											alt="check box full"
+										/>
+										<p class="priority-text">
+											<strong>
+												<em>Priority</em>
+											</strong>
+										</p>
+										{% else %}
+										<img
+											src='{{ url_for("static", filename="imgs/check-box-empty.svg") }}'
+											alt="check box empty"
+										/>
+										<p class="priority-text">Priority</p>
+										{% endif %}
+									</a>
+								</div>
+							</div>
+							<div class="task-content-row row">
+								{% if task.task_description != '' %}
+								<div class="description">{{ task.task_description }}</div>
+								{% endif %}
+							</div>
+							<div class="task-content-row row info">
+								<div class="due-date">
+									{% if task.due_date != 'None' %}
+									<p>Due by: <span class="date">{{ task.due_date }}</span></p>
+									{% else %}
+									<p>No Due Date</p>
+									{% endif %}
+								</div>
+								<div class="task-buttons">
+									<div class="edit">
+										<a href='{{ url_for("edit_task", task_id=task._id) }}'>
+											<img
+												src='{{ url_for("static", filename="imgs/edit.svg") }}'
+												alt="edit"
+											/>
+										</a>
+									</div>
+									<div class="open-modal">
+										<p class="delete click">
+											<img
+												src='{{ url_for("static", filename="imgs/delete.svg") }}'
+												alt="delete"
+											/>
+										</p>
+									</div>
+									<!-- The Delete Task Modal -->
+									<div class="modal-background hidden" data-closer="close">
+										<!-- Modal content -->
+										<div class="modal">
+											<div class="modal-title">
+												<h2>
+													Delete Task<span
+														class="close"
+														data-closer="close"
+														>&times;</span
+													>
+												</h2>
+											</div>
+											<div class="modal-content">
+												<div class="modal-par">
+													<p>
+														Are you sure you want to delete the "{{
+														task.task_name }}" Task?
+													</p>
+												</div>
+												<form
+													action='{{ url_for("delete_task", task_id=task._id) }}'
+													method="POST"
+												>
+													<div class="modal-btns">
+														<div class="btn m-btn">
+															{{ form.submit_button }}
+														</div>
+														<div class="btn m-btn">
+															<div data-closer="close">
+																{{ form.cancel_button }}
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					{% endif %} {% endfor %}
+				</ul>
+				{% else %}
+				<h3 class="no-tasks">No Tasks Found</h3>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %} {% endblock %}

@@ -30,13 +30,13 @@ describe('Create, edit, complete and delete Task on desktop', () => {
 			.get('section > .modal-background')
 			.click()
 			.get(
-				'.task-list > .task > :nth-child(1) > .task-header > .task-header-internal > .task-name > strong > .shave-me'
+				'.task-list > .task > :nth-child(1) > .task-header > .task-header-internal > .task-name > .shave-me'
 			)
 			.should('contain', 'two');
 	});
 
 	it('Completes task two', () => {
-		cy.get(':nth-child(1) > .task-header > .done-box > .check-box > p > img')
+		cy.get('.task-list > .task > :nth-child(1) > .task-header > .done-box > .check-box > img')
 			.click()
 			.get('section > .modal-background')
 			.click()

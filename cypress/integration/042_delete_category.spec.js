@@ -6,13 +6,13 @@ describe('Deletes the Category', () => {
 	it('Cancel Deletes category', () => {
 		cy.get(':nth-child(6) > .section-header')
 			.click()
-			.get('.delete')
+			.get('.card-action > .open-modal > .delete > img')
 			.click()
 			.get('#cancel_button')
 			.click()
 			.get('#burger-btn')
 			.click()
-			.get('ul > :nth-child(2) > a')
+			.get('nav > ul > :nth-child(2) > a')
 			.click();
 	});
 

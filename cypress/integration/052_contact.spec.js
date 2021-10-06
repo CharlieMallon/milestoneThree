@@ -57,6 +57,6 @@ describe('Tests the contact Page', () => {
 			.get('#send')
 			.click()
 			.get('#sucess > .modal > .modal-content > .modal-par > p')
-			.should('contain', 'Thank you for your email');
+			.should('be.visible');
 	});
 });

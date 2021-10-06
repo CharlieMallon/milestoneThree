@@ -522,6 +522,7 @@ h1 a {
 .task-name {
 	padding: 0px 10px;
 	line-height: 30px;
+	font-weight: 700;
 }
 
 .buttons {
@@ -1146,7 +1147,7 @@ input#task_size-2 {
 		display: none;
 	}
 
-	.login-link{
+	.login-link {
 		display: none;
 	}
 
@@ -1262,11 +1263,11 @@ input#task_size-2 {
 	}
 
 	/* ---------- Forms ------------ */
-	.big-forms{
+	.big-forms {
 		height: 370px;
 	}
 
-	.big-forms .form-field{
+	.big-forms .form-field {
 		width: 50%;
 	}
 
@@ -1274,7 +1275,7 @@ input#task_size-2 {
 		height: 150px;
 	}
 
-	.cat .form-field{
+	.cat .form-field {
 		width: 100%;
 	}
 }
