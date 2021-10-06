@@ -78,7 +78,8 @@ as chronic fatigue, long COVID or depression. It aims to assist in the recovery 
     -   settings are explained well.
 
     #### Description:
-    The user will be able to access and edit all preferences.  Settings will be simply explained and easy to access.
+
+    The user will be able to access and edit all preferences. Settings will be simply explained and easy to access.
 
     #### User Story 5
 
@@ -253,6 +254,77 @@ This section will detail the interesting Issues and Bugs that I came across whil
 | Forms are not validating correctly       | One of the big this I found is that somewhere during my coding I have stopped validating my forms, for the most part this was an easy fix, I just turned it back on. However the due date on the Add and Edit Task forms is stopping the form from submitting when the 'official' form validation is turned on. I spent some time looking around for a full fix however it looks like i have to completely re-evaluate how I interact and store dates in the database. | I have re-set up the validation for the forms that I can. for the Add/Edit forms there is validation on the server side and the error handling will handle any problems until this issue can be correctly fixed. |
 
 ## Deployment
+
+### Project Creation
+
+I used VScode and git to produce this project.
+The following commands were used to keep version control
+
+-   `git add .` to stage files before committing
+-   `git commit -m "message explaining commit"` to commit the local repository
+-   `git push` to push all committed changes to the GitHub repository
+
+### Deployment to Heroku
+
+**Create application:**
+
+1. Navigate to Heroku.com and login or sign up.
+2. Click on the new button.
+3. Select create new app.
+4. Enter the app name, this must be unique.
+5. Select region.
+6. Click Create App.
+
+**Set up connection to Github Repository:**
+
+1. Click the deploy tab
+2. Select GitHub as the deployment method.
+3. A prompt to find a github repository to connect to will then be displayed.
+4. Enter the repository name for the project and click search.
+5. Once the repo has been found, click the connect button.
+6. To enable automatic deployment (_optional_)
+    1. Scroll to the Automatic deploys section
+    2. Choose the branch you want to deploy from
+    3. Click Enable Automation Deploys.
+
+**Set environment variables:**
+
+1. Click on the settings tab
+2. Click the 'reveal config vars' button.
+3. Variables needed:
+    - IP
+    - MONGO_DBNAME
+    - MONGO_URI
+    - PORT
+    - SECRET_ACCESS_KEY
+
+_These variables change depending on your set up so I will not add mine here._
+
+### Making a Local Clone
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/CharlieMallon/milestoneTwo)
+2. Under the repository name, click "Clone or download".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+4. Open Git Bash
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type `git clone`, and then paste the URL you copied in Step 3.
+
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+```
+
+7. Press Enter. Your local clone will be created.
+
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+> Cloning into `CI-Clone`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+```
+
+Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
 
 ## Credits
 
