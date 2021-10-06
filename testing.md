@@ -109,7 +109,7 @@ To run the tests in this repository you will need Node.js installed and a local 
 $ npx cypress run
 ```
 
-This will run all the intergration tests through the terminal and produce the [screenshots](cypress\screenshots) and [videos](cypress\videos) you can see in the cypress folder.
+This will run all the intergration tests through the terminal and produce the [screenshots](cypress/screenshots) and [videos](cypress/videos) you can see in the cypress folder.
 
 **To open cypress type**
 
