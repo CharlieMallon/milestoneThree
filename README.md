@@ -287,4 +287,4 @@ I used gif's from [giphy](giphy.com) to make my error pages slightly amusing and
 -   My Mentor Brian Macharia for some good guidance.
 -   Mr_Bim_alumni for general encouragement and the occasional kick up the backside.
 -   Anthony for the prods in the right direction.
--   Eventyret for breaking my security as soon as he was given the links to the site.
+-   Eventyret for breaking the security as soon as he was given the links to the site.
