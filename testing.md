@@ -87,9 +87,9 @@ As this site is quite small did this testing by 'hand'.  I clicked on the links 
 
 ## Validator and Lighthouse Testing
 
-I Passed my code through the [w3c markup validator](), [CSS Validator](), [JSHint](https://jshint.com/) and [PEP 8 Checker](http://pep8online.com/) to validate my sites code.
+I Passed my code through the [w3c markup validator](https://validator.w3.org/#validate_by_uri), [CSS Validator](https://jigsaw.w3.org/css-validator/validator), [JSHint](https://jshint.com/) and [PEP 8 Checker](http://pep8online.com/) to validate my sites code.
 
-It passed with no errors through the [PEP 8 Checker](http://pep8online.com/).  There were some warnings when i passed the JS code through the [JSHint](https://jshint.com/), but these were to do with some parts of JS not being compatible with ES6 or Mozilla JS.
+It passed with no errors through the [PEP 8 Checker](http://pep8online.com/).  There were some warnings when i passed the JS code through the [JSHint](https://jshint.com/), but these were to do with some parts of JS not being compatible with ES6 or Mozilla JS.  There were no errors on the [CSS Validator](https://jigsaw.w3.org/css-validator/validator). There were a few things on the [HTML Validator](https://validator.w3.org/#validate_by_uri) Due to the buttons on the page there were duplicate ID's, The flash section has no body and therefore no heading none of these were things to worry about.
 
 I also used chromes developer tools to run a lighthouse report.
 

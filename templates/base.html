@@ -54,16 +54,16 @@
                 <h1><a href='{{ url_for("home") }}'>To Did App</a></h1>
                 <div class='desktop-nav'>
                     <ul>
-                        <a href='{{ url_for("home") }}'><li>Home</li></a>
-                        {% if session.user%}
-                            <a href='{{ url_for("account", 
-                                username=session["user"]) }}'><li>Account</li></a>
-                            <a href='{{ url_for("logout") }}'><li>Log Out</li></a>
-                        {% else %}
-                            <a href='{{ url_for("register") }}'><li>Register</li></a>
-                            <a href='{{ url_for("login") }}'><li>Log In</li></a>
-                        {% endif %}
-                        <a href='{{ url_for("contact") }}'><li>Contact</li></a>
+                        <li><a href='{{ url_for("home") }}'>Home</a></li>
+                            {% if session.user%}
+                                <li><a href='{{ url_for("account", 
+                                    username=session["user"]) }}'>Account</a></li>
+                                <li><a href='{{ url_for("logout") }}'>Log out</a></li>
+                            {% else %}
+                                <li><a href='{{ url_for("register") }}'>Register</a></li>
+                                <li><a href='{{ url_for("login") }}'>Log In</a></li>
+                            {% endif %}
+                        <li><a href='{{ url_for("contact") }}'>Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                     <div class='add-task'>
                         <div class='add-task-btn'>
                             <a href='{{ url_for("add_task") }}'>
-                                <img class='add' src='{{ url_for("static", filename="imgs/add.svg") }}'></img>
+                                <img class='add' src='{{ url_for("static", filename="imgs/add.svg") }}' alt='plus'>
                             </a>
                         </div>
                         <div class='container add-task-words'>
