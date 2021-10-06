@@ -16,13 +16,5 @@ describe('Edit the Category', () => {
 			.get('section > .modal-background > .modal')
 			.should('contain', 'Category Successfully Updated');
 		cy.get('section > .modal-background').click();
-		cy.get(':nth-child(5) > .section-header').click();
-		cy.get(
-			'.section.open > .section-content > .task > .large > .task-header > .task-header-internal'
-		).click();
-		cy.get('.section.open > .section-content > .task > .large > .task-body').should(
-			'contain',
-			'Edited Category'
-		);
 	});
 });
