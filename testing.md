@@ -1,6 +1,8 @@
 # Testing Doc
 
-I have used cypress to do a suite of integration tests.
+I have used cypress to do a suite of integration tests. This has meant that I can re-do the tests after an edit without having to click every link or take every screenshot. Although I have done some manual tests for the sections that i found harder to test.
+
+For information on how to run the cypress tests go [here](#cypress)
 
 ## Testing strategy.
 
@@ -94,3 +96,26 @@ It passed with no errors through the [PEP 8 Checker](http://pep8online.com/).  T
 I also used chromes developer tools to run a lighthouse report.
 
 ![Light House Report](assets\testing_imgs\Lighthouse_numbers.png).
+
+## Cypress
+
+To run the tests in this repository you will need Node.js installed and a local copy of the site running.
+
+*NOTE: you may have to change the base URL in [cypress.json](cypress.json)*
+
+**To run the tests type**
+
+```
+$ npx cypress run
+```
+
+This will run all the intergration tests through the terminal and produce the [screenshots](cypress\screenshots) and [videos](cypress\videos) you can see in the cypress folder.
+
+**To open cypress type**
+
+```
+$ npx cypress open
+```
+This will open cypress in a new window and allow you to step through each test using the cypress interface more details on this can be found [here](https://docs.cypress.io/guides/getting-started/writing-your-first-test)
+
+Full details of how to set up and use Cypress can be found on their [website](https://docs.cypress.io/guides/getting-started/installing-cypress#System-requirements). 

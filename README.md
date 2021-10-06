@@ -1,6 +1,8 @@
-# To Do Application - the Reward scheme!
+# To Do Application
 
 [View the live website here](http://cm-ms3-to-did.herokuapp.com/home)
+
+![mockUp](assets\images\mockup_To_Did.png)
 
 ---
 
@@ -229,6 +231,7 @@ at the Issue one.
 -   [CSS-Tricks](https://css-tricks.com/)
 -   [Balsamiq](https://balsamiq.com/wireframes/)
 -   [CSS Filter generator](https://codepen.io/sosuke/pen/Pjoqqp)
+-   [techsini](https://techsini.com/multi-mockup/)
 
 ## Testing
 
@@ -242,7 +245,7 @@ This section will detail the interesting Issues and Bugs that I came across whil
 
 | Issue/Bug                                     | Comments                                                                                                                                                                                                                                                                | Final Fix                                                                                                                                                                                                                                    |
 | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| How to store dates to show back to the user   | Not the first problem I expected to encounter. The format of dates seemed to be many and the main issue i was having is that MongoDB wouldn't accept the output from WTForms                                                                                            | After much research i came across this [article](https://www.w3.org/QA/Tips/iso-date)and concluded that the best way to store the due date is in accordance with ISO 8601 which is YYYY-MM-DD and as a string, that can be manipulated later |
+| How to store dates to show back to the user   | Not the first problem I expected to encounter. The format of dates seemed to be many and the main issue i was having is that MongoDB wouldn't accept the output from WTForms                                                                                            | After much research i came across this [article](https://www.w3.org/QA/Tips/iso-date) and concluded that the best way to store the due date is in accordance with ISO 8601 which is YYYY-MM-DD and as a string, that can be manipulated later |
 | Implementation of sliders on the account page | I was stuck here for longer than I care to remember. After great sucess implementing a cool slider for the opening and closing of tasks (lines 118 - 140 in the JS) I tried implementing this to the account page. It didn't work as unordered lists don't have height. | I ended up calculating the available height for the section slider to be opened in                                                                                                                                                           |
 | Changing the colour of a SVG file using CSS   | Tried changing the text fill and background colours I could change the colour in the SGV file but this would limit options for the future                                                                                                                               | Filter was the correct property that needed to be changed but it doesn't take a hex value so I used the [CSS Filter generator](https://codepen.io/sosuke/pen/Pjoqqp) to get my desired                                                       |
 
@@ -323,6 +326,12 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 > remove: Total 10 (delta 1), reused 10 (delta 1)
 > Unpacking objects: 100% (10/10), done.
 ```
+
+8. Once this has been completed use the following command to install all the packages required.
+
+````
+$ pip install -r requirements.txt
+````
 
 Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
 
