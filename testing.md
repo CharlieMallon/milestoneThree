@@ -34,6 +34,7 @@ There are two types of pages on this site, the 'public' pages which are viewed b
     6.  Security / error handling
             Can you get to parts of the site without logging In or with the wrong credentials? what happens if you try to access something that doesn't exist?
 
+        Note: As the delete the user section has not been build yet, the cypress test user has to be manually deleted from the database after running the test suite
 
 ## During Testing
 
@@ -42,6 +43,7 @@ The following things where observed during testing
 | Observation | Action | Comment |
 | --- | --- | --- |
 | When no tasks planned/completed the bar should say something like 'No Tasks Prioritised'| Added to next feature update  |  |
+| Boxes should turn red when required sections not filled in | Added to future feature update  |  |
 | On large screens the tasks should be split into two lists|  Added to next feature update  | Stopped them rendering oddly, but will split them in to separately rendered columns on the next feature update |
 | Contact form - name/email issues|  Bug Fixed  | Stopped the form control inputs being very small |
 | Due by date is backwards (2021-10-10)|  Added to next feature update  | Get the page to show the date in nicer format (01-Jan-20) |
@@ -63,13 +65,6 @@ The following things where observed during testing
 | Edit and Delete buttons switch there order, pick a consistent order! | Bug Fixed | now edit then - Delete on all tasks and categories| 
 | done date not added when editing the priority|  Bug Fixed |  |
 
-### Future features
-
-Boxes should turn red when required sections not filled in
-You cannot delete your user account
-You cannot edit your user details (username / password)
-You should be able to add a category from the Account Page
-
 ## Security Testing
 
 As this site is quite small did this testing by 'hand'.  I clicked on the links in the section when not logged into the site and logged in as myself (not Admin).  I did find that I could edit the prioritize and done status however the page displayed did say I wasn't supposed to have access (see screenshots at the bottom of the page). I updated the security in the app route so all the below links should show the 'Access Denied', 'Error' or 'login' pages.
@@ -89,3 +84,11 @@ As this site is quite small did this testing by 'hand'.  I clicked on the links 
 ### Correctly displaying Error pages
 ![Error screenshot](assets\testing_imgs\screenshot_error.png)
 ![Access Denied screenshot](assets\testing_imgs\screenshot_access_denied.png)
+
+## Validator and Lighthouse Testing
+
+I used [w3c markup validator]() and [CSS Validator]() to validate my sites code
+
+I also used chromes developer tools to run a lighthouse report.
+
+![Light House Report](assets\testing_imgs\Lighthouse_numbers.png).

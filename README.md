@@ -5,7 +5,7 @@
 ---
 
 This aplication is a To Do list specifically targeted at people with energy sapping illnesses such
-as chronic fatigue, long COVID or depression. It aims to assist in the recovery back to 'normal' life.  It encourages the user to think how big a task is and doesn't immediately delete done task, meaning the user can review their day.
+as chronic fatigue, long COVID or depression. It aims to assist in the recovery back to 'normal' life. It encourages the user to think how big a task is and doesn't immediately delete done task, meaning the user can review their day.
 
 ---
 
@@ -42,14 +42,14 @@ as chronic fatigue, long COVID or depression. It aims to assist in the recovery 
 
     #### Acceptance Criteria
 
-    -   A promp that asks the user to prioritise the tasks for the day
+    -   A prompt that asks the user to prioritise the tasks for the day
     -   Pulls yesterdays prioritise for review
     -   Looks at the due date of tasks and suggests priorities.
     -   Checks tasks don't go over 'energy' targets (i.e 5 small tasks)
 
     #### Description:
 
-    The user will be prompted to review and prioritise tasks.  The application will 'remind' the user
+    The user will be prompted to review and prioritise tasks. The application will 'remind' the user
     of their energy goals if they put too much in their day.
 
     #### User Story 3
@@ -58,7 +58,7 @@ as chronic fatigue, long COVID or depression. It aims to assist in the recovery 
 
     #### Acceptance Criteria
 
-    -   A promp that shows the user the tasks they have completed that day
+    -   A prompt that shows the user the tasks they have completed that day
     -   Gives an opportunity for the user to review/put in tomorrows priorities.
     -   Gives the user a positive message?
 
@@ -78,8 +78,7 @@ as chronic fatigue, long COVID or depression. It aims to assist in the recovery 
     -   settings are explained well.
 
     #### Description:
-
-     
+    The user will be able to access and edit all preferences.  Settings will be simply explained and easy to access.
 
     #### User Story 5
 
@@ -161,9 +160,9 @@ as chronic fatigue, long COVID or depression. It aims to assist in the recovery 
 
         I chose a simple easy to read font [Rubik](https://fonts.google.com/specimen/Rubik?category=Sans+Serif) from [google fonts](https://fonts.google.com/).
 
-    -   #### symbols and buttons
+    -   #### Symbols and Buttons
 
-        Symbols came from [google icons](https://fonts.google.com/icons) as they are fairly familiar to most users.  and have nice lines.
+        Symbols came from [google icons](https://fonts.google.com/icons) as they are familiar to most users and have nice lines.
 
 *   ### Wireframes
 
@@ -171,34 +170,37 @@ as chronic fatigue, long COVID or depression. It aims to assist in the recovery 
 
     -   Tablet Wireframes - [View](assets/wireframes/tablet.png)
 
-    -   Window Wireframes - [Not completed - no link]()
-
 ## Features
 
 I have split the features into Beta, Issue 1, Issue 2 & Issue 3. The project is currently
-at the design conception stage.
+at the Issue one.
 
 -   ### Beta
 
     -   Register
     -   Log on/off
-    -   All CRUD functions
-    -   Tell you how to use the application.
+    -   CRUD functions for Tasks
     -   Make Responsive on all Devices.
 
 -   ### Issue 1
 
-    -   Tell you how to use the aplication - with cool arrow graphics in 'slide' format
-    -   Sign up form with extra questions
-        -   what do you want to use app for?
-    -   Prompts that tell the user how to source
+    -   CRUD functions for all categories
+    -   Prioritize and complete tasks from the 'home' page
+    -   Allows the user to view Tasks completed 'Today'
+    -   Simple explication of how the app works.
 
 -   ### Issue 2
 
-    -   
+    -   Pulls yesterdays prioritise for review
+    -   Looks at the due date of tasks and suggests priorities.
+    -   Checks tasks don't go over 'energy' targets (i.e 5 small tasks)
+    -   User can edit and delete there account
+    -   Add a category from the Account Page
 
 -   ### Issue 3
-    -
+    -   A prompt that asks the user to prioritise the tasks for the day
+    -   Sign up form with extra questions
+    -   fancy Graphical explanation of how the app works.
 
 ## Technologies Used
 
@@ -215,6 +217,7 @@ at the design conception stage.
 -   [RandomKeygen](https://randomkeygen.com/)
 -   [Heroku](https://id.heroku.com/)
 -   [WTForms](https://wtforms.readthedocs.io/en/2.3.x/)
+-   [Cypress](https://docs.cypress.io/guides/overview/why-cypress)
 
 ### Resources
 
@@ -228,57 +231,54 @@ at the design conception stage.
 
 ## Testing
 
-Testing is detailed in a separate file [here](testing.md).
+Full Testing is detailed in a separate file [here](testing.md).
 
-### Bugs
+### Interesting Bugs / Issues
 
-This section will detail the bugs that I came across coding and the main one that I found during testing.
-
-One of the first problems i came across was not something i expected, how to store dates, it doesnt seem like it should be that hard, just drop it into the database as a date.  but in what format? how do i make it readable to all, why wont the database acept the output from wtforms?!? I did some research and concluded that the best way to store the duedate is in accordance with ISO 8601 (good old ISO) which is YY-MM-DD and as a string, that can be manipulated later. [artical](https://www.w3.org/QA/Tips/iso-date)
-
-After great sucess implementing a cool slider for the opening and closing of tasks (lines 19 - 40 in the JS) i tried implementing this to the account page, i had some real troubble with the height turns out that ul's dont have height! who knew! I tried wapping the list in a div (didnt work) so will have to come up with a diffrent aproach to the height of these section.
-
-How do i change the colour of SVG files using css. 
-    https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element
-    I used the [CSS Filter generator](https://codepen.io/sosuke/pen/Pjoqqp)
-
-
+This section will detail the interesting Issues and Bugs that I came across whilst coding and the main ones that I found during testing.
 
 **During coding**
 
-| Bug | Things Tried | Final Fix |
-| --- | ------------ | --------- |
-| Bug | Things Tried | Final Fix |
+| Issue/Bug                                     | Comments                                                                                                                                                                                                                                                                | Final Fix                                                                                                                                                                                                                                    |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| How to store dates to show back to the user   | Not the first problem I expected to encounter. The format of dates seemed to be many and the main issue i was having is that MongoDB wouldn't accept the output from WTForms                                                                                            | After much research i came across this [article](https://www.w3.org/QA/Tips/iso-date)and concluded that the best way to store the due date is in accordance with ISO 8601 which is YYYY-MM-DD and as a string, that can be manipulated later |
+| Implementation of sliders on the account page | I was stuck here for longer than I care to remember. After great sucess implementing a cool slider for the opening and closing of tasks (lines 118 - 140 in the JS) I tried implementing this to the account page. It didn't work as unordered lists don't have height. | I ended up calculating the available height for the section slider to be opened in                                                                                                                                                           |
+| Changing the colour of a SVG file using CSS   | Tried changing the text fill and background colours I could change the colour in the SGV file but this would limit options for the future                                                                                                                               | Filter was the correct property that needed to be changed but it doesn't take a hex value so I used the [CSS Filter generator](https://codepen.io/sosuke/pen/Pjoqqp) to get my desired                                                       |
 
-**During testing**
+**During Testing**
 
-| Test Ref | Test Description | Bug Description | Final fix | Comment |
-| -------- | ---------------- | --------------- | --------- | ------- |
-| Test Ref | Test Description | Bug Description | Final fix | Comment |
+| Issue/Bug                                | Comments                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Final Fix                                                                                                                                                                                                        |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| How to test the html5 inbuilt validation | I could see that it was working but could work out how to get cypress to 'register' it was working and couldn't find the bubble in developer tools.                                                                                                                                                                                                                                                                                                                    | Finally found this [Blog Post](https://glebbahmutov.com/blog/form-validation-in-cypress/) that explained how to check the validation status                                                                      |
+| Forms are not validating correctly       | One of the big this I found is that somewhere during my coding I have stopped validating my forms, for the most part this was an easy fix, I just turned it back on. However the due date on the Add and Edit Task forms is stopping the form from submitting when the 'official' form validation is turned on. I spent some time looking around for a full fix however it looks like i have to completely re-evaluate how I interact and store dates in the database. | I have re-set up the validation for the forms that I can. for the Add/Edit forms there is validation on the server side and the error handling will handle any problems until this issue can be correctly fixed. |
 
-
-https://glebbahmutov.com/blog/form-validation-in-cypress/ - to test the html 5 required form function
 ## Deployment
 
 ## Credits
 
-Inspirations [any.do](https://www.any.do/) a to do list that looks cool
+Inspirations came from many of the to do aplication out there but I particularly like [any.do](https://www.any.do/) and [todoist](https://todoist.com/).
 
 ### Code
 
-https://www.youtube.com/watch?v=EpJRJsmqnn0 - video i used to set up my registration form with wtforms.
-https://www.youtube.com/watch?v=HY0le1NAczc&t=0s - clean up code using macro
-https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible - collapable arrows!
-https://jonsuh.com/hamburgers/ - hamburger!
-https://dollarshaveclub.github.io/shave/ - to shorten titles
-https://www.geeksforgeeks.org/python-404-error-handling-in-flask/ - what to do with 404 errors
-https://css-tricks.com/custom-scrollbars-in-webkit/ - style scroll bars!
+Credits for code not modified for my purposes is created in the code as well. These are the places that I learnt some of the extra bits I wanted to include.
+| Source | Comments|
+| --- | --- |
+| https://www.youtube.com/watch?v=EpJRJsmqnn0 | The video I used to set up my registration form with wtforms|
+| https://www.youtube.com/watch?v=HY0le1NAczc&t=0s | The video that explains how to create the base for the macro used to clean up the WTForm's code|
+| https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible | How to implement Collapsible sections|
+| https://jonsuh.com/hamburgers/ | Some very cool hamburgers!|
+| https://dollarshaveclub.github.io/shave/ | A neat bit of js I have used to shorten the titles of the tasks when they go over two lines of text|
+| https://www.geeksforgeeks.org/python-404-error-handling-in-flask/ | How to handle 404 errors in flask|
+| https://css-tricks.com/custom-scrollbars-in-webkit/ | How to style the default scroll bars, so that my site can be accessible and still look good|
 
 ### Content
 
 -   All content was written by the developer.
 
 ### Media
+
+I used gif's from [giphy](giphy.com) to make my error pages slightly amusing and therefore 'nicer' to look at these are the original links;
+
 -   https://giphy.com/gifs/studiosoriginals-mothers-day-iDiO5gkqaVjZ7cxnSV
 -   https://giphy.com/gifs/looneytunes-looney-tunes-wile-e-coyote-39wBF8ZtAwIXvDnI23
 
@@ -287,4 +287,4 @@ https://css-tricks.com/custom-scrollbars-in-webkit/ - style scroll bars!
 -   My Mentor Brian Macharia for some good guidance.
 -   Mr_Bim_alumni for general encouragement and the occasional kick up the backside.
 -   Anthony for the prods in the right direction.
--   
+-   Eventyret for breaking my security as soon as he was given the links to the site.
